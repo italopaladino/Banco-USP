@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="login-container">
+        <form action="login.php" method="post">
+            <label for="username">Login:</label>
+            <input type="text" name="nome" required>
+            <label for="password">senha:</label>
+            <input type="password" name="senha" required>
+            <button type="submit">Login</button>
+            <div> </br>
+            <button onclick="registro()">Register</button>
+        
+            <script>
+                function registro() {
+                    window.location.href='registro-form.html'
+                }
+
+            </script>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

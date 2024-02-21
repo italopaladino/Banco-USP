@@ -1,0 +1,74 @@
+<DOCTYPE! html>
+<html lang ="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ProxyMar Data Base</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> <!-- colocar ícone na pag-->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/submit.css" rel="stylesheet" />
+    </head>
+    <body id="page1">
+        
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder"> ProxyMar Data Base</h1>
+                <p class="lead"> Submit your data here </p>
+               <!-- <a class="btn btn-lg btn-light" href="#about">Star submit</a> -->
+            </div>
+        </header></br></br>
+
+    <section id="forms">
+        <style>
+            section{
+            margin-bottom: 10px; border: 1px solid black; padding: 20px; width: 75%; margin: 0 auto; 
+            }
+            </style>
+        <title> informações Básicas para submissão</title>
+        <div class="container px-6 justify-content-center">
+            <form id="forms" method="post" action="data-acess" action="submit-data.php">
+                
+                <label  for="titulo"> *Título:</label></br>
+                <input type="text" name="titulo"  style="width: 100%;" placeholder="Título do trabalho">
+            </br>
+            </br>
+
+<script src="add-script.js"></script>
+                <label for="Email"> *E-mail </label>
+                <input type="email" name="email"  style=" width: 100%;" placeholder="E-mail">
+                <label for="autores"> *Autores:</label></br>
+                <div id="autoresContainer">
+                    
+                <input type="text" name="primeiro"  style="width: 33%;" placeholder="Primeiro Nome">
+                <input type="text" name="sobrenome"  style="width: 33%;" placeholder="Sobrenome">
+                <input type="text" name="feliaçao"  style="width: 33%;" placeholder="Filiação">
+            
+            </div>
+       
+        </br><button type="button" onclick="adicionarAutor() ">Adicionar Autor</button>
+            <button type="button" onclick="deletarAutor() ">Remover Autor</button>
+            <br><br>       
+              
+                  
+                <label  for="keywords"> *Palavras- Chaves: </label></br>
+                <input type="text" name="keywords"  style="width: 100%;" placeholder="Palavras-Chaves"> 
+            
+            </br>
+            </br>
+
+
+            <label  for="resumo"> *Resumo: </label></br>
+            <textarea type="text" name="resumo"  style="width: 100%; height: 20%; " placeholder="Abstract/Resumo"  maxlength="2500" ></textarea> 
+           
+            
+            <button onclick=""> Submit</button>
+            </form>
+        </div>
+
+
+    </section>
+
+ </body>      
+</html>

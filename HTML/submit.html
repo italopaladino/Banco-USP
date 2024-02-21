@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang ="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Submissão de dados</title>
+        <link rel="icon" type="image/x-icon" href="../assets/mac.ico" /> <!-- colocar ícone na pag-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/submit.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>       
+        <script src="../js/add-script.js"></script>
+        
+    </head>
+    <body id="page1">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+
+                <!--<a class="navbar-brand" href="#page-top">Start Bootstrap</a>-->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+
+                        <!-- arruma os links depois -->
+
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#about">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#last-issues">Últimos Artigos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contatos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="submit.html">Submissão de dados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick= openLoginDialog()>Login</a></li> <!-- deixar o login como caixa de diálogo-->
+                        <li class="nav-item"><a class="nav-link" href="registrar.html">Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+ <!-- LOGIN POR CAIXA DE DIALOGO-->                     
+ <div id="loginDialogOverlay">
+
+    <div id="loginDialog">
+        
+        <img src="../assets/avatar.jpeg" alt="Avatar" class="avatar">
+    </br>
+</br>
+        <h2>Login</h2></br>
+        <form action="../PHP/login.php" method="post">
+            
+            <label for="username">Nome:</label></br>
+            <input type="text" id="nome" name="nome" required autofocus>
+        </br>
+            <label for="password">Senha:</label></br>
+            <input type="password" id="senha" name="senha" required></br>
+
+           <button class="lgbttn" type="submit">Login</button></br>
+                                        
+</form>
+            
+<button class="lgbttn" onclick="closeLoginDialog()">Fechar</button>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder"> ProxyMar Data Base</h1>
+                <p class="lead"> Antes de submeter os dados por favor certifique-se: </p>
+                <ul id="info"> Lista de informaçãoes pré-submissão</ul>
+                <li> .. </li>
+                <li> .. </li>
+                <li> Garanta que seus dados possam ser interpretado por outra pessoa </li>
+                <li> Arquivos aceitos: XLS, PDF? </li> 
+
+
+               <!-- <a class="btn btn-lg btn-light" href="#about">Star submit</a> -->
+            </div>
+        </header></br>
+
+<!-- PRIMEIRA PAGINA -->
+
+<form id="forms" method="post" action="data-acess" action="../PHP/submit-data.php" style="position: relative">
+   
+    <div id="section1" class="form-section active">
+        <h1> Identificação do trabalho e seus autores: </h1>
+        <label  for="titulo"></label> *Título/ Title:</label></br>
+        <input id="titulo" type="text" name="titulo" style="width: 100%;" placeholder="Título do trabalho em Inglês OU Portugês" >
+        </br>
+        </br>
+        <label  for="email"> *E-mail do correspondente</label>
+        <input type="email" id="email" name="email" style="width: 100%;" placeholder="E-mail">
+       
+        <label id="autores" for="autores"> *Autores:</label></br>     
+        <div id="autoresContainer">
+            <input type="text" id="primeiro" name="primeiro" style="width: 33%;" placeholder="Primeiro Nome">
+            <input type="text" id="sobrenome" name="sobrenome" style="width: 33%;" placeholder="Sobrenome">
+            <input type="text" id="filiacao" name="filiaçao" style="width: 33%;" placeholder="Filiação">
+        </div>
+    </br>
+        <div id="autor-button">
+            <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarAutor() ">Adicionar Autor</button>
+        <button type="button" style="right: 2%; position:absolute;" class="button" onclick="deletarAutor() ">Remover Autor</button>
+    </div>
+        <br><br>
+        <label for="periodico"  >Nome do Periódico:</label></br>
+        <input type="text" id="periodico" name="periodico" style="width: 75%;"  placeholder="Nome do periódico onde o trabalho está publicado">
+    </br></br>
+        
+    <div id="idet-revista" style="position: relative;">
+<label for="doi"> DOI:</label></div>
+<div><input id="doi" name="doi" type="text" style="width: 35%; display: flex;"></div>
+      
+        
+    <div id="idet-revista" style="position: relative;">
+        <label  for="volume">Volume  da publicação:</label>
+        <div><input id="volume" type="number" name="volume"  placeholder="Apenas número"></div>    
+        <label  for="data"> Data da publicação:</label>
+        <div><input id="data" type="date" name="data" ></div>
+            
+        </div>
+
+       <div><button class="button" type="button" style="right: 1%;position:absolute; bottom:1%;" onclick="proximaPagina()"> Avançar </button></div>
+    </div>
+</div>
+
+
+
+
+    <!-- SEGUNDA PAGINA-->
+    <div id="section2" class="form-section">
+        <h1> Identificação: </h1>
+         
+   
+        <label  for="keywords"> *Palavras- Chaves: </label></br>
+        <input id="keywords" type="text" name="keywords" style="width: 85%;" placeholder="Palavras-Chaves">
+
+        </br>
+        </br>
+
+        <label for="highlights"> *Highlights: </label></br>
+        <textarea type="text" id="highlights" name="highlights" maxlength="1500" rows="5" cols="150"></textarea></br>
+
+        <label for="resumo"> *Resumo: </label></br>
+        <textarea type="text" id="resumo" name="resumo"  maxlength="2500" rows="10" cols="150" placeholder="Máximo 2500 caracteres (contanto espaços) ou 2150 (sem espaços)"></textarea>
+    </br></br>
+
+
+
+
+    <div id="coord">
+    <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
+        
+    <div id="coordenadas">
+        <input type="text" maxlength="10" id="lat" name="lat" style="width: 33%;" placeholder="Latitute:   -XX.XXXXX">
+        <input type="text" maxlength="10" id="long" name="long" style="width: 33%;" placeholder="Longitude:   -YY.YYYYY"></br>
+  
+        
+        
+    </div>
+</br>
+<span id="coordenadas" style="left: 25%; position: absolute; color: red;"> -----APENAS NÚMEROS------</span></br>
+</div>
+
+   <div id="coord-bttn">
+    </br> <button  style="left: 1%;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar coordenadas</button>
+    <button type="button" style="right: 34%; position: absolute;" class="button" onclick="deletarCoordenadas() ">Remover coordenadas</button>
+</div>
+
+        </br>
+        </br>
+
+        <button class="button" type="button" style="left: 1; position: absolute; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
+        <button type="button" class="button" style="right: 1%; position: absolute; bottom: 1%;" onclick="proximaPagina()">Avançar</button>
+    </div>
+
+
+
+
+    <!-- TERCEIRA PAGINA -->
+    <div id="section3" class="form-section">
+        <h1> Adicione seus arquivos e uma pequena descrição dos dados: </h1>
+        <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
+        <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
+    </br>
+        <label  form="refef"> Selecione seus dados:</label></br>
+        <input id="refef" type="file" style="width: 30%;" multiple></input>
+    
+    </br></br></br>
+           
+    
+     
+        <button class="button" type="button" style="position: absolute; left: 1%; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
+        <button class="button" type="button" style="position: absolute; right: 1%; bottom: 1%;" onclick="proximaPagina();exibirResumo()">Avançar</button>
+    </div>
+
+
+
+
+<!-- QUARTA PAGINA -->
+<div id="section4" class="form-section">
+    <h1>  Confirme todas as informações: </h1>
+    <div id="summary">
+       
+    </div>
+
+     
+    <button class="button" type="button" style="position: absolute; left: 1%; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
+    <button class="button" type="button" style="position: absolute; right: 1%; bottom: 1%;" onclick="proximaPagina();exibirDADOS()">Avançar</button>
+    
+
+
+</div>
+
+
+</br>
+</br>
+
+<!-- Quinta página - PONTOS INSERIDOS-->
+
+<div id="section5" class="form-section">
+    <h1>  Confirme os pontons inseridos: </h1>
+    <div id="summary-2">
+       
+    </div>
+
+     
+    <button class="button" type="button" style="position: absolute; left: 1%; bottom: 1%;" onclick="paginaAnterior()">Anterior</button> 
+    <button class="button" type="submit" style="position: absolute; right: 1%; bottom: 1%;"> Submeter</button>
+
+
+</div>
+
+</form>
+
+</br>
+</br>
+<!-- rodapé da página-->
+
+
+<footer class="py-5 bg-dark" style="position: relative;">
+
+    <div class="social">
+    <p class="text-white">Copyright &copy; Italo Paladino 2024</p>
+</br>
+</br>    
+    <a href="https://www.instagram.com/proxymar_iousp/" target="_blank" class="bi bi-instagram"></a>
+    <a href="https://sites.usp.br/proxymar/sobre//" target="_blank" class="bi bi-globe2"> </a>
+    <a href="mailto:italopaladino22@gmail.com" target="_blank" class="bi bi-envelope"> </a>      
+   </div>
+    
+ 
+      
+</footer>
+
+
+</body>      
+</html>

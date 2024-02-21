@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal com tecla Esc</title>
+    <style>
+        /* Estilos para o modal */
+        .modal {
+            display: none; /* Oculta o modal por padrão */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+            padding: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Botão para abrir o modal -->
+<button onclick="openModal()">Abrir Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <h2>Modal</h2>
+    <p>Conteúdo do modal...</p>
+</div>
+
+<script>
+    // Obtendo uma referência para o modal
+    var modal = document.getElementById("myModal");
+
+    // Função para abrir o modal
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    // Função para fechar o modal ao pressionar a tecla "Esc"
+    function keyESC(event) {
+        // Verificar se a tecla pressionada é a tecla "Esc" (código 27)
+        if (event.keyCode === 27) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Adicionando um ouvinte de evento para o evento de tecla pressionada
+    document.addEventListener("keydown", keyESC);
+</script>
+
+</body>
+</html>

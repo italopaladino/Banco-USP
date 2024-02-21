@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles-lg.css">
+    <link rel="icon" type="../image/x-icon" href="../assets/mac.ico" /> 
+   
+    <title>Login Page</title>
+
+    <script src="../js/add-script.js"></script>
+</head>
+<body>
+     <div>
+
+     </div><div class="login-container">
+        <form id="login" action="../PHP/login.php" method="post">
+            <label for="username">Login:</label>
+            <input type="text" name="nome" required>
+
+            
+            <label for="password">Senha:</label>
+            <input type="password" name="senha" required>
+          
+            <button type="submit">Login</button>
+            </br>
+            
+        </form>
+        </div>
+
+        <button onclick="registro()">Registrar novo usuário</button>
+    </br>
+        <button onclick="inicio()">Inicio</button>    
+    </div>
+    
+        
+</body>
+</html>
