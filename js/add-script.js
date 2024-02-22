@@ -1,4 +1,4 @@
-document.addEventListener('keydown', handleKeyPress);
+document.addEventListener('keydown',handleKeyPress);
 
 function handleKeyPress(event) {
     // Verificar se a tecla pressionada é a tecla "Esc" (código 27)
@@ -8,8 +8,12 @@ function handleKeyPress(event) {
     if (event.keyCode === 27) {
         closeLoginDialog();
     }
+}
 
+
+document.addEventListener('keydown', keysub);
     // Verificar se estamos na página "submit.html"
+    function keysub(event){
     var paginaSubmit = verifPag();
     if (paginaSubmit) {
         // Verificar as teclas de avanço específicas para "submit.html"
@@ -23,6 +27,7 @@ function handleKeyPress(event) {
         }
     }
 }
+
 
 // Função para verificar se a página atual é "submit.html"
 function verifPag() {
