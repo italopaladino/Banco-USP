@@ -28,14 +28,21 @@ document.addEventListener('keydown', keysub);
     }
 }
 
-
 // Função para verificar se a página atual é "submit.html"
 function verifPag() {
     var paginaAtual = window.location.href;
     return paginaAtual.includes("submit.html");
 }
 
-
+//fechar barra de navegação 
+function closeNavbar() {
+        // Fecha o menu de navegação se estiver aberto
+        var navbarResponsive = document.getElementById('navbarResponsive');
+        if (navbarResponsive.classList.contains('show')) {
+            var navbarToggleBtn = document.getElementById('navbarToggleBtn');
+            navbarToggleBtn.click(); // Simula o clique para fechar o menu
+        }
+    }
 
 
 

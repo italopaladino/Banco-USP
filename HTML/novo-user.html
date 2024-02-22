@@ -6,10 +6,18 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>ProxyMar Data Base</title>
-        <link rel="icon" type="image/x-icon" href="assets/mac.ico" /> <!-- colocar ícone na pag-->
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/submit.css" rel="stylesheet" />
-        <script src="js/add-script.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/> <!-- link para css--> 
+        <link rel="icon" type="image/x-icon" href="../assets/mac.ico" />
+   
+   
+        <link href="../css/submit.css" rel="stylesheet"/>
+        <link href="../css/styles.css" rel="stylesheet" />
+
+
+        <script src="../js/add-script.js"></script>
+        <script src="../js/script.js"></script>
     </head>
     <body id="page1">
         <!-- Navigation-->
@@ -17,18 +25,19 @@
             <div class="container px-4">
 
                 <!--<a class="navbar-brand" href="#page-top">Start Bootstrap</a>-->
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="navbarToggleBtn"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#last-issues">Últimos Artigos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contatos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="submit.html">Submissão de dados</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick="openLoginDialog(); return false;">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="novo-user.html">Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
+                        <li class="nav-item"><a class="nav-link" href="#mainNav" onclick=closeNavbar()>Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about" onclick=closeNavbar()>Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact" onclick=closeNavbar()>Contatos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="submit.html" onclick=closeNavbar()>Submissão de dados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick= "openLoginDialog();closeNavbar()">Login</a></li> <!-- deixar o login como caixa de diálogo-->
+                        <li class="nav-item"><a class="nav-link" href="#" onclick=closeNavbar()>Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
                     </ul>
+               
                 </div>
             </div>
         </nav>
@@ -39,6 +48,42 @@
                <!-- <a class="btn btn-lg btn-light" href="#about">Star submit</a> -->
             </div>
         </header></br></br>
+
+
+
+        
+        <!-- LOGIN POR CAIXA DE DIALOGO-->                     
+        <div id="loginDialogOverlay">
+       
+           <div id="loginDialog">
+               
+               <img src="../assets/avatar.jpeg" alt="Avatar" class="avatar">
+           </br>
+       </br>
+               <h2>Login</h2></br>
+               <form action="../PHP/login.php" method="post">
+                   
+                   <label for="username">Nome:</label></br>
+                   <input type="text" id="nome" name="nome" required autofocus>
+               </br>
+                   <label for="password">Senha:</label></br>
+                   <input type="password" id="senha" name="senha" required></br>
+       
+                  <button class="lgbttn" type="submit">Login</button></br>
+                                               
+       </form>
+                   
+       <button class="lgbttn" onclick="closeLoginDialog()">Fechar</button>
+       
+       </div>
+       </div>
+
+
+
+
+
+
+
 
 
 
