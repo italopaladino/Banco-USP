@@ -1,11 +1,11 @@
 document.addEventListener('keydown',handleKeyPress);
 
-function handleKeyPress(event) {
+function handleKeyPress(event1, dialogAberto) {
     // Verificar se a tecla pressionada é a tecla "Esc" (código 27)
     if (dialogAberto){
 
     }
-    if (event.keyCode === 27) {
+    if (event1.keyCode === 27) {
         closeLoginDialog();
     }
 }
