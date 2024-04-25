@@ -1,48 +1,28 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+require_once 'config php';
+function incluir ($tiulo,$email,$primeiro,$sobrenome,$filiaçao, $periodico, $doi, $volume,$data){
+global $dsn, $user, $pass;
+$mensagem="";
 
-/*    $host = "localhost";
-    $port = 5432;
-    $user = "postgres";
-    $pass = "postgre";
-    $name = "postgres";
+try{
+    $pdo = new PDO($dsn,$user,$pass,
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-$dsn ="pgsql:host=$host;port=$port;dbname=$name";
-*/
-
-require_once 'config.php';
-
-try {
-        $db = new PDO($dsn, $user, $pass);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-        $newTitulo =$_POST ['newTitulo'];
-        $newDoi = $_POST ['newDoi'];
-        $newVolume = $_POST ['newVolume'];
-        $newData = $_POST ['$newData'];
-        
-$query = "INSERT INTO artigos (titulo, doi, volume, data) VALUES (:titulo, :doi, :volume, :data)";
-$stmt = $db->prepare($query);
-
-
-if ($stmt){
-    $stmt ->bindParam(':titulo', $newTitulo, PDO::PARAM_STR);
-    $stmt ->bindParam(':doi', $newDoi,PDO::PARAM_STR);
-    $stmt -> bindParam(':newVolume', $newVolume, PDO::PARAM_STR);
-    $stmt -> bindParam(':newData', $newData,PDO::PARAM_STR);
-
-
-$stmt ->execute();
-
-    echo 'Deu certo';
-}else{
-    echo ' Erro a preparar consulta';
+$sql = "INSERT INTO test VALUES (?,?,?,?,?,?,?,?)";
+$stm = $pdo->prepare ($sql);
+$stm ->execute([$tiulo,$email,$primeiro,$sobrenome,$filiaçao, $periodico, $doi, $volume,$data]);
+$mensagem = " Inserção OK"
 }
-}catch (PDOException $e){
-    echo 'Erro de conexão:' .$e->getMessage();
+catch (PDOException $e){
+    $mensagem = "Erro ao incluir";
 }
+finally {
+    if ($pdo){
+        $pdo=null;
+    }
 }
-$db=null;
+return $mensagem;
+}
+
 ?>
