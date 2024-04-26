@@ -14,7 +14,6 @@
         <link href="../css/submit.css" rel="stylesheet"/>
         <link href="../css/styles.css" rel="stylesheet" />
 
-
         <script src="../js/add-script.js"></script>
         <script src="../js/script.js"></script>
         
@@ -37,7 +36,7 @@
                         <li class="nav-item"><a class="nav-link" href="#about" onclick=closeNavbar()>Sobre</a></li>
                         <li class="nav-item"><a class="nav-link" href="#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" onclick=closeNavbar()>Contatos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="submit.html" onclick=closeNavbar()>Submissão de dados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html" onclick=closeNavbar()>Submissão de dados</a></li>
                         <li class="nav-item"><a class="nav-link" href="#" onclick= "openLoginDialog();closeNavbar()">Login</a></li> <!-- deixar o login como caixa de diálogo-->
                         <li class="nav-item"><a class="nav-link" href="novo-user.html"onclick=closeNavbar()>Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
                     
@@ -88,34 +87,24 @@
 
                     
         <!-- About section-->
-        <section id="about">
-           
-            <div style="align-items: center;">
-
-
-                <forms id="forms" action="../PHP/consulta-art.php" method="post">
-                
-                    <button class="button" type="submit"> CONSULTAR </button>
-                </forms>
+      <!-- About section-->
+      <section id="sectionResultados">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="resultadoConsulta" class="table-responsive">
+                        <!-- Os resultados da consulta serão exibidos aqui -->
+                    </div>
                 </div>
-
-
-
-        </section>
-
-
-
-
-        <!-- Services section-->
-        <section class="bg-light" id="last-issues">
-           
-
-
-
-
-        </section>
-     
-
+            </div>
+        </div>
+    </section><section id="sectionResultados">
+        <div id="resultadoConsulta" style="align-items: center;">
+            <button id="botaoConsulta" class="button">Consultar Artigos</button>
+            
+        </div>
+    </section>
+   
         
         <!-- Footer-->
 
@@ -139,4 +128,19 @@
         <!-- Bootstrap core JS-->
         
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $("#botaoConsulta").click(function(){
+        $.ajax({
+            url: "../PHP/consulta-art.php", // O arquivo PHP que faz a consulta ao banco de dados
+            type: "GET",
+            success: function(response){
+                $("#resultadoConsulta").html(response); // Atualiza a div com os resultados da consulta
+            }
+        });
+    });
+});
+    </script>
+</script>
 </html>

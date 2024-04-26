@@ -1,3 +1,5 @@
+
+
 document.addEventListener('keydown',handleKeyPress);
 
 function handleKeyPress(event1, dialogAberto) {

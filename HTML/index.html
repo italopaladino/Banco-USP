@@ -112,7 +112,19 @@
                     
                     <div class="col-lg-8">
                         <h2>Últimos Artigos</h2>
-                        <p class="lead"> . . . </p>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div id="ultimosartigos" class="table-responsive">
+                                        <!-- Os resultados da consulta serão exibidos aqui -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,4 +154,19 @@
         <!-- Bootstrap core JS-->
         
     </body>
+    <!-- MOSTRAR OS ULTIMOS ARTIGOS INSERIDOS -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $.ajax({
+        url: "../PHP/consulta-art.php", // O arquivo PHP que faz a consulta ao banco de dados
+        type: "GET",
+        success: function(response){
+            $("#ultimosartigos").html(response); // Atualiza a div com os resultados da consulta
+        }
+    });
+});
+</script>
+</script>
 </html>
