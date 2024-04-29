@@ -19,9 +19,9 @@ document.addEventListener('keydown', keysub);
     var paginaSubmit = verifPag();
     if (paginaSubmit) {
         // Verificar as teclas de avanço específicas para "submit.html"
-        if (event.keyCode === 16) { //shift
+        if (event.keyCode === 36) { //home
             proximaPagina();  
-        } else if (event.keyCode === 17) { //crtl
+        } else if (event.keyCode === 35) { //end
             paginaAnterior();
         } else if (event.keyCode === 192) { // '
             exibirResumo();
