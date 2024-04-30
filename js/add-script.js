@@ -1,5 +1,31 @@
 
+// FAZER CONSULTA DA CONEXÃO COM BANCO DE DADOS
 
+
+        function fazerConsulta() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../PHP/teste-conexão-postgre.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Aqui você pode manipular a resposta do PHP
+                    var mensagem = document.getElementById("mensagem");
+                    if (xhr.responseText.includes("Falha na conexão")) {
+                        mensagem.style.color = "red";
+                    } else {
+                        mensagem.style.color = "green";
+                    }
+                    mensagem.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+ 
+
+
+
+
+        
 document.addEventListener('keydown',handleKeyPress);
 
 function handleKeyPress(event1, dialogAberto) {
