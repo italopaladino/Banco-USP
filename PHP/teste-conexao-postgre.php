@@ -18,5 +18,12 @@ function testarConexaoPostgreSQL($host, $port, $dbname, $user, $pass) {
 // Teste da conexão
 testarConexaoPostgreSQL($host, $port, $dbname, $user, $pass);
 
-$dsn = null;
+echo "<script>";
+echo "setTimeout(function() {";
+echo "    history.go(-1);";
+echo "}, 20);"; // 3000 milissegundos = 3 segundos
+echo "</script>";
+
+exit;
+
 ?>
