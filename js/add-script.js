@@ -154,33 +154,24 @@ function adicionarAutor() {
                         var novoCampoNome = document.createElement("input");
                         novoCampoNome.type = "text";
                         novoCampoNome.className="autor-nome";
-                        novoCampoNome.name = "primeiro" ; // Use um array para coletar vários valores
+                        novoCampoNome.name = "nomeAutor" ; // Use um array para coletar vários valores
                         novoCampoNome.placeholder = "Primeiro Nome";
-                        novoCampoNome.style.width = "33%";
+                        novoCampoNome.style.width = "49%";
                         novoCampoNome.style.marginRight = "4.8px";
                         
                        
-            
-                        var novoCampoSobrenome = document.createElement("input");
-                        novoCampoSobrenome.type = "text";
-                        novoCampoSobrenome.className = " autor-sobrenome";
-                        novoCampoSobrenome.name = "sobrenome";
-                        novoCampoSobrenome.placeholder = "Sobrenome";
-                        novoCampoSobrenome.style.width = "33%";
-                        novoCampoSobrenome.style.marginRight = "4.8px";
-
-            
+             
                         var novoCampoFiliacao = document.createElement("input");
                         novoCampoFiliacao.type = "text";
                         novoCampoFiliacao.className="autor-filiacao";
                         novoCampoFiliacao.name = "filiaçao";
                         novoCampoFiliacao.placeholder = "Filiação";
-                        novoCampoFiliacao.style.width = "33%";
+                        novoCampoFiliacao.style.width = "49%";
                     
                                
                         // Adicionar os novos campos ao container
                         container.appendChild(novoCampoNome);
-                        container.appendChild(novoCampoSobrenome);
+                        
                         container.appendChild(novoCampoFiliacao);
                     
                         // Adicionar o botão de remover
@@ -195,7 +186,7 @@ function adicionarAutor() {
                         // Verifica se há mais de três campos de autor para excluir e pelo menos um autor deve permanecer
                         if (container.children.length > 3) {
                             // Remove os três últimos filhos do container
-                            for (var i = 0; i < 3; i++) {
+                            for (var i = 0; i < 2; i++) {
                                 var ultimoAutor = container.lastChild;
                                 container.removeChild(ultimoAutor);
                             }

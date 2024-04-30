@@ -83,8 +83,12 @@
 
 <!-- PRIMEIRA PAGINA -->
 
-<form id="forms" method="post" action="../PHP/submit-DADOS.php" style="position: relative">
+<form id="forms" method="post" action="../PHP/submit-DADOS2.php" style="position: relative">
    
+   
+    <!-- campo invisivel para recuperar os valores finais -->
+    <input type="hidden" id="secaoAtual1" name="secaoAtual1" value="1">
+
     <div id="section1" class="form-section active">
         <h1> Identificação do trabalho e seus autores: </h1>
         <label  for="titulo"></label> *Título/ Title:</label></br>
@@ -96,8 +100,8 @@
        
         <label id="autores" for="autores"> *Autores:</label></br>     
         <div id="autoresContainer">
-            <input type="text" id="nome" name="nomeAutor" style="width: 33%;" placeholder="Primeiro Nome">
-            <input type="text" id="filiacao" name="filiacao" style="width: 33%;" placeholder="Filiação">
+            <input type="text" id="nome" name="nomeAutor" style="width: 49%;" placeholder="Primeiro Nome">
+            <input type="text" id="filiacao" name="filiacao" style="width: 49%;" placeholder="Filiação">
         </div>
     </br>
         <div id="autor-button">
@@ -123,6 +127,7 @@
         </div>
 
        <div><button class="button" type="button" style="right: 1%;position:absolute; bottom:1%;" onclick="proximaPagina()"> Avançar </button></div>
+       
     </div>
 </div>
 
@@ -131,6 +136,11 @@
 
     <!-- SEGUNDA PAGINA-->
     <div id="section2" class="form-section">
+       
+    <!-- campo invisivel para recuperar os valores finais -->
+    <input type="hidden" id="secaoAtual2" name="secaoAtual2" value="2">
+
+
         <h1> Identificação: </h1>
          
    
@@ -180,19 +190,27 @@
 
 
     <!-- TERCEIRA PAGINA -->
-    <div id="section3" class="form-section">
+
+        <div id="section3" class="form-section">
+
+<!-- campo invisivel para recuperar os valores finais -->
+<input type="hidden" id="secaoAtual3" name="secaoAtual3" value="3">
+
         <h1> Adicione seus arquivos e uma pequena descrição dos dados: </h1>
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
     </br>
         <label  form="refef"> Selecione seus dados:</label></br>
-        <input id="refef" type="file" style="width: 30%;" multiple></input>
+        <input id="refef" type="file" name="tabelaDado" style="width: 30%;" multiple></input>
     
     </br></br></br>
            
     
      
         <button class="button" type="button" style="position: absolute; left: 1%; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
+        <button class="button" type="submit" style="position: absolute; right: 1%; bottom: 1%;" >SubmeterFormulário</button>
+
+
         <button class="button" type="button" style="position: absolute; right: 1%; bottom: 1%;" onclick="proximaPagina();exibirResumo()">Avançar</button>
     </div>
 
@@ -235,7 +253,10 @@
 </div>
 
 </form>
+<form action="../PHP/teste-conexao-postgre.php" method="post">
 
+    <button class="button" type="submit"> CONSULTAR CONEXÂO COM BANCO</button>
+</form>
 </br>
 </br>
 <!-- rodapé da página-->

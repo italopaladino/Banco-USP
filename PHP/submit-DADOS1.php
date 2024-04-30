@@ -47,12 +47,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo $resultado; // Exibe a mensagem de retorno da função
 }
 
-/*
-sleep(5);
-
-// Lê uma página HTML
-$html = file_get_contents('index.html');
-echo $html;
-*/
-
 ?>
