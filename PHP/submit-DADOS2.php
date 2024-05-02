@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 
+
+// nao deu certo a inserção de 3 tabelas distintas no mesmo html, testar IF REQUEST para cada um no mesmo PHP. APRENDER A INSERção em multiplas tabelas no mesmo HTML
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Coleta do valor do campo 'secaoAtual' para determinar de qual seção os dados foram submetidos
     $secaoAtual1 = $_POST['secaoAtual1'];

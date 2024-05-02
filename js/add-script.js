@@ -1,28 +1,4 @@
 
-// FAZER CONSULTA DA CONEXÃO COM BANCO DE DADOS
-
-
-        function fazerConsulta() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../PHP/teste-conexão-postgre.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Aqui você pode manipular a resposta do PHP
-                    var mensagem = document.getElementById("mensagem");
-                    if (xhr.responseText.includes("Falha na conexão")) {
-                        mensagem.style.color = "red";
-                    } else {
-                        mensagem.style.color = "green";
-                    }
-                    mensagem.innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
- 
-
-
 
 
         
@@ -154,8 +130,8 @@ function adicionarAutor() {
                         var novoCampoNome = document.createElement("input");
                         novoCampoNome.type = "text";
                         novoCampoNome.className="autor-nome";
-                        novoCampoNome.name = "nomeAutor" ; // Use um array para coletar vários valores
-                        novoCampoNome.placeholder = "Primeiro Nome";
+                        novoCampoNome.name = "coAutor" + contadorAutores ; // Use um array para coletar vários valores
+                        novoCampoNome.placeholder = "Nome Completo";
                         novoCampoNome.style.width = "49%";
                         novoCampoNome.style.marginRight = "4.8px";
                         
@@ -164,7 +140,7 @@ function adicionarAutor() {
                         var novoCampoFiliacao = document.createElement("input");
                         novoCampoFiliacao.type = "text";
                         novoCampoFiliacao.className="autor-filiacao";
-                        novoCampoFiliacao.name = "filiaçao";
+                        novoCampoFiliacao.name = "filiaçao" + contadorAutores;
                         novoCampoFiliacao.placeholder = "Filiação";
                         novoCampoFiliacao.style.width = "49%";
                     
@@ -184,21 +160,34 @@ function adicionarAutor() {
                         var container = document.getElementById("autoresContainer");
                         
                         // Verifica se há mais de três campos de autor para excluir e pelo menos um autor deve permanecer
-                        if (container.children.length > 3) {
+                        if (container.children.length > 0) {
                             // Remove os três últimos filhos do container
                             for (var i = 0; i < 2; i++) {
                                 var ultimoAutor = container.lastChild;
+
                                 container.removeChild(ultimoAutor);
                             }
                     
                             // Decrementa o contador de autores
                             contadorAutores--;
+                            
                         } else {
                             // Se houver menos de três campos de autor, exiba um alerta informando que pelo menos um autor deve ser mantido
-                            window.alert("Ao menos um autor tem que ser inserido ");
+                            window.alert(" Não existe mais campos para serem removidos ");
                         }
                     }
 
+
+                    function removerTODOSAutores() {
+                        var container = document.getElementById("autoresContainer");
+                        if (container.lastChild > 0 ) {
+                            container.removeChild(container.lastChild);
+                        }else{
+                            window.alert("Todas as linhas removidas!!")
+                        }
+                        contadorAutores = 0; // Resetar o contador
+                    }
+                    
 
 
 
@@ -359,12 +348,15 @@ function exibirResumo() {
     resumo += "<p><strong>E-mail:</strong> " + document.getElementById("email").value + "</p>";
     
     //contagem de autores
-    resumo += "<p><strong>Autor-Correspondente:</strong> " + document.getElementById("primeiro").value + " " + document.getElementById("sobrenome").value + " (" + document.getElementById("filiacao").value + ")</p>";
+    resumo += "<p><strong>Autor-Correspondente:</strong> " + document.getElementById("autorCorr").value + " (" + document.getElementById("filiacao").value + ")</p>";
     for (var i = 0; i < contadorAutores; i++) {
-        var primeiroNome = document.getElementsByClassName("autor-nome")[i].value;
-        var sobrenome = document.getElementsByClassName("autor-sobrenome")[i].value;
-        var filiacao = document.getElementsByClassName("autor-filiacao")[i].value;
-        resumo += "<p><strong>Co-Autor:</strong> " + primeiroNome + " " + sobrenome + " (" + filiacao + ")</p>";
+        var coAutor = document.getElementsByClassName("coAutor")[i].value;
+        var filiacao = document.getElementsByClassName("coAutor-filiacao")[i].value;
+        resumo += "<p><strong>Co-Autor:</strong> " + coAutor + " (" + filiacao + ")</p>";
+
+
+
+        
     }
     resumo+="<p><strong>Nome do Periódico:</strong> " + document.getElementById("periodico").value + "</p>";
 
