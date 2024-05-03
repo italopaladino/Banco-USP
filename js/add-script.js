@@ -180,13 +180,15 @@ function adicionarAutor() {
 
                     function removerTODOSAutores() {
                         var container = document.getElementById("autoresContainer");
-                        if (container.lastChild > 0 ) {
-                            container.removeChild(container.lastChild);
-                        }else{
-                            window.alert("Todas as linhas removidas!!")
+                        while (container.lastChild) {
+                            container.removeChild(container.lastChild);                          
                         }
-                        contadorAutores = 0; // Resetar o contador
-                    }
+                        contadorAutores=0; // Resetar o contador
+
+                        setTimeout(function() { //timeout, é o tempo pra executar alguma coisa antes que o alert apreça
+        window.alert("Todas as linhas removidas!!");
+    }, 0);
+}
                     
 
 
