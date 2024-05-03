@@ -122,123 +122,87 @@
         <input id="titulo" type="text" name="titulo" style="width: 100%;" placeholder="Título do trabalho em Inglês OU Portugês" >
         </br>
         </br>
-       
+
+
+
+
+    <div>
+        <div>
           <label for="periodico" >Nome do Periódico:</label></br>
         <input type="text" id="periodico" name="periodico" style="width: 35%;"  placeholder="Nome do periódico onde o trabalho está publicado">
-    </br></br>
-        <label for="periodico"  > Link para o Artigo:</label></br>
+    </div>    
+    <label for="periodico"  > Link para o Artigo:</label></br>
         <input type="text" id="link" name="link" style="width: 35%;"  placeholder="endereço URL para artigo/revista">
-    </br></br>
-        
-    <div id="idet-revista" style="position: relative;">
-<label for="doi"> DOI:</label></div>
-<div><input id="doi" name="doi" type="text" style="width: 35%; display: flex;"></div>
-      
-        
-    <div id="idet-revista" style="position: relative;">
-        <label  for="volume">Volume  da publicação:</label>
-        <div><input id="volume" type="number" name="volume"  placeholder="Apenas número"></div>    
-        <label  for="data"> Data da publicação:</label>
-        <div><input id="data" type="date" name="data" ></div>
-            
-        </div>
+    </div>
 
-       <div><button class="button" type="button" style="right: 1%;position:absolute; bottom:1%;" onclick="proximaPagina()"> Avançar </button></div>
-       
+</br>
+        
+    <div>    
+    <label for="doi"> DOI:</label>/<br>
+    <input id="doi" name="doi" type="text" style="width: 35%; display: flex;">    
+    </div>
+</br>
+        <label  for="data"> Data da publicação:</label></br>
+        <input id="data" type="date" name="data" style="width: 150px;">
+
+</br></br>
+<label  form="caract"> Resumo/Abstract: </label></br>
+        <textarea type="text" id="caract" name="caract"  maxlength="3000" rows="10" cols="150" placeholder="Resumo/Abstract do artigo"></textarea></br>
+
+    <label for="periodico" > Palavras-Chave/Keywords:</label></br>
+    <input type="text" id="keywords" name="keywords" style="width: 85%;"  placeholder="3 a 5 palavras-chave"></br></br></br></br></br>
+        <div>
+        <button class="button" type="button" style="right: 1%;position:absolute; bottom:1%;" onclick="proximaPagina()"> Avançar </button></div>
     </div>
 </div>
 
 
 
-
     <!-- SEGUNDA PAGINA-->
-    <div id="section2" class="form-section">
+<div id="section2" class="form-section">
 
     <!-- campo invisivel para recuperar os valores finais -->
     <input type="hidden" id="secaoAtual2" name="secaoAtual2" value="2">
 
 
-        <h1> Identificação: </h1>
-         
+        <h1> Informação dos dados a serem submetidos: </h1>
    
-        <label  for="keywords"> *Palavras- Chaves: </label></br>
-        <input id="keywords" type="text" name="keywords" style="width: 85%;" placeholder="Palavras-Chaves">
-
-        </br>
-        </br>
-
-        <label for="highlights"> *Highlights: </label></br>
-        <textarea type="text" id="highlights" name="highlights" maxlength="1500" rows="5" cols="150"></textarea></br>
-
-        <label for="resumo"> *Resumo: </label></br>
-        <textarea type="text" id="resumo" name="resumo"  maxlength="2500" rows="10" cols="150" placeholder="Máximo 2500 caracteres (contanto espaços) ou 2150 (sem espaços)"></textarea>
-    </br></br>
-
-
-
-
-    <div id="coord">
+<div id="coord">
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
     <div id="coordenadas">
         <input type="text" maxlength="10" id="lat" name="lat" style="width: 33%;" placeholder="Latitute:   -XX.XXXXX">
         <input type="text" maxlength="10" id="long" name="long" style="width: 33%;" placeholder="Longitude:   -YY.YYYYY"></br>
-  
-        
-        
-    </div>
+       </div>
 </br>
+
 <span id="coordenadas" style="left: 25%; position: absolute; color: red;"> -----APENAS NÚMEROS------</span></br>
 </div>
 
-   <div id="coord-bttn">
+
+
+<div id="coord-bttn">
     </br> <button  style="left: 1%;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar coordenadas</button>
     <button type="button" style="right: 34%; position: absolute;" class="button" onclick="deletarCoordenadas() ">Remover coordenadas</button>
-</div>
+ </div></br></br></br>
 
-        </br>
-        </br>
-
-        <button class="button" type="button" style="left: 1; position: absolute; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
-        <button type="button" class="button" style="right: 1%; position: absolute; bottom: 1%;" onclick="proximaPagina()">Avançar</button>
-   
- </div>
-
-
-
-
-    <!-- TERCEIRA PAGINA -->
-
- <div id="section3" class="form-section">
-
-<!-- campo invisivel para recuperar os valores finais -->
-<input type="hidden" id="secaoAtual3" name="secaoAtual3" value="3">
-
-        <h1> Adicione seus arquivos e uma pequena descrição dos dados: </h1>
+        <h2> Adicione seus arquivos e uma pequena descrição dos dados: </h2></br></br>
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
-    </br>
+    </br></br>
         <label  form="refef"> Selecione seus dados:</label></br>
         <input id="refef" type="file" name="tabelaDado" style="width: 30%;" multiple></input>
     
-    </br></br></br>
-           
+    </br></br></br>           
     
      
         <button class="button" type="button" style="position: absolute; left: 1%; bottom: 1%;" onclick="paginaAnterior()">Anterior</button>
-        <button class="button" type="submit" style="position: absolute; right: 1%; bottom: 1%;" >SubmeterFormulário</button>
-
-
         <button class="button" type="button" style="position: absolute; right: 1%; bottom: 1%;" onclick="proximaPagina();exibirResumo()">Avançar</button>
-    
-    
-    </div>
 
+</div>
 
-
-
-<!-- QUARTA PAGINA -->
-<div id="section4" class="form-section">
+<!-- terceira PAGINA -->
+<div id="section3" class="form-section">
     <h1>  Confirme todas as informações: </h1>
     <div id="summary">
        
@@ -256,9 +220,9 @@
 
 
 
-<!-- Quinta página - PONTOS INSERIDOS-->
+<!-- quarta página - PONTOS INSERIDOS-->
 
-<div id="section5" class="form-section">
+<div id="section4" class="form-section">
     <h1>  Confirme os pontos inseridos: </h1>
     <div id="summary-2">
        
