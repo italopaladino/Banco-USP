@@ -146,9 +146,6 @@
         <input id="data" type="date" name="data" style="width: 150px;">
 
 </br></br>
-<label  form="caract"> Resumo/Abstract: </label></br>
-        <textarea type="text" id="caract" name="caract"  maxlength="3000" rows="10" cols="150" placeholder="Resumo/Abstract do artigo"></textarea></br>
-
     <label for="periodico" > Palavras-Chave/Keywords:</label></br>
     <input type="text" id="keywords" name="keywords" style="width: 85%;"  placeholder="3 a 5 palavras-chave"></br></br></br></br></br>
         <div>
@@ -171,8 +168,9 @@
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
     <div id="coordenadas">
-        <input type="text" maxlength="10" id="lat" name="lat" style="width: 33%;" placeholder="Latitute:   -XX.XXXXX">
-        <input type="text" maxlength="10" id="long" name="long" style="width: 33%;" placeholder="Longitude:   -YY.YYYYY"></br>
+        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="ID"></br>
+        <input type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX">
+        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY"></br>
        </div>
 </br>
 
@@ -190,7 +188,10 @@
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
     </br></br>
-        <label  form="refef"> Selecione seus dados:</label></br>
+    <label  form="caract"> Métodos Utilizados: </label></br>
+    <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder=" Conte brevemente como foi feito, e os equipamentos Utilizados"></textarea>
+</br></br>
+<label  form="refef"> Selecione seus dados:</label></br>
         <input id="refef" type="file" name="tabelaDado" style="width: 30%;" multiple></input>
     
     </br></br></br>           
