@@ -117,10 +117,20 @@
 
 
 
+/*dividir em duas colunas*/
 
+.coluna {
+  float: left;
+  width: 33.33%; /* Define o tamanho de cada coluna */
+  padding: 0 15px; /* Adiciona algum espaço entre as colunas */
+}
 
-
-
+/* Limpa os floats após as colunas para evitar problemas de layout */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 
 

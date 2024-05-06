@@ -102,7 +102,42 @@
         <input type="email" id="email" name="email" style="width: 49%;" placeholder="E-mail do correspondente">
     </br>
 </br>
-<!-- coAutores-->
+
+<div id="tipoTrabalho" class="clearfix">
+    <div class="coluna">
+        <label for="tipoTrabalho"> Tipo de trabalho:</label><br>
+        <select id="tipoTrabalho" name="tipoTrabalho">
+            <option value="artigo"> Artigo </option>
+            <option value="teseDout"> Tese de Doutorado </option>
+            <option value="teseMest"> Tese de Mestrado </option>
+            <option value="relatorio"> Relatórios </option>
+            <option value="resumo"> Resumo </option>
+            <option value="outro"> Outros </option>
+        </select><br><br>
+    </div>
+
+    <div class="coluna">
+        <label for='autorizacao'> Como deseja armazenar os dados?</label><br>
+        <select for="autorizacao" name="autorizacao">
+            <option value="publico"> Público</option>
+            <option value="privado"> Privado </option>
+        </select><br><br>
+    </div>  
+</div>
+
+<div class="termo">
+    <input type="checkbox" id="termo" name="termo" value="term">
+    <label for="termo"> Li e concordo com os termos sobre o uso dos dados</PDF><a href="javascript:abrirPDF()"> Clique aqui para ler</a></label> 
+</div></br>
+
+
+<label  for="titulo"></label> *Título/ Title:</label></br>
+<input id="titulo" type="text" name="titulo" style="width: 100%;" placeholder="Título do trabalho em Inglês OU Português" >
+</br>
+</br>
+
+
+<!-- coAutores -->
 <label id="coAutores"> Adicionar Co-autores:</label></br>
         
 <div id="autoresContainer">
@@ -118,19 +153,13 @@
 </div>
 </br>
 </br>
-          <label  for="titulo"></label> *Título/ Title:</label></br>
-        <input id="titulo" type="text" name="titulo" style="width: 100%;" placeholder="Título do trabalho em Inglês OU Portugês" >
-        </br>
-        </br>
-
-
-
-
+        
     <div>
         <div>
           <label for="periodico" >Nome do Periódico:</label></br>
         <input type="text" id="periodico" name="periodico" style="width: 35%;"  placeholder="Nome do periódico onde o trabalho está publicado">
-    </div>    
+    </div>
+</br>    
     <label for="periodico"  > Link para o Artigo:</label></br>
         <input type="text" id="link" name="link" style="width: 35%;"  placeholder="endereço URL para artigo/revista">
     </div>
@@ -168,22 +197,23 @@
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
     <div id="coordenadas">
-        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="ID"></br>
-        <input type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX">
-        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY"></br>
-       </div>
-</br>
-
-<span id="coordenadas" style="left: 25%; position: absolute; color: red;"> -----APENAS NÚMEROS------</span></br>
+        <input type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID">
+        <input type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
+        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
+        <input type="text" maxlength="10" id="prof" name="prof" style="width: 10%;" placeholder="Profundidade">
+        <input type="number" maxlength="10" id="RecSed" name="RecSed" style="width: 10%;" placeholder="Recuperação sedimentar (metros)">
+        <input type="date" maxlength="10" id="anoColeta" name="anoColeta" style="width: 10%;" placeholder="Ano da Coleta">       
+        <a href="javascript:abrirPDF()"  style="color: red;" class="bi bi-file-text"></a></br>
+    </div>
+    <div id="coord-bttn"></br>
+        <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar linha</button>
+        <button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarCoordenadas() ">Remover Linha</button>
+        <button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODAScoordenadas()">Remover todas as linhas</button>
+    
+    </div>
 </div>
-
-
-
-<div id="coord-bttn">
-    </br> <button  style="left: 1%;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar coordenadas</button>
-    <button type="button" style="right: 34%; position: absolute;" class="button" onclick="deletarCoordenadas() ">Remover coordenadas</button>
- </div></br></br></br>
-
+</br>
+</br>
         <h2> Adicione seus arquivos e uma pequena descrição dos dados: </h2></br></br>
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>

@@ -1,5 +1,7 @@
-
-
+function abrirPDF() {
+    var url = "../assets/termo.pdf";
+    window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=600");
+}
 
         
 document.addEventListener('keydown',handleKeyPress);
@@ -210,36 +212,74 @@ function adicionarCoordenadas() {
 
             
                         // Criar novos elementos de input
+                        var novoID = document.createElement("input");
+                        novoID.type = "text";
+                        novoID.className="ID1";
+                        novoID.name = "ID1" + coordenadas ; // Use um array para coletar vários valores
+                        novoID.placeholder = "ID";
+                        novoID.style.width = "10%";
+                        novoID.style.marginRight = "4.8px";
+                        novoID.maxLength=10;
+                    
                         var novolatitude = document.createElement("input");
                         novolatitude.type = "text";
-                        novolatitude.className="lat1";
-                        novolatitude.name = "latitude" + coordenadas ; // Use um array para coletar vários valores
-                        novolatitude.placeholder = "Latitute:   -XX.XXXXX";
-                        novolatitude.style.width = "33%";
+                        novolatitude.className = "lat1";
+                        novolatitude.name = "lat1" + coordenadas;
+                        novolatitude.placeholder = "Latitude:   -YY.YYYYY";
+                        novolatitude.style.width = "20%";
                         novolatitude.style.marginRight = "4.8px";
                         novolatitude.maxLength=10;
-                        
-                        
-                       
-                                          
-                       
-            
+
                         var novolongitude = document.createElement("input");
                         novolongitude.type = "text";
                         novolongitude.className = "long1";
                         novolongitude.name = "longitude" + coordenadas;
                         novolongitude.placeholder = "Longitude:   -YY.YYYYY";
-                        novolongitude.style.width = "33%";
+                        novolongitude.style.width = "20%";
                         novolongitude.style.marginRight = "4.8px";
                         novolongitude.maxLength=10;
+
+                        var novoProf = document.createElement("input");
+                        novoProf.type = "text";
+                        novoProf.className="prof1";
+                        novoProf.name = "prof1" + coordenadas ; // Use um array para coletar vários valores
+                        novoProf.placeholder = "Profundidade";
+                        novoProf.style.width = "10%";
+                        novoProf.style.marginRight = "4.8px";
+                        novoProf.maxLength=10;
+
+                        var novoRecSed = document.createElement("input");
+                        novoRecSed.type = "number";
+                        novoRecSed.className="RecSed1";
+                        novoRecSed.name = "RecSed1" + coordenadas ; // Use um array para coletar vários valores
+                        novoRecSed.placeholder = "Recuperação Sedimentar";
+                        novoRecSed.style.width = "10%";
+                        novoRecSed.style.marginRight = "4.8px";
+                        novoRecSed.maxLength=10;
+
+                        var novoAnoCol = document.createElement("input");
+                        novoAnoCol.type = "date";
+                        novoAnoCol.className="anoColeta1";
+                        novoAnoCol.name = "anoColeta1" + coordenadas ; // Use um array para coletar vários valores
+                        novoAnoCol.placeholder = "Ano da coleta";
+                        novoAnoCol.style.width = "10%";
+                        novoAnoCol.style.marginRight = "4.8px";
+                        novoAnoCol.maxLength=10;
+
                                                 
 
             
                              
                                
                         // Adicionar os novos campos ao container
+                        container.appendChild(novoID);
                         container.appendChild(novolatitude);
                         container.appendChild(novolongitude);
+                        container.appendChild(novoProf);
+                        container.appendChild(novoRecSed);
+                        container.appendChild(novoAnoCol);
+
+
 
                  
                         container.appendChild(document.createElement("br"));
@@ -252,9 +292,9 @@ function adicionarCoordenadas() {
                         var container = document.getElementById("coordenadas");
                         
                         // Verifica se há mais de três campos de autor para excluir e pelo menos um autor deve permanecer
-                        if (container.children.length > 3) {
-                            // Remove os três últimos filhos do container
-                            for (var i = 0; i < 3; i++) {
+                        if (container.children.length > 8) {
+                            // Remove últimos filhos do container
+                            for (var i = 0; i < 7; i++) {
                                 var ultimaCoord = container.lastChild;
                                 container.removeChild(ultimaCoord);
                             }
@@ -262,13 +302,27 @@ function adicionarCoordenadas() {
                             // Decrementa o contador de autores
                             coordenadas--;
                         } else {
-                            // Se houver menos de três campos de autor, exiba um alerta informando que pelo menos um autor deve ser mantido
+                            // Se houver menos um campos pontos, exiba um alerta informando que pelo menos um autor deve ser mantido
                             window.alert("Ao menos um ponto precisa ser inserido");
                         }
                     }
 
-
-
+                    function removerTODAScoordenadas() {
+                        var container = document.getElementById("coordenadas");
+                        if (container.children.length > 8) {
+                            // Remove todos os filhos do container exceto os primeiros 8
+                            while (container.children.length > 8) {
+                                container.removeChild(container.lastChild);
+                            }
+                            coordenadas = 0; // Resetar o contador
+                    
+                            setTimeout(function() { //timeout, é o tempo pra executar alguma coisa antes que o alert apreça
+                                window.alert("Todas as linhas removidas!!");
+                            }, 0);
+                        } else {
+                            window.alert("Não há coordenadas adicionadas para remover!");
+                        }
+                    }
 
 
 // SCRIPT PARA PASSAR AS PAFINAS DO FORMULÁRIO SUBMIT.HTML
