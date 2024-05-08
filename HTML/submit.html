@@ -197,13 +197,13 @@
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
     <div id="coordenadas">
-        <input type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID">
+        <input title="Identificação das amostras" type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID">
         <input type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
         <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
         <input type="text" maxlength="10" id="prof" name="prof" style="width: 10%;" placeholder="Profundidade">
         <input type="number" maxlength="10" id="RecSed" name="RecSed" style="width: 10%;" placeholder="Recuperação sedimentar (metros)">
         <input type="date" maxlength="10" id="anoColeta" name="anoColeta" style="width: 10%;" placeholder="Ano da Coleta">       
-        <a href="javascript:abrirPDF()"  style="color: red;" class="bi bi-file-text"></a></br>
+        <a title="VER MODELO" href="javascript:abrirPDF()"  style="color: red;" class="bi bi-question-square-fill"></a></br>
     </div>
     <div id="coord-bttn"></br>
         <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar linha</button>
@@ -221,8 +221,23 @@
     <label  form="caract"> Métodos Utilizados: </label></br>
     <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder=" Conte brevemente como foi feito, e os equipamentos Utilizados"></textarea>
 </br></br>
-<label  form="refef"> Selecione seus dados:</label></br>
-        <input id="refef" type="file" name="tabelaDado" style="width: 30%;" multiple></input>
+<div id="proxys">
+<input type="checkbox" id="TSM" nome="TSM" value="TSM">
+<label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
+<input type="checkbox" id="PP" nome="PP" value="PP">
+<label for="PP" style="margin-right: 2%;">Produtividade Primária</label>
+<input type="checkbox" id="correntes" nome="correntes" value="correntes">
+<label for="correntes" style="margin-right: 2%;">Correntes</label>
+<input type="checkbox" id="org" nome="org" value="org">
+<label for="org" style="margin-right: 2%;"> Marcadores Orgânicos</label>
+<input type="checkbox" id="inorg" nome="inorg" value="inorg">
+<label for="inorg" style="margin-right: 2%;"> Marcadores Inorgânicos</label></br>
+</div>
+</br>
+</br>
+
+<label  form="refef" style="margin-right: 1%;"> Selecione seus dados (aquivo em .csv):</label><a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green;" class="bi bi-filetype-csv"></a></br>
+       <input id="refef" type="file" name="tabelaDado" style="width: 30%;" unique></input>
     
     </br></br></br>           
     
