@@ -116,7 +116,8 @@
         </select><br><br>
     </div>
 
-    <div class="coluna">
+
+    <div id="armazenamento" class="coluna">
         <label for='autorizacao'> Como deseja armazenar os dados?</label><br>
         <select for="autorizacao" name="autorizacao">
             <option value="publico"> Público</option>
@@ -198,11 +199,11 @@
         
     <div id="coordenadas">
         <input title="Identificação das amostras" type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID">
-        <input type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
-        <input type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
-        <input type="text" maxlength="10" id="prof" name="prof" style="width: 10%;" placeholder="Profundidade">
-        <input type="number" maxlength="10" id="RecSed" name="RecSed" style="width: 10%;" placeholder="Recuperação sedimentar (metros)">
-        <input type="date" maxlength="10" id="anoColeta" name="anoColeta" style="width: 10%;" placeholder="Ano da Coleta">       
+        <input title="Latitute" type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
+        <input title="Longitude" type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
+        <input title="Profundidade" type="text" maxlength="10" id="prof" name="prof" style="width: 8%;" placeholder="Profundidade">
+        <input title="Recuperação sedimentar (metros)" type="number" maxlength="10" id="RecSed" name="RecSed" style="width: 20%;" placeholder="Recuperação sedimentar (metros)">
+        <input title=" Data em que foi coletado" type="date" maxlength="10" id="anoColeta" name="anoColeta" style="width: 10%;" placeholder="Ano da Coleta">       
         <a title="VER MODELO" href="javascript:abrirPDF()"  style="color: red;" class="bi bi-question-square-fill"></a></br>
     </div>
     <div id="coord-bttn"></br>

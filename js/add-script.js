@@ -354,32 +354,7 @@ function adicionarCoordenadas() {
               document.getElementById(`section${currentPage}`).classList.add('active');
             }
         
-
-
-
-
-
-
-            //FAZER FUNCIONAR ESSE COMPARATIVO comparativo entre os emails -- Novo-USER
-      
-                    function validateForm() {
-                        var email = document.getElementById('email').value;
-                        var confirmEmail = document.getElementById('confirmEmail').value;
-                
-                        if (email !== confirmEmail) {
-                            alert('Os endereços de e-mail não coincidem.');
-                            return false;
-                        }
-                
-                        // Restante da lógica do formulário ou envio para o servidor
-                        // ...
-                
-                        return true;
-                    }
-
-
-
-                    
+               
                     
  // pagina de LOGIN ---  funções do botões
                     function registro() {
@@ -400,11 +375,19 @@ function exibirResumo() {
     var summary = document.getElementById("summary");
     var resumo = "";
 
-    resumo += "<p><strong>Título:</strong> " + document.getElementById("titulo").value + "</p>";
+    //var tipoTrabalho = document.getElementById("tipoTrabalho").value;
+    //var armazenamento = document.getElementById("armazenamento").value;
+
+    resumo += "<p><strong>Autor Correspondente:</strong> " + document.getElementById("autorCorr").value + "</p>";
+    resumo += "<p><strong>Filicação:</strong> " + document.getElementById("filiacaoCorr").value + "</p>";
     resumo += "<p><strong>E-mail:</strong> " + document.getElementById("email").value + "</p>";
+    resumo += "<p><strong>Tipo de trabalho escolhido:</strong> " + document.getElementById("tipoTrabalho").value + "</p>";
+    resumo += "<p><strong>Como deseja armazenar os dados? </strong>" + document.getElementById("armazenamento").value +"</p";
+    resumo += "<p><strong> Título:</strong> " + document.getElementById("titulo").value + "</p>";
     
     //contagem de autores
-    resumo += "<p><strong>Autor-Correspondente:</strong> " + document.getElementById("autorCorr").value + " (" + document.getElementById("filiacao").value + ")</p>";
+    
+    resumo += "<p><strong>Co-Autores:</strong> " + document.getElementById("").value + " (" + document.getElementById("filiacao").value + ")</p>";
     for (var i = 0; i < contadorAutores; i++) {
         var coAutor = document.getElementsByClassName("coAutor")[i].value;
         var filiacao = document.getElementsByClassName("coAutor-filiacao")[i].value;
