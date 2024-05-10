@@ -113,49 +113,45 @@ function performLogin() {
 }
 
 
-
-
-
                   
-var contadorAutores=0 //variavel globar para controlar numero de autores
-function adicionarAutor() {
-                        // Container onde os campos de autor serão adicionados
-                    
-                        var container = document.getElementById("autoresContainer");
-                        
-                        var novoAutorContainer = document.createElement("div");
-                        novoAutorContainer.className = "autor-campo";
-                        novoAutorContainer.id="autorContainer" + contadorAutores;
+var contadorAutores = 0;
 
-            
-                        // Criar novos elementos de input
-                        var novoCampoNome = document.createElement("input");
-                        novoCampoNome.type = "text";
-                        novoCampoNome.className="autor-nome";
-                        novoCampoNome.name = "coAutor" + contadorAutores ; // Use um array para coletar vários valores
-                        novoCampoNome.placeholder = "Nome Completo";
-                        novoCampoNome.style.width = "49%";
-                        novoCampoNome.style.marginRight = "4.8px";
-                        
-                       
-             
-                        var novoCampoFiliacao = document.createElement("input");
-                        novoCampoFiliacao.type = "text";
-                        novoCampoFiliacao.className="autor-filiacao";
-                        novoCampoFiliacao.name = "filiaçao" + contadorAutores;
-                        novoCampoFiliacao.placeholder = "Filiação";
-                        novoCampoFiliacao.style.width = "49%";
-                    
-                               
-                        // Adicionar os novos campos ao container
-                        container.appendChild(novoCampoNome);
-                        
-                        container.appendChild(novoCampoFiliacao);
-                    
-                        // Adicionar o botão de remover
-                                      
-                    contadorAutores++;                               
-                    }
+function adicionarAutor() {
+    // Container onde os campos de autor serão adicionados
+    var container = document.getElementById("autoresContainer");
+    
+    // Criar um novo contêiner para o autor
+    var novoAutorContainer = document.createElement("div");
+    novoAutorContainer.className = "autor-campo";
+    novoAutorContainer.id = "autorContainer" + contadorAutores;
+    
+    // Criar novo campo de input para o nome
+    var novoCampoNome = document.createElement("input");
+    novoCampoNome.type = "text";
+    novoCampoNome.className = "coautor";
+    novoCampoNome.name = "coAutor" + contadorAutores; // Use um array para coletar vários valores
+    novoCampoNome.placeholder = "Nome Completo";
+    novoCampoNome.style.width = "49%";
+    novoCampoNome.style.marginRight = "4.8px";
+    
+    // Criar novo campo de input para a filiação
+    var novoCampoFiliacao = document.createElement("input");
+    novoCampoFiliacao.type = "text";
+    novoCampoFiliacao.className = "cofiliacao";
+    novoCampoFiliacao.name = "filiaça2" + contadorAutores;
+    novoCampoFiliacao.placeholder = "Filiação";
+    novoCampoFiliacao.style.width = "49%";
+    
+    // Adicionar os novos campos ao contêiner do autor
+    novoAutorContainer.appendChild(novoCampoNome);
+    novoAutorContainer.appendChild(novoCampoFiliacao);
+    
+    // Adicionar o contêiner do autor ao contêiner principal
+    container.appendChild(novoAutorContainer);
+    
+    // Incrementar o contador de autores
+    contadorAutores++;  
+}
                 
                     
                     function deletarAutor() {
@@ -372,70 +368,98 @@ function adicionarCoordenadas() {
 
 
 function exibirResumo() {
-    var summary = document.getElementById("summary");
+    var summary1 = document.getElementById("summary-1");
     var resumo = "";
 
-    //var tipoTrabalho = document.getElementById("tipoTrabalho").value;
-    //var armazenamento = document.getElementById("armazenamento").value;
-
+    // Recuperar os valores dos campos do formulário
     resumo += "<p><strong>Autor Correspondente:</strong> " + document.getElementById("autorCorr").value + "</p>";
-    resumo += "<p><strong>Filicação:</strong> " + document.getElementById("filiacaoCorr").value + "</p>";
+    resumo += "<p><strong>Filiação:</strong> " + document.getElementById("filiacaoCorr").value + "</p>";
     resumo += "<p><strong>E-mail:</strong> " + document.getElementById("email").value + "</p>";
-    resumo += "<p><strong>Tipo de trabalho escolhido:</strong> " + document.getElementById("tipoTrabalho").value + "</p>";
-    resumo += "<p><strong>Como deseja armazenar os dados? </strong>" + document.getElementById("armazenamento").value +"</p";
-    resumo += "<p><strong> Título:</strong> " + document.getElementById("titulo").value + "</p>";
-    
-    //contagem de autores
-    
-    resumo += "<p><strong>Co-Autores:</strong> " + document.getElementById("").value + " (" + document.getElementById("filiacao").value + ")</p>";
+    resumo += "<p><strong>Tipo de trabalho escolhido:</strong> " + document.getElementById("tipoTrabalhoSelecao").value + "</p>";
+    resumo += "<p><strong>Como deseja armazenar os dados? </strong>" + document.getElementById("armazenamentoSelecao").value + "</p>";
+    resumo += "<p><strong>Título:</strong> " + document.getElementById("titulo").value + "</p>";
+
+    // Adicionar informações dos coautores
     for (var i = 0; i < contadorAutores; i++) {
-        var coAutor = document.getElementsByClassName("coAutor")[i].value;
-        var filiacao = document.getElementsByClassName("coAutor-filiacao")[i].value;
-        resumo += "<p><strong>Co-Autor:</strong> " + coAutor + " (" + filiacao + ")</p>";
-
-
-
-        
+        var coAutorNome = document.getElementsByClassName("coautor")[i].value;
+        var coAutorFiliacao = document.getElementsByClassName("cofiliacao")[i].value;
+        resumo += "<p><strong>Co-Autor:</strong> " + coAutorNome + " (" + coAutorFiliacao + ")</p>";
     }
-    resumo+="<p><strong>Nome do Periódico:</strong> " + document.getElementById("periodico").value + "</p>";
 
-
-    resumo+="<p><strong>DOI:</strong> " + document.getElementById("doi").value + "</p>";
-
-
-    resumo+="<p><strong>Volume da publicação:</strong> " + document.getElementById("volume").value + "</p>";
-
-    resumo+="<p><strong>Data da publicação:</strong> " + document.getElementById("data").value + "</p>";
-
+    resumo += "<p><strong>Nome do Periódico:</strong> " + document.getElementById("periodico").value + "</p>";
+    resumo += "<p><strong>Link para o Artigo:</strong> " + document.getElementById("linkart").value + "</p>";
+    resumo += "<p><strong>DOI:</strong> " + document.getElementById("doi").value + "</p>";
+    resumo += "<p><strong>Data da publicação:</strong> " + document.getElementById("data").value + "</p>";    
     resumo += "<p><strong>Palavras-Chave:</strong> " + document.getElementById("keywords").value + "</p>";
-
-    resumo += "<p><strong>Highlights:</strong> " + document.getElementById("highlights").value + "</p>";
-
-    resumo += "<p><strong>Resumo:</strong> " + document.getElementById("resumo").value + "</p>";
-
-    resumo += "<p><strong>Características dos dados:</strong> " + document.getElementById("caract").value + "</p>";
-
-    resumo += "<p><strong>Arquivo:</strong> " + document.getElementById("refef").value + "</p>";
-
-    summary.innerHTML = resumo;
+    
+    // Exibir o resumo no elemento summary1
+    summary1.innerHTML = resumo;
 }
 
 
 
 function exibirDADOS() {
-    var summary = document.getElementById("summary-2");
+    var summary2 = document.getElementById("summary-2");
     var resumo = "";
 
      
     //contagem de autores
-    resumo += "<p><strong>Ponto:</strong> 1 Lat: " + document.getElementById("lat").value + " Long: " + document.getElementById("long").value + "</p>";
+    resumo += "<p><strong>Ponto:</strong> 1 ID: " + document.getElementById("ID").value + " Latitude: " + document.getElementById("lat").value +" Longitude: " + document.getElementById("long").value + 
+    "Profundidade: " + document.getElementById("prof").value + " Recuperação: " + document.getElementById("RecSed").value + " Data da Coleta: " + document.getElementById("anoColeta").value +"</p>";
+    
     for (var i = 0; i < coordenadas; i++) {
+        var ID = documet.getElementsByClassName("ID1")[i].value;
         var latitude = document.getElementsByClassName("lat1")[i].value ;
         var longitude = document.getElementsByClassName("long1")[i].value ;
+        var prof = document.getElementsByClassName("prof1")[i].value;
+        var RecSed = document.getElementsByClassName("RecSed1")[i].value;
+        var anoColeta = document.getElementsByClassName("anoColeta1")[i].value;
         
-        resumo += "<p><strong> Ponto: </strong> "+(i+2)+"  Lat:" + latitude + " Long:" + longitude + " </p>";
+        resumo += "<p><strong> Ponto: </strong> "+(i+2)+ "ID:" + ID + "Latitude:" + latitude + " Longitude:" + longitude+ "Profundidade:" + prof +" Recuperação:"+ RecSed + " Data da Coleta:" + anoColeta + "</p>";
     }
-        summary.innerHTML = resumo;
+    resumo += "<p><strong>Caracteristicas inseridas:</strong> " + document.getElementById("caract").value + "</p>";
+    resumo += "<p><strong>Formas de Análises:</strong> " + document.getElementById("metUt").value + "</p>";
+ 
+
+
+var proxySummary = "<p><strong>Proxies Selecionados:</strong> ";
+
+// Verificar se a caixa de seleção TSM está marcada
+if (document.getElementById("TSM").checked) {
+    proxySummary += "TSM (Temperatura da Superfície do Mar), ";
+}
+
+// Verificar se a caixa de seleção PP está marcada
+if (document.getElementById("PP").checked) {
+    proxySummary += "Produtividade Primária, ";
+}
+
+// Verificar se a caixa de seleção correntes está marcada
+if (document.getElementById("correntes").checked) {
+    proxySummary += "Correntes, ";
+}
+
+// Verificar se a caixa de seleção org está marcada
+if (document.getElementById("org").checked) {
+    proxySummary += "Marcadores Orgânicos, ";
+}
+
+// Verificar se a caixa de seleção inorg está marcada
+if (document.getElementById("inorg").checked) {
+    proxySummary += "Marcadores Inorgânicos";
+}
+
+// Remover a vírgula extra no final, se houver
+if (proxySummary.slice(-2) === ', ') {
+    proxySummary = proxySummary.slice(0, -2);
+
+}
+
+resumo += proxySummary
+
+resumo += "<p><strong>Arquivo:</strong> " + document.getElementById("refef").value + "</p>";
+
+        summary2.innerHTML = resumo;
 
 }
 

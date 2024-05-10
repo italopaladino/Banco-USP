@@ -106,7 +106,7 @@
 <div id="tipoTrabalho" class="clearfix">
     <div class="coluna">
         <label for="tipoTrabalho"> Tipo de trabalho:</label><br>
-        <select id="tipoTrabalho" name="tipoTrabalho">
+        <select id="tipoTrabalhoSelecao" name="tipoTrabalho">
             <option value="artigo"> Artigo </option>
             <option value="teseDout"> Tese de Doutorado </option>
             <option value="teseMest"> Tese de Mestrado </option>
@@ -119,12 +119,13 @@
 
     <div id="armazenamento" class="coluna">
         <label for='autorizacao'> Como deseja armazenar os dados?</label><br>
-        <select for="autorizacao" name="autorizacao">
+        <select id="armazenamentoSelecao" name="autorizacao">
             <option value="publico"> Público</option>
             <option value="privado"> Privado </option>
         </select><br><br>
     </div>  
 </div>
+
 
 <div class="termo">
     <input type="checkbox" id="termo" name="termo" value="term">
@@ -139,18 +140,15 @@
 
 
 <!-- coAutores -->
-<label id="coAutores"> Adicionar Co-autores:</label></br>
-        
+<label id="coAutores"> Adicionar Co-autores:</label><br>      
 <div id="autoresContainer">
-    <!-- campos de co autores-->
-
+    <!-- Aqui serão adicionados os campos de coautores dinamicamente -->
 </div>
-</br>
+<br>
 <div id="autor-button">
-<button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarAutor() ">Adicionar Co-autor</button>
-<button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarAutor() ">Remover último Co-autor</button>
-<button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODOSAutores()">Remover todas as linhas </button>
-
+    <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarAutor()">Adicionar Co-autor</button>
+    <button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarAutor()">Remover último Co-autor</button>
+    <button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODOSAutores()">Remover todas as linhas </button>
 </div>
 </br>
 </br>
@@ -161,8 +159,8 @@
         <input type="text" id="periodico" name="periodico" style="width: 35%;"  placeholder="Nome do periódico onde o trabalho está publicado">
     </div>
 </br>    
-    <label for="periodico"  > Link para o Artigo:</label></br>
-        <input type="text" id="link" name="link" style="width: 35%;"  placeholder="endereço URL para artigo/revista">
+    <label for="linkart"  > Link para o Artigo:</label></br>
+        <input type="text" id="linkart" name="linkart" style="width: 35%;"  placeholder="endereço URL para artigo/revista">
     </div>
 
 </br>
@@ -219,9 +217,10 @@
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
     </br></br>
-    <label  form="caract"> Métodos Utilizados: </label></br>
-    <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder=" Conte brevemente como foi feito, e os equipamentos Utilizados"></textarea>
+    <label  form="metUt"> Métodos Utilizados: </label></br>
+    <textarea type="text" id="metUt" name="metUt"  maxlength="1500" rows="10" cols="150" placeholder=" Conte brevemente como foi feito, e os equipamentos Utilizados"></textarea>
 </br></br>
+
 <div id="proxys">
 <input type="checkbox" id="TSM" nome="TSM" value="TSM">
 <label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
@@ -251,7 +250,7 @@
 <!-- terceira PAGINA -->
 <div id="section3" class="form-section">
     <h1>  Confirme todas as informações: </h1>
-    <div id="summary">
+    <div id="summary-1">
        
     </div>
 
