@@ -449,15 +449,15 @@ function exibirDADOS() {
     }
     
     var caract = document.getElementById("caract").value;
-    resumo += "<p"+ (caract? '' : ' class="texto-vermelho"')+"><strong>Caracteristicas inseridas:</strong> " + caract + "</p>";
+    resumo += "<p"+ (caract? '' : ' class="texto-vermelho"')+ "><strong>Caracteristicas inseridas:</strong> " + caract + "</p>";
    
    
-    var metUt1 = document.getElementById("metUt").value;
-    resumo += "<p"+ (metUt1 ? '' : 'class="texto-vermelho"')+"><strong>Formas de Análises:</strong> " + metUt1 + "</p>";
+    var mett1 = document.getElementById("metut").value;
+    resumo += "<p"+ (mett1 ? '' : 'class="texto-vermelho"')+ "><strong>Formas de Análises:</strong> " + mett1 + "</p>";
  
 
 
-var proxySummary = "<p" +(proxySummary? '' : 'class="texto-vermelho"')+"><strong>Proxies Selecionados:</strong></p>";
+var proxySummary = "<p><strong>Proxies Selecionados:</strong></p>";
 
 // Verificar se a caixa de seleção TSM está marcada
 if (document.getElementById("TSM").checked) {
@@ -499,6 +499,7 @@ resumo += "<p" +(refef1? '' : 'class="texto-vermelho"')+"><strong>Arquivo:</stro
 
 
 summary2.innerHTML = resumo;
+
 
 }
 
