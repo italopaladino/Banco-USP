@@ -115,6 +115,11 @@
 }
 
 
+/* caso o valor for nulo a linha fica vermelha*/
+.texto-vermelho {
+  color: red;
+}
+
 
 
 /*dividir em duas colunas*/

@@ -148,6 +148,8 @@ function adicionarAutor() {
     
     // Adicionar o contêiner do autor ao contêiner principal
     container.appendChild(novoAutorContainer);
+
+    container.appendChild(document.createElement("br"));
     
     // Incrementar o contador de autores
     contadorAutores++;  
@@ -240,7 +242,7 @@ function adicionarCoordenadas() {
                         novoProf.className="prof1";
                         novoProf.name = "prof1" + coordenadas ; // Use um array para coletar vários valores
                         novoProf.placeholder = "Profundidade";
-                        novoProf.style.width = "10%";
+                        novoProf.style.width = "8%";
                         novoProf.style.marginRight = "4.8px";
                         novoProf.maxLength=10;
 
@@ -249,11 +251,14 @@ function adicionarCoordenadas() {
                         novoRecSed.className="RecSed1";
                         novoRecSed.name = "RecSed1" + coordenadas ; // Use um array para coletar vários valores
                         novoRecSed.placeholder = "Recuperação Sedimentar";
-                        novoRecSed.style.width = "10%";
+                        novoRecSed.style.width = "20%";
                         novoRecSed.style.marginRight = "4.8px";
+                        
                         novoRecSed.maxLength=10;
 
                         var novoAnoCol = document.createElement("input");
+                        var valorOriginal = document.getElementById("anoColeta").value;
+
                         novoAnoCol.type = "date";
                         novoAnoCol.className="anoColeta1";
                         novoAnoCol.name = "anoColeta1" + coordenadas ; // Use um array para coletar vários valores
@@ -261,7 +266,7 @@ function adicionarCoordenadas() {
                         novoAnoCol.style.width = "10%";
                         novoAnoCol.style.marginRight = "4.8px";
                         novoAnoCol.maxLength=10;
-
+                        novoAnoCol.value=valorOriginal;
                                                 
 
             
@@ -278,6 +283,7 @@ function adicionarCoordenadas() {
 
 
                  
+                        container.appendChild(document.createElement("br"));
                         container.appendChild(document.createElement("br"));
                                       
                     coordenadas++;                               
@@ -372,12 +378,24 @@ function exibirResumo() {
     var resumo = "";
 
     // Recuperar os valores dos campos do formulário
-    resumo += "<p><strong>Autor Correspondente:</strong> " + document.getElementById("autorCorr").value + "</p>";
-    resumo += "<p><strong>Filiação:</strong> " + document.getElementById("filiacaoCorr").value + "</p>";
-    resumo += "<p><strong>E-mail:</strong> " + document.getElementById("email").value + "</p>";
-    resumo += "<p><strong>Tipo de trabalho escolhido:</strong> " + document.getElementById("tipoTrabalhoSelecao").value + "</p>";
-    resumo += "<p><strong>Como deseja armazenar os dados? </strong>" + document.getElementById("armazenamentoSelecao").value + "</p>";
-    resumo += "<p><strong>Título:</strong> " + document.getElementById("titulo").value + "</p>";
+    var autorCorrValue=document.getElementById("autorCorr").value;
+    resumo += "<p"+ (autorCorrValue? '' : ' class="texto-vermelho"')+"><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
+
+
+    var filiacaoValue=document.getElementById("filiacaoCorr").value;
+    resumo += "<p" + (filiacaoValue? '' : ' class="texto-vermelho"')+"><strong>Filiação:</strong> " + filiacaoValue + "</p>";
+    
+    var emailCorr = document.getElementById("email").value;
+    resumo += "<p" +(emailCorr? '' : ' class="texto-vermelho"')+"><strong>E-mail:</strong> " + emailCorr + "</p>";
+
+    var tipoTrabalho = document.getElementById("tipoTrabalhoSelecao").value;
+    resumo += "<p"+(tipoTrabalho? '' : ' class="texto-vermelho"')+"><strong>Tipo de trabalho escolhido:</strong> " + tipoTrabalho + "</p>";
+    
+    var armazenamentoSel = document.getElementById("armazenamentoSelecao").value;
+    resumo += "<p"+(armazenamentoSel ? '' : ' class="texto-vermelho"')+"><strong>Como deseja armazenar os dados? </strong>" + armazenamentoSel + "</p>";
+
+    var titulo = document.getElementById("titulo").value;
+    resumo += "<p"+(titulo? '' : ' class="texto-vermelho"')+"><strong>Título:</strong> " + titulo + "</p>";
 
     // Adicionar informações dos coautores
     for (var i = 0; i < contadorAutores; i++) {
@@ -386,11 +404,23 @@ function exibirResumo() {
         resumo += "<p><strong>Co-Autor:</strong> " + coAutorNome + " (" + coAutorFiliacao + ")</p>";
     }
 
-    resumo += "<p><strong>Nome do Periódico:</strong> " + document.getElementById("periodico").value + "</p>";
-    resumo += "<p><strong>Link para o Artigo:</strong> " + document.getElementById("linkart").value + "</p>";
-    resumo += "<p><strong>DOI:</strong> " + document.getElementById("doi").value + "</p>";
-    resumo += "<p><strong>Data da publicação:</strong> " + document.getElementById("data").value + "</p>";    
-    resumo += "<p><strong>Palavras-Chave:</strong> " + document.getElementById("keywords").value + "</p>";
+
+    var periodico=document.getElementById("periodico").value;
+    resumo += "<p"+(periodico? '' : ' class="texto-vermelho"')+"><strong>Nome do Periódico:</strong> " +periodico + "</p>";
+    
+    
+    var linkart = document.getElementById("linkart").value;
+    resumo += "<p"+(linkart? '' : ' class="texto-vermelho"')+"><strong>Link para o Artigo:</strong> " + linkart + "</p>";
+
+    var doi1 = document.getElementById("doi").value;
+    resumo += "<p" + (doi1 ? '' : ' class="texto-vermelho"') + "><strong>DOI:</strong> " + doi1 + "</p>";
+
+    
+    var datap = document.getElementById("data").value;
+    resumo += "<p" +(datap? '' : ' class="texto-vermelho"')+"><strong>Data da publicação:</strong> " + datap + "</p>";
+
+    var keywords1 = document.getElementById("keywords").value;
+    resumo += "<p" + (keywords1 ? '' : ' class="texto-vermelho"') + "><strong>Palavras-Chave:</strong> " + keywords1 + "</p>";
     
     // Exibir o resumo no elemento summary1
     summary1.innerHTML = resumo;
@@ -408,7 +438,7 @@ function exibirDADOS() {
     "Profundidade: " + document.getElementById("prof").value + " Recuperação: " + document.getElementById("RecSed").value + " Data da Coleta: " + document.getElementById("anoColeta").value +"</p>";
     
     for (var i = 0; i < coordenadas; i++) {
-        var ID = documet.getElementsByClassName("ID1")[i].value;
+        var ID = document.getElementsByClassName("ID1")[i].value;
         var latitude = document.getElementsByClassName("lat1")[i].value ;
         var longitude = document.getElementsByClassName("long1")[i].value ;
         var prof = document.getElementsByClassName("prof1")[i].value;
@@ -417,12 +447,17 @@ function exibirDADOS() {
         
         resumo += "<p><strong> Ponto: </strong> "+(i+2)+ "ID:" + ID + "Latitude:" + latitude + " Longitude:" + longitude+ "Profundidade:" + prof +" Recuperação:"+ RecSed + " Data da Coleta:" + anoColeta + "</p>";
     }
-    resumo += "<p><strong>Caracteristicas inseridas:</strong> " + document.getElementById("caract").value + "</p>";
-    resumo += "<p><strong>Formas de Análises:</strong> " + document.getElementById("metUt").value + "</p>";
+    
+    var caract = document.getElementById("caract").value;
+    resumo += "<p"+ (caract? '' : ' class="texto-vermelho"')+"><strong>Caracteristicas inseridas:</strong> " + caract + "</p>";
+   
+   
+    var metUt1 = document.getElementById("metUt").value;
+    resumo += "<p"+ (metUt1 ? '' : 'class="texto-vermelho"')+"><strong>Formas de Análises:</strong> " + metUt1 + "</p>";
  
 
 
-var proxySummary = "<p><strong>Proxies Selecionados:</strong> ";
+var proxySummary = "<p" +(proxySummary? '' : 'class="texto-vermelho"')+"><strong>Proxies Selecionados:</strong></p>";
 
 // Verificar se a caixa de seleção TSM está marcada
 if (document.getElementById("TSM").checked) {
@@ -457,9 +492,13 @@ if (proxySummary.slice(-2) === ', ') {
 
 resumo += proxySummary
 
-resumo += "<p><strong>Arquivo:</strong> " + document.getElementById("refef").value + "</p>";
 
-        summary2.innerHTML = resumo;
+var refef1 = document.getElementById("refef").value;
+resumo += "<p" +(refef1? '' : 'class="texto-vermelho"')+"><strong>Arquivo:</strong> " + refef1 + "</p>";
+
+
+
+summary2.innerHTML = resumo;
 
 }
 
