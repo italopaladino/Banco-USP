@@ -378,24 +378,23 @@ function exibirResumo() {
     var resumo = "";
 
     // Recuperar os valores dos campos do formulário
-    var autorCorrValue=document.getElementById("autorCorr").value;
-    resumo += "<p"+ (autorCorrValue? '' : ' class="texto-vermelho"')+"><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
+    var autorCorrValue = document.getElementById("autorCorr").value;
+    resumo += "<p" + (autorCorrValue ? '' : ' class="texto-vermelho"') + "><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
 
+    var filiacaoValue = document.getElementById("filiacaoCorr").value;
+    resumo += "<p" + (filiacaoValue ? '' : ' class="texto-vermelho"') + "><strong>Filiação:</strong> " + filiacaoValue + "</p>";
 
-    var filiacaoValue=document.getElementById("filiacaoCorr").value;
-    resumo += "<p" + (filiacaoValue? '' : ' class="texto-vermelho"')+"><strong>Filiação:</strong> " + filiacaoValue + "</p>";
-    
     var emailCorr = document.getElementById("email").value;
-    resumo += "<p" +(emailCorr? '' : ' class="texto-vermelho"')+"><strong>E-mail:</strong> " + emailCorr + "</p>";
+    resumo += "<p" + (emailCorr ? '' : ' class="texto-vermelho"') + "><strong>E-mail:</strong> " + emailCorr + "</p>";
 
     var tipoTrabalho = document.getElementById("tipoTrabalhoSelecao").value;
-    resumo += "<p"+(tipoTrabalho? '' : ' class="texto-vermelho"')+"><strong>Tipo de trabalho escolhido:</strong> " + tipoTrabalho + "</p>";
-    
+    resumo += "<p" + (tipoTrabalho ? '' : ' class="texto-vermelho"') + "><strong>Tipo de trabalho escolhido:</strong> " + tipoTrabalho + "</p>";
+
     var armazenamentoSel = document.getElementById("armazenamentoSelecao").value;
-    resumo += "<p"+(armazenamentoSel ? '' : ' class="texto-vermelho"')+"><strong>Como deseja armazenar os dados? </strong>" + armazenamentoSel + "</p>";
+    resumo += "<p" + (armazenamentoSel ? '' : ' class="texto-vermelho"') + "><strong>Como deseja armazenar os dados? </strong>" + armazenamentoSel + "</p>";
 
     var titulo = document.getElementById("titulo").value;
-    resumo += "<p"+(titulo? '' : ' class="texto-vermelho"')+"><strong>Título:</strong> " + titulo + "</p>";
+    resumo += "<p" + (titulo ? '' : ' class="texto-vermelho"') + "><strong>Título:</strong> " + titulo + "</p>";
 
     // Adicionar informações dos coautores
     for (var i = 0; i < contadorAutores; i++) {
@@ -404,27 +403,25 @@ function exibirResumo() {
         resumo += "<p><strong>Co-Autor:</strong> " + coAutorNome + " (" + coAutorFiliacao + ")</p>";
     }
 
+    var periodico = document.getElementById("periodico").value;
+    resumo += "<p" + (periodico ? '' : ' class="texto-vermelho"') + "><strong>Nome do Periódico:</strong> " + periodico + "</p>";
 
-    var periodico=document.getElementById("periodico").value;
-    resumo += "<p"+(periodico? '' : ' class="texto-vermelho"')+"><strong>Nome do Periódico:</strong> " +periodico + "</p>";
-    
-    
     var linkart = document.getElementById("linkart").value;
-    resumo += "<p"+(linkart? '' : ' class="texto-vermelho"')+"><strong>Link para o Artigo:</strong> " + linkart + "</p>";
+    resumo += "<p" + (linkart ? '' : ' class="texto-vermelho"') + "><strong>Link para o Artigo:</strong> " + linkart + "</p>";
 
     var doi1 = document.getElementById("doi").value;
     resumo += "<p" + (doi1 ? '' : ' class="texto-vermelho"') + "><strong>DOI:</strong> " + doi1 + "</p>";
 
-    
     var datap = document.getElementById("data").value;
-    resumo += "<p" +(datap? '' : ' class="texto-vermelho"')+"><strong>Data da publicação:</strong> " + datap + "</p>";
+    resumo += "<p" + (datap ? '' : ' class="texto-vermelho"') + "><strong>Data da publicação:</strong> " + datap + "</p>";
 
     var keywords1 = document.getElementById("keywords").value;
     resumo += "<p" + (keywords1 ? '' : ' class="texto-vermelho"') + "><strong>Palavras-Chave:</strong> " + keywords1 + "</p>";
-    
+
     // Exibir o resumo no elemento summary1
     summary1.innerHTML = resumo;
 }
+
 
 
 
@@ -432,76 +429,61 @@ function exibirDADOS() {
     var summary2 = document.getElementById("summary-2");
     var resumo = "";
 
-     
-    //contagem de autores
-    resumo += "<p><strong>Ponto:</strong> 1 ID: " + document.getElementById("ID").value + " Latitude: " + document.getElementById("lat").value +" Longitude: " + document.getElementById("long").value + 
-    "Profundidade: " + document.getElementById("prof").value + " Recuperação: " + document.getElementById("RecSed").value + " Data da Coleta: " + document.getElementById("anoColeta").value +"</p>";
-    
+    // Adicionar informações do ponto 1
+    resumo += "<p><strong>Ponto:</strong> 1 ID: " + document.getElementById("ID").value + " Latitude: " + document.getElementById("lat").value + " Longitude: " + document.getElementById("long").value + 
+    " Profundidade: " + document.getElementById("prof").value + " Recuperação: " + document.getElementById("RecSed").value + " Data da Coleta: " + document.getElementById("anoColeta").value + "</p>";
+
+    // Adicionar informações dos pontos adicionais
     for (var i = 0; i < coordenadas; i++) {
         var ID = document.getElementsByClassName("ID1")[i].value;
-        var latitude = document.getElementsByClassName("lat1")[i].value ;
-        var longitude = document.getElementsByClassName("long1")[i].value ;
+        var latitude = document.getElementsByClassName("lat1")[i].value;
+        var longitude = document.getElementsByClassName("long1")[i].value;
         var prof = document.getElementsByClassName("prof1")[i].value;
         var RecSed = document.getElementsByClassName("RecSed1")[i].value;
         var anoColeta = document.getElementsByClassName("anoColeta1")[i].value;
-        
-        resumo += "<p><strong> Ponto: </strong> "+(i+2)+ "ID:" + ID + "Latitude:" + latitude + " Longitude:" + longitude+ "Profundidade:" + prof +" Recuperação:"+ RecSed + " Data da Coleta:" + anoColeta + "</p>";
+
+        resumo += "<p><strong>Ponto:</strong> " + (i + 2) + " ID: " + ID + " Latitude: " + latitude + " Longitude: " + longitude + 
+        " Profundidade: " + prof + " Recuperação: " + RecSed + " Data da Coleta: " + anoColeta + "</p>";
     }
-    
+
     var caract = document.getElementById("caract").value;
-    resumo += "<p"+ (caract? '' : ' class="texto-vermelho"')+ "><strong>Caracteristicas inseridas:</strong> " + caract + "</p>";
-   
-   
+    resumo += "<p" + (caract ? '' : ' class="texto-vermelho"') + "><strong>Características inseridas:</strong> " + caract + "</p>";
+
     var mett1 = document.getElementById("metut").value;
-    resumo += "<p"+ (mett1 ? '' : 'class="texto-vermelho"')+ "><strong>Formas de Análises:</strong> " + mett1 + "</p>";
- 
+    resumo += "<p" + (mett1 ? '' : ' class="texto-vermelho"') + "><strong>Métodos Utilizados:</strong> " + mett1 + "</p>";
 
+    // Verificar proxies selecionados
+    var proxySummary = "";
+    if (document.getElementById("TSM").checked) {
+        proxySummary += "TSM (Temperatura da Superfície do Mar), ";
+    }
+    if (document.getElementById("PP").checked) {
+        proxySummary += "Produtividade Primária, ";
+    }
+    if (document.getElementById("correntes").checked) {
+        proxySummary += "Correntes, ";
+    }
+    if (document.getElementById("org").checked) {
+        proxySummary += "Marcadores Orgânicos, ";
+    }
+    if (document.getElementById("inorg").checked) {
+        proxySummary += "Marcadores Inorgânicos, ";
+    }
 
-var proxySummary = "<p><strong>Proxies Selecionados:</strong></p>";
+    // Remover a vírgula extra no final, se houver
+    if (proxySummary.slice(-2) === ', ') {
+        proxySummary = proxySummary.slice(0, -2);
+    }
 
-// Verificar se a caixa de seleção TSM está marcada
-if (document.getElementById("TSM").checked) {
-    proxySummary += "TSM (Temperatura da Superfície do Mar), ";
+    resumo += "<p" + (proxySummary ? '' : ' class="texto-vermelho"') + "><strong>Proxies Selecionados:</strong> " + proxySummary + "</p>";
+
+    var refef1 = document.getElementById("refef").value;
+    resumo += "<p" + (refef1 ? '' : ' class="texto-vermelho"') + "><strong>Arquivo:</strong> " + refef1 + "</p>";
+
+    // Exibir o resumo no elemento summary2
+    summary2.innerHTML = resumo;
 }
 
-// Verificar se a caixa de seleção PP está marcada
-if (document.getElementById("PP").checked) {
-    proxySummary += "Produtividade Primária, ";
-}
-
-// Verificar se a caixa de seleção correntes está marcada
-if (document.getElementById("correntes").checked) {
-    proxySummary += "Correntes, ";
-}
-
-// Verificar se a caixa de seleção org está marcada
-if (document.getElementById("org").checked) {
-    proxySummary += "Marcadores Orgânicos, ";
-}
-
-// Verificar se a caixa de seleção inorg está marcada
-if (document.getElementById("inorg").checked) {
-    proxySummary += "Marcadores Inorgânicos";
-}
-
-// Remover a vírgula extra no final, se houver
-if (proxySummary.slice(-2) === ', ') {
-    proxySummary = proxySummary.slice(0, -2);
-
-}
-
-resumo += proxySummary
-
-
-var refef1 = document.getElementById("refef").value;
-resumo += "<p" +(refef1? '' : 'class="texto-vermelho"')+"><strong>Arquivo:</strong> " + refef1 + "</p>";
-
-
-
-summary2.innerHTML = resumo;
-
-
-}
 
 
 
