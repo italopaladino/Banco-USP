@@ -1,131 +1,94 @@
 <?php
 require_once 'config.php';
 
-
-// nao deu certo a inserção de 3 tabelas distintas no mesmo html, testar IF REQUEST para cada um no mesmo PHP. APRENDER A INSERção em multiplas tabelas no mesmo HTML
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Coleta do valor do campo 'secaoAtual' para determinar de qual seção os dados foram submetidos
     $secaoAtual1 = $_POST['secaoAtual1'];
     $secaoAtual2 = $_POST['secaoAtual2'];
-    $secaoAtual3 = $_POST['secaoAtual3'];
 
-    echo "Seção atual: " . $secaoAtual1 . "<br>";
-    echo "Seção atual: " . $secaoAtual2 . "<br>";
-    echo "Seção atual: " . $secaoAtual3 . "<br>";
+    // Configurações da conexão com o banco de dados
+    $dsn = "host=$host port=$port dbname=$dbname user=$user password=$pass";
+    $conn = pg_connect($dsn);
 
-    // Verifica a seção atual e executa a lógica correspondente
-    if ($secaoAtual1) {
-        // Coleta dos valores da primeira seção
-        $titulo = $_POST['titulo'];
-        $email = $_POST['email'];
-        $nomeAutor = $_POST['nomeAutor'];
-        $filiacao = $_POST['filiacao'];
-        $periodico = $_POST['periodico'];
-        $doi = $_POST['doi'];
-        $volume = $_POST['volume'];
-        $data = $_POST['data'];
-
-        echo "Dados da Seção 1:<br>";
-        echo "Título: " . $titulo . "<br>";
-        echo "E-mail: " . $email . "<br>";
-        echo "Nome: " . $nomeAutor . "<br>";
-        echo "Filiação: " . $filiacao . "<br>";
-        echo "Periódico: " . $periodico . "<br>";
-        echo "DÓI: " . $doi . "<br>";
-        echo "Volume: " . $volume . "<br>";
-        echo "DATA: " . $data . "<br>";
-        
-
-        // Chama a função para inserir na tabela da primeira seção
-        $resultado1 = inserirSecao1($titulo, $email, $nomeAutor, $filiacao, $periodico, $doi, $volume, $data);
-
-        // Exibe o resultado da inserção da seção 1
-        echo $resultado1;
-
-    } elseif ($secaoAtual2) {
-        // Coleta dos valores da segunda seção
-        $keywords = $_POST['keywords'];
-        $highlights = $_POST['highlights'];
-        $resumo = $_POST['resumo'];
-
-        echo "Dados da Seção 2:<br>";
-        echo "Palavras-chave: " . $keywords . "<br>";
-        echo "Highlights: " . $highlights . "<br>";
-        echo "Resumo: " . $resumo . "<br>";
-        
-
-        // Chama a função para inserir na tabela da segunda seção
-        $resultado2 = inserirSecao2($keywords, $highlights, $resumo);
-
-        // Exibe o resultado da inserção da seção 2
-        echo $resultado2;
-
-    } elseif ($secaoAtual3) {
-        // Coleta dos valores da terceira seção
-        $caract = $_POST['caract'];
-        $tabelaDado = $_POST['tabelaDado'];
-
-        echo "Dados da Seção 3:<br>";
-        echo "Características: " . $caract . "<br>";
-        echo "Tabela de Dados: " . $tabelaDado . "<br>";
-
-        // Chama a função para inserir na tabela da terceira seção
-        $resultado3 = inserirSecao3($caract, $tabelaDado);
-
-        // Exibe o resultado da inserção da seção 3
-        echo $resultado3;
+    if (!$conn) {
+        die("Connection failed: " . pg_last_error());
     }
-}
 
-
-// Função para inserir na tabela correspondente à primeira seção
-function inserirSecao1($titulo, $email, $nomeAutor, $filiacao, $periodico, $doi, $volume, $data) {
-    global $dsn, $user, $pass;
+    // Iniciar transação
+    pg_query($conn, 'BEGIN');
 
     try {
-        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        if ($secaoAtual1) {
+            // Coleta dos valores da primeira seção
+            $autorCorr = $_POST['autorCorr'];
+            $filiacaoCorr = $_POST['filiacaoCorr'];
+            $email = $_POST['email'];
+            $tipoTrabalho = $_POST['tipoTrabalho'];
+            $armazenamento = $_POST['armazenamento'];
+            $termo = isset($_POST['termo']) ? 1 : 0;
+            $titulo = $_POST['titulo'];
+            $periodico = $_POST['periodico'];
+            $linkart = $_POST['linkart'];
+            $doi = $_POST['doi'];
+            $volume = $_POST['volume'];
+            $data = $_POST['data'];
+            $keywords = $_POST['keywords'];
 
-        $sql = "INSERT INTO artigos (titulo, email, nomeAutor, filiacao, periodico, doi, volume, data) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stm = $pdo->prepare($sql);
+            $sql1 = "INSERT INTO tabela1 (autorCorr, filiacaoCorr, email, tipo_trabalho, armazenamento, termo, titulo, periodico, linkart, doi, volume, data, keywords) 
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)";
 
-        $stm->execute([$titulo, $email, $nomeAutor, $filiacao, $periodico, $doi, $volume, $data]);
-        return "Inserção na seção 1 OK";
-    } catch (PDOException $e) {
-        return "Erro ao inserir na seção 1: " . $e->getMessage();
+            $result1 = pg_query_params($conn, $sql1, [
+                $autorCorr, $filiacaoCorr, $email, $tipoTrabalho, $armazenamento, $termo, $titulo, $periodico, $linkart, $doi, $volume, $data, $keywords
+            ]);
+
+            if (!$result1) {
+                throw new Exception("Erro ao inserir na tabela1: " . pg_last_error($conn));
+            }
+        }
+
+        if ($secaoAtual2) {
+            $caract = $_POST['caract'];
+            $metut = $_POST['metut'];
+            $proxys = isset($_POST['proxys']) ? $_POST['proxys'] : [];
+
+            $sql2 = "INSERT INTO tabela2 (caract, metut, proxys) VALUES ($1, $2, $3)";
+            $result2 = pg_query_params($conn, $sql2, [$caract, $metut, json_encode($proxys)]);
+
+            if (!$result2) {
+                throw new Exception("Erro ao inserir na tabela2: " . pg_last_error($conn));
+            }
+
+            if (isset($_FILES['tabelaDado']) && $_FILES['tabelaDado']['error'] == UPLOAD_ERR_OK) {
+                $fileTmpPath = $_FILES['tabelaDado']['tmp_name'];
+                $fileName = $_FILES['tabelaDado']['name'];
+                $fileContent = file_get_contents($fileTmpPath);
+
+                if ($fileContent === false) {
+                    throw new Exception("Erro ao ler o conteúdo do arquivo CSV.");
+                }
+
+                $sql3 = "INSERT INTO arquivos (nome_arquivo, conteudo) VALUES ($1, $2)";
+                $result3 = pg_query_params($conn, $sql3, [$fileName, pg_escape_bytea($fileContent)]);
+
+                if (!$result3) {
+                    throw new Exception("Erro ao inserir na tabela arquivos: " . pg_last_error($conn));
+                }
+            } else {
+                throw new Exception("Erro no upload do arquivo CSV: " . $_FILES['tabelaDado']['error']);
+            }
+        }
+
+        // Commit da transação
+        pg_query($conn, 'COMMIT');
+
+        echo "Inserção realizada com sucesso!";
+    } catch (Exception $e) {
+        // Rollback em caso de erro
+        pg_query($conn, 'ROLLBACK');
+        echo $e->getMessage();
     }
-}
 
-// Função para inserir na tabela correspondente à segunda seção
-function inserirSecao2($keywords, $highlights, $resumo) {
-    global $dsn, $user, $pass;
-
-    try {
-        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
-        $sql = "INSERT INTO artigos2 (keywords, highlights, resumo) VALUES (?, ?, ?)";
-        $stm = $pdo->prepare($sql);
-
-        $stm->execute([$keywords, $highlights, $resumo]);
-        return "Inserção na seção 2 OK";
-    } catch (PDOException $e) {
-        return "Erro ao inserir na seção 2: " . $e->getMessage();
-    }
-}
-
-// Função para inserir na tabela correspondente à terceira seção
-function inserirSecao3($caract, $tabelaDado) {
-    global $dsn, $user, $pass;
-
-    try {
-        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
-        $sql = "INSERT INTO artigos3 (caract, tabelaDado) VALUES (?,?)";
-        $stm = $pdo->prepare($sql);
-
-        $stm->execute([$caract, $tabelaDado ]);
-        return "Inserção na seção 3 OK";
-    } catch (PDOException $e) {
-        return "Erro ao inserir na seção 3: " . $e->getMessage();
-    }
+    // Fechar a conexão
+    pg_close($conn);
 }
 ?>

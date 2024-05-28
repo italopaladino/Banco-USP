@@ -326,7 +326,6 @@ function adicionarCoordenadas() {
                         }
                     }
 
-
 // SCRIPT PARA PASSAR AS PAFINAS DO FORMULÁRIO SUBMIT.HTML
  let currentPage = 1;
 
@@ -356,8 +355,11 @@ function adicionarCoordenadas() {
               document.getElementById(`section${currentPage}`).classList.add('active');
             }
         
-               
-                    
+ 
+            
+
+
+
  // pagina de LOGIN ---  funções do botões
                     function registro() {
                         window.location.href='novo-user.html'
