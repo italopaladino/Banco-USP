@@ -83,7 +83,7 @@
 
 <!-- PRIMEIRA PAGINA -->
 
-<form id="forms" method="post" action="../PHP/submit-DADOS2.php" style="position: relative">
+<form id="forms" method="post" action="../PHP/submit-DADOS2.php" enctype="multipart/form-data" style="position: relative">
    
    
     <!-- campo invisivel para recuperar os valores finais -->
@@ -120,18 +120,19 @@
 
     <div id="armazenamento" class="coluna">
         <label for='armazenamento'> Como deseja armazenar os dados?</label><br>
-        <select id="armazenamentoSelecao" name="autorizacao">
+        <select id="armazenamentoSelecao" name="armazenamento">
             <option value="">---</option>
             <option value="publico"> Público</option>
             <option value="privado"> Privado </option>
-        </select><br><br>
-    </div>  
-</div>
-
+        </select></br><br>
+    </div>
+</br>
 
 <div class="termo">
+   
     <input type="checkbox" id="termo" name="termo" value="term">
-    <label for="termo"> Li e concordo com os termos sobre o uso dos dados</PDF><a href="javascript:abrirPDF()"> Clique aqui para ler</a></label> 
+    <label for="termo"> Li e concordo com os termos sobre o uso dos dados</PDF><a href="javascript:abrirPDF()"> Clique aqui para ler</a></label>
+     
 </div></br>
 
 
@@ -199,8 +200,8 @@
 <div id="coord">
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
-    <div id="coordenadas">
-        <input title="Identificação das amostras" type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID">
+    <div id="coordenadas" >
+        <input title="Identificação das amostras" type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID" >
         <input title="Latitute" type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
         <input title="Longitude" type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
         <input title="Profundidade" type="text" maxlength="10" id="prof" name="prof" style="width: 8%;" placeholder="Profundidade">
@@ -244,8 +245,9 @@
 </br>
 </br>
 
-<label  form="refef" style="margin-right: 1%;"> Selecione seus dados (aquivo em .csv):</label><a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green;" class="bi bi-filetype-csv"></a></br>
-       <input id="refef" type="file" name="tabelaDado" style="width: 30%;" unique></input>
+<label  form="refef" style="margin-right: 1%;"> Selecione seus dados (aquivo em .csv):</label>
+<a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green;" class="bi bi-filetype-csv"></a></br>
+<input id="refef" type="file" name="tabelaDado" style="width: 30%;" unique><br><br><br>
     
     </br></br></br>           
     
