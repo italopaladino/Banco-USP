@@ -27,21 +27,29 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
+                
+                <div class="search1">
+                    
+                    <input style="left: 0%;" id="search1" type="text" name="search" placeholder="Search..">
+                    <button style="left: 0%;"><i class="bi bi-search"></i></button>
+                </div>
 
                 <!--<a class="navbar-brand" href="#page-top">Start Bootstrap</a>-->
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="navbarToggleBtn"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#mainNav" onclick=closeNavbar()>Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about" onclick=closeNavbar()>Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact" onclick=closeNavbar()>Contatos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="submit.html" onclick=closeNavbar()>Submissão de dados</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick= "openLoginDialog();closeNavbar()">Login</a></li> <!-- deixar o login como caixa de diálogo-->
-                        <li class="nav-item"><a class="nav-link" href="novo-user.html"onclick=closeNavbar()>Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
+
+                        <li class="nav-item"><a class="nav-link" href="../HTML/index.html#about" onclick=closeNavbar()>Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../HTML/index.html#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../HTML/index.html#contact" onclick=closeNavbar()>Contatos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="consulta.html" onclick=closeNavbar()>Consulta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="submit.html">Submissão de dados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick= "openLoginDialog(); closeNavbar()" >Login</a></li> <!-- deixar o login como caixa de diálogo-->
+                        <li class="nav-item"><a class="nav-link" href="novo-user.html" onclick=closeNavbar()>Sing in </a></li> <!-- registro mais informações além disso pode ser em uma pagina nova-->
                     </ul>
                 </div>
+                
             </div>
         </nav>
         <!-- Header-->
@@ -154,13 +162,15 @@
         <!-- Bootstrap core JS-->
         
     </body>
+
+    
     <!-- MOSTRAR OS ULTIMOS ARTIGOS INSERIDOS -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
     $.ajax({
-        url: "../PHP/consulta-art.php", // O arquivo PHP que faz a consulta ao banco de dados
+        url: "../PHP/consulta-art-geral.php", // O arquivo PHP que faz a consulta ao banco de dados
         type: "GET",
         success: function(response){
             $("#ultimosartigos").html(response); // Atualiza a div com os resultados da consulta

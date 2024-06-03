@@ -122,6 +122,8 @@
 
 
 
+
+
 /*dividir em duas colunas*/
 
 .coluna {
@@ -141,6 +143,102 @@
 
 
 
+/* Estilo padrão do botão e input dentro da div .search1 */
+.search1 button, .search1 input {
+  position: relative;
+  border: none; /* Remove borda */
+  background: none; /* Remove fundo */
+  outline: none; /* Remove contorno ao focar */
+  padding: 0; /* Remove preenchimento padrão */
+  margin: 0; /* Remove margens padrão */
+}
+
+/* Redefinindo estilos do ícone para remover qualquer formatação aplicada */
+.search1 i {
+  all: unset; /* Remove todos os estilos herdados */
+  font-family: "Bootstrap Icons"; /* Adiciona a família de fonte específica, se necessário */
+  font-style: normal; /* Define o estilo da fonte como normal */
+  font-size: 16px; /* Ajuste de tamanho do ícone */
+  color: inherit; /* Herdar a cor do elemento pai */
+}
+
+/* Adicional: Estilos para melhorar a aparência do botão */
+.search1 button {
+  cursor: pointer; /* Mostra cursor de ponteiro ao passar sobre o botão */
+  padding: 0; /* Remove preenchimento padrão */
+  margin: 0; /* Remove margens padrão */
+  background: none; /* Remove fundo */
+  border: none; /* Remove borda */
+  outline: none; /* Remove contorno ao focar */
+}
+
+/* Remover fundo azul ao interagir */
+.search1 button:hover,
+.search1 button:focus,
+.search1 button:active {
+    background-color: transparent; /* Remove fundo ao interagir */
+    outline: none; /* Remove contorno ao focar */
+}
+
+
+
+/* dinamica do Search */ 
+.search1 input[type=text] {
+  width: 80px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.search1 input[type=text]:focus {
+  width: 89%;
+}
+
+
+
+
+.search2 input[type=text] {
+    width: 250px;
+    height: 50px;
+   -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  .search2 input[type=text]:focus {
+    width: 87%;
+  }
+
+
+
+
+   
+  /* Redefinindo estilos do ícone para remover qualquer formatação aplicada */
+  .search2 i {
+    all: unset; /* Remove todos os estilos herdados */
+    font-family: "Bootstrap Icons"; /* Adiciona a família de fonte específica, se necessário */
+    font-style: normal; /* Define o estilo da fonte como normal */
+    font-size: 20px; /* Ajuste de tamanho do ícone */
+    color: inherit; /* Herdar a cor do elemento pai */
+  }
+  
+  /* Adicional: Estilos para melhorar a aparência do botão */
+  .search2 button {
+    cursor: pointer; /* Mostra cursor de ponteiro ao passar sobre o botão */
+    padding: 0; /* Remove preenchimento padrão */
+    margin: 0; /* Remove margens padrão */
+    background: none; /* Remove fundo */
+    border: none; /* Remove borda */
+    outline: none; /* Remove contorno ao focar */
+  }
+  
+  /* Remover fundo azul ao interagir */
+  .search2 button:hover,
+  .search2 button:focus,
+  .search2 button:active {
+      background-color: transparent; /* Remove fundo ao interagir */
+      outline: none; /* Remove contorno ao focar */
+  }  
 
 
 /* COR ONDE O CURSOR ESTA*/
