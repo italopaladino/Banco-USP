@@ -15,7 +15,7 @@ try {
     htmlspecialchars($infogera['data']) .".";
 
 // Exibe a frase e adiciona duas quebras de linha
-echo $frase . "<br><br>";
+echo "<a>$frase</a><br><br>";
 }
     
 } catch (PDOException $e) {
