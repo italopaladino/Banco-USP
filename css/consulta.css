@@ -1,0 +1,24 @@
+/* CSS para pagina de consulta */
+.flex-wrapper {
+    width: 99%;
+    height: 99%;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    
+}
+
+.filter-forms {
+    width: 30%;
+    height: 500px;
+    margin: 10px;
+}
+
+.results-consult {
+    width: 67%;
+    height: 500px;
+    margin: 10px;
+}

@@ -9,13 +9,13 @@ try {
     
  foreach ($infogeral as $infogera) {
     // Cria a frase com os dados do autor, título sublinhado, DOI e data
-    $frase = htmlspecialchars($infogera['autorcorr']) . 
-    ", \"<a href='https://doi.org/" . htmlspecialchars($infogera['doi']) . "'>" . htmlspecialchars($infogera['titulo']) . 
-    "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
-    htmlspecialchars($infogera['data']) .".";
-
-// Exibe a frase e adiciona duas quebras de linha
-echo "<a>$frase</a><br><br>";
+     $frase = htmlspecialchars($infogera['autorcorr']) . 
+                 ", \"<a href='https://doi.org/" . htmlspecialchars($infogera['doi']) . "'>" . htmlspecialchars($infogera['titulo']) . 
+                 "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
+                 htmlspecialchars($infogera['data']) .".";
+    
+        // Exibe a frase e adiciona duas quebras de linha
+        echo $frase . "<br><br>";
 }
     
 } catch (PDOException $e) {
