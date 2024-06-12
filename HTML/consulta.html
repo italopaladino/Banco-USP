@@ -81,22 +81,18 @@
             </div>
         </br>
         <form class="form-filter">
-            <div>
-                <h1 class="form-tip">Tipo de trabalho</h1> <!-- deixar fixado -->
-            <ul>
-                <li><a class="tip-fomr" href="">Artigo</a></li>
-                <li><a class="tip-fomr" href="">Tese de Doutorado</a></li>
-                <li><a class="tip-fomr" href="">Tese de Mestrado</a></li>
-                <li><a class="tip-fomr" href="">Relatórios</a></li>
-                <li><a class="tip-fomr" href="">Resumo</a></li>
-               </ul></div>
+            <h1 class="form-tip">Tipo de trabalho</h1>
+            <div class="filtro-tipo" id="filtro-tipo">
+                 <!-- deixar fixado -->
+           </div>
       
 
 
                <h1 class="form-tip">Ano de Publicação</h1>
                <div id="filtro-ano-pub"></div>
-                   <!-- Lista de anos de publicação será carregada aqui -->
-                   <button id="mostrar-mais-btn">Mostrar Mais</button>
+                <!-- Lista de anos de publicação será carregada aqui -->
+
+                <button id="mostrar-mais">Mostrar mais</button>
                
 
 
@@ -113,14 +109,9 @@
 
 
      <h1 class="form-tip"> Proxies Utilizados </h1> <!-- fixo com os que estão no site -->
-                 <ul>
-                     <li><a class="tip-fomr" href="">TSM</a></li>
-                     <li><a class="tip-fomr" href="">Produtividade Primária</a></li>
-                     <li><a class="tip-fomr" href="">Correntes </a></li>
-                     <li><a class="tip-fomr" href="">Marcadores Orgânicos</a></li>
-                     <li><a class="tip-fomr" href="">Marcadores Inorgânicos</a></li>
-                     
-                    </ul>
+               <div class="filtro-proxies" id="filtro-proxies">
+
+               </div>
 
 
     <h1 class="form-tip"> Tipos de instrumentos </h1> <!-- fixo com os que estão no site -->
@@ -191,8 +182,37 @@
     <!-- Bootstrap core JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-$(document).ready(function(){
+
+
+
+
+
+
+
+<script>
+        // JAVA PARA TIPOS DE TRABALHOS
+    $(document).ready(function(){
+        console.log("jQuery está funcionando.");
+    
+        // Consulta de artigos
+        $.ajax({
+            url: "../PHP/filtro-tipo.php",
+            type: "GET",
+            success: function(response){
+                $("#filtro-tipo").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar anos:", status, error);
+            }
+        });
+    });
+    </script>
+
+
+
+<script>
+    // JAVA PARA FILTRO DE ANOS
+    $(document).ready(function(){
     console.log("jQuery está funcionando.");
 
     // Consulta de artigos
@@ -203,13 +223,19 @@ $(document).ready(function(){
             $("#filtro-ano-pub").html(response);
         },
         error: function(xhr, status, error) {
-            console.error("Erro ao consultar anos:", status, error);
+            console.error("Erro ao consultar artigos:", status, error);
         }
     });
 });
+
     </script>
-    
+
+
+
+
+
 <script>
+    //consulta geral de artigos listados 
     $(document).ready(function(){
     console.log("jQuery está funcionando.");
 
