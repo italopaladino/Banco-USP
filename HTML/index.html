@@ -124,7 +124,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <div id="ultimosartigos" class="table-responsive">
+                                    <div id="pag-consult" class="table-responsive">
                                         <!-- Os resultados da consulta serão exibidos aqui -->
                                     </div>
                                 </div>
@@ -170,10 +170,10 @@
 <script>
 $(document).ready(function(){
     $.ajax({
-        url: "../PHP/consulta-art-geral.php", // O arquivo PHP que faz a consulta ao banco de dados
+        url: "../PHP/consulta-art.php", // O arquivo PHP que faz a consulta ao banco de dados
         type: "GET",
         success: function(response){
-            $("#ultimosartigos").html(response); // Atualiza a div com os resultados da consulta
+            $("#pag-consult").html(response); // Atualiza a div com os resultados da consulta
         }
     });
 });

@@ -11,7 +11,9 @@
     <link rel="icon" type="image/x-icon" href="../assets/mac.ico" />
     <link href="../css/submit.css" rel="stylesheet"/>
     <link href="../css/styles.css" rel="stylesheet" />
+    
     <link href="../css/consulta.css" rel="stylesheet" />
+
     <script src="../js/add-script.js"></script>
     <script src="../js/script.js"></script>
 </head>
@@ -28,7 +30,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../HTML/index.html#about" onclick=closeNavbar()>Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../HTML/index.html" onclick=closeNavbar()>Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../HTML/index.html#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
                     <li class="nav-item"><a class="nav-link" href="../HTML/index.html#contact" onclick=closeNavbar()>Contatos</a></li>
                     <li class="nav-item"><a class="nav-link" href="consulta.html" onclick=closeNavbar()>Consulta</a></li>
@@ -79,24 +81,24 @@
             </div>
         </br>
         <form class="form-filter">
-            <h1 class="form-tip">Tipo de trabalho</h1> <!-- deixar fixado -->
+            <div>
+                <h1 class="form-tip">Tipo de trabalho</h1> <!-- deixar fixado -->
             <ul>
                 <li><a class="tip-fomr" href="">Artigo</a></li>
                 <li><a class="tip-fomr" href="">Tese de Doutorado</a></li>
                 <li><a class="tip-fomr" href="">Tese de Mestrado</a></li>
                 <li><a class="tip-fomr" href="">Relatórios</a></li>
                 <li><a class="tip-fomr" href="">Resumo</a></li>
-               </ul>
+               </ul></div>
       
-        <h1 class="form-tip"> Ano de Publicação</h1> <!-- linkar com os anos que tem no banco deixar ulitmos 5-->
-           <ul>
-               <li><a class="tip-fomr" href="">2024</a></li>
-               <li><a class="tip-fomr" href="">2023</a></li>
-               <li><a class="tip-fomr" href="">2022</a></li>
-               <li><a class="tip-fomr" href="">2021</a></li>
-               <li><a class="tip-fomr" href="">2020</a></li>
-               <li><a class="tip-fomr" href=""> . . . </a></li>
-              </ul>
+
+
+               <h1 class="form-tip">Ano de Publicação</h1>
+               <div id="filtro-ano-pub">
+                   <!-- Lista de anos de publicação será carregada aqui -->
+                   <button id="mostrar-mais-btn">Mostrar Mais</button>
+               
+
 
 
         <h1 class="form-tip"> Ano de Coleta </h1> <!-- linkar com os anos que tem no banco deixar ulitmos 5-->
@@ -179,18 +181,52 @@
         </div>
     </footer>
     
+
+
+
+
+
+
+
     <!-- Bootstrap core JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
-        $(document).ready(function(){
-            $.ajax({
-                url: "../PHP/consulta-art-geral.php",
-                type: "GET",
-                success: function(response){
-                    $("#ultimosartigos").html(response);
-                }
-            });
-        });
+$(document).ready(function(){
+    console.log("jQuery está funcionando.");
+
+    // Consulta de artigos
+    $.ajax({
+        url: "../PHP/filtro-ano-pub.php",
+        type: "GET",
+        success: function(response){
+            $("#filtro-ano-pub").html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao consultar anos:", status, error);
+        }
+    });
+});
     </script>
+    
+<script>
+    $(document).ready(function(){
+    console.log("jQuery está funcionando.");
+
+    // Consulta de artigos
+    $.ajax({
+        url: "../PHP/consulta-art-geral.php",
+        type: "GET",
+        success: function(response){
+            $("#ultimosartigos").html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao consultar artigos:", status, error);
+        }
+    });
+});
+
+</script>   
+
 </body>
 </html>
