@@ -8,7 +8,7 @@ try {
     $stm = $pdo->query($sql);
     $anosPublicacao = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    // Monta a lista HTML
+    // Monta a lsta para
     $filtroHTML = "<ul>";
     foreach ($anosPublicacao as $anoPublicacao) {
         $ano = htmlspecialchars($anoPublicacao['ano']);

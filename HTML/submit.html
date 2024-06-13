@@ -219,9 +219,62 @@
     
     </div>
 </div>
+</br></br>
+</br></br>
+<div id="proxys">
+    <h2> Ferramentas utilizadas:</h2>
+<input type="checkbox" id="TSM" nome="TSM" value="TSM">
+<label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
+<input type="checkbox" id="PP" nome="PP" value="PP">
+<label for="PP" style="margin-right: 2%;">Produtividade Primária</label>
+<input type="checkbox" id="correntes" nome="correntes" value="correntes">
+<label for="correntes" style="margin-right: 2%;">Correntes</label>
+<input type="checkbox" id="org" nome="org" value="org">
+<label for="org" style="margin-right: 2%;"> Marcadores Orgânicos</label>
+<input type="checkbox" id="inorg" nome="inorg" value="inorg">
+<label for="inorg" style="margin-right: 2%;"> Marcadores Inorgânicos</label>
+<input type="text" id="outroProx" nome="outroProx" placeholder="Outro">
+</br>
+</div>
 </br>
 </br>
-        <h2> Adicione seus arquivos e uma pequena descrição dos dados: </h2></br></br>
+
+<div id="equip-coleata">
+    <h2> Equipamentos de Coleta:</h2>
+
+<input type="checkbox" id="multcore" nome="multcore" value="multcore">
+<label for="multcore" style="margin-right: 2%; ">MultiCorer</label>
+
+<input type="checkbox" id="piston" nome="piston" value="piston">
+<label for="PP" style="margin-right: 2%;">Pinsto Corer</label>
+
+<input type="checkbox" id="gravcore" nome="gravcore" value="gravcore">
+<label for="gravcore" style="margin-right: 2%;">Gravity Corer</label>
+
+<input type="checkbox" id="drilli" nome="drilli" value="drilli">
+<label for="drilli" style="margin-right: 2%;">Drilling</label>
+
+<input type="checkbox" id="gboxcore" nome="gboxcore" value="gboxcore">
+<label for="gboxcore" style="margin-right: 2%;"> Giant box corer</label>
+
+<input type="checkbox" id="compcore" nome="compcore" value="compcore">
+<label for="compcore" style="margin-right: 2%;">Composite Corer</label>
+
+<input type="checkbox" id="boxcore" nome="boxcore" value="boxcore">
+<label for="boxcore" style="margin-right: 2%;">Box Corer</label>
+
+<input type="checkbox" id="corer" nome="corer" value="corer">
+<label for="corer" style="margin-right: 2%;">Corer</label>
+
+<input type="text" id="outroEqui" nome="outroEqui" placeholder="Outro">
+
+
+</br>
+</div>
+</br>
+</br>
+
+        <h1> Adicione seus arquivos e uma pequena descrição dos dados: </h1></br>
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
     </br></br>
@@ -233,20 +286,6 @@
 
 
 
-<div id="proxys">
-<input type="checkbox" id="TSM" nome="TSM" value="TSM">
-<label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
-<input type="checkbox" id="PP" nome="PP" value="PP">
-<label for="PP" style="margin-right: 2%;">Produtividade Primária</label>
-<input type="checkbox" id="correntes" nome="correntes" value="correntes">
-<label for="correntes" style="margin-right: 2%;">Correntes</label>
-<input type="checkbox" id="org" nome="org" value="org">
-<label for="org" style="margin-right: 2%;"> Marcadores Orgânicos</label>
-<input type="checkbox" id="inorg" nome="inorg" value="inorg">
-<label for="inorg" style="margin-right: 2%;"> Marcadores Inorgânicos</label></br>
-</div>
-</br>
-</br>
 
 <label  form="refef" style="margin-right: 1%;"> Selecione seus dados (aquivo em .csv):</label>
 <a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green;" class="bi bi-filetype-csv"></a></br>
@@ -259,7 +298,7 @@
         <button class="button" type="button" style="position: absolute; right: 1%; bottom: 1%;" onclick="proximaPagina();exibirResumo()">Avançar</button>
 
 </div>
-
+</br></br>
 <!-- terceira PAGINA -->
 <div id="section3" class="form-section">
     <h1>  Confirme todas as informações: </h1>
