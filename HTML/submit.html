@@ -223,17 +223,45 @@
 </br></br>
 <div id="proxys">
     <h2> Ferramentas utilizadas:</h2>
+    <!-- depois deixar de 2 em 2 alinhado -->
 <input type="checkbox" id="TSM" nome="TSM" value="TSM">
 <label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
+
 <input type="checkbox" id="PP" nome="PP" value="PP">
-<label for="PP" style="margin-right: 2%;">Produtividade Primária</label>
-<input type="checkbox" id="correntes" nome="correntes" value="correntes">
-<label for="correntes" style="margin-right: 2%;">Correntes</label>
+<label for="PP" style="margin-right: 2%;">Produtividade</label>
+
+<input type="checkbox" id="circulcao" nome="circulcao" value="circulcao">
+<label for="circulcao" style="margin-right: 2%;">Circulação Oceânica</label>
+
 <input type="checkbox" id="org" nome="org" value="org">
-<label for="org" style="margin-right: 2%;"> Marcadores Orgânicos</label>
+<label for="org" style="margin-right: 2%;">Marcadores Orgânicos</label>
+
 <input type="checkbox" id="inorg" nome="inorg" value="inorg">
-<label for="inorg" style="margin-right: 2%;"> Marcadores Inorgânicos</label>
-<input type="text" id="outroProx" nome="outroProx" placeholder="Outro">
+<label for="inorg" style="margin-right: 2%;">Marcadores Inorgânicos</label>
+
+<input type="checkbox" id="foramplan" nome="foramplan" value="foramplan">
+<label for="foramplan" style="margin-right: 2%;">Foraminíferos Planctônicos</label>
+
+<input type="checkbox" id="forambent" nome="forambent" value="forambent">
+<label for="forambent" style="margin-right: 2%;">Foraminíferos Bentônnicos</label>
+
+<input type="checkbox" id="sealev" nome="sealev" value="sealev">
+<label for="sealev" style="margin-right: 2%;">Nível do Mar</label>
+
+<input type="checkbox" id="co2atm" nome="co2atm" value="co2atm">
+<label for="co2atm" style="margin-right: 2%;">CO<sub>2</sub> Atmosférico</label>
+
+<input type="checkbox" id="cobveg" nome="cobveg" value="cobveg">
+<label for="cobveg" style="margin-right: 2%;">Cobertura Vegetal</label>
+
+<input type="checkbox" id="rainfall" nome="rainfall" value="rainfall">
+<label for="rainfall" style="margin-right: 2%;">Precipitação</label>
+
+<input type="checkbox" id="stratg" nome="stratg" value="stratg">
+<label for="stratg" style="margin-right: 2%;">Estratigrafia</label></br></br>
+
+
+<input  type="text" id="outroProx" nome="outroProx" placeholder="Outro" style="width: 30%;">
 </br>
 </div>
 </br>
@@ -264,9 +292,9 @@
 <label for="boxcore" style="margin-right: 2%;">Box Corer</label>
 
 <input type="checkbox" id="corer" nome="corer" value="corer">
-<label for="corer" style="margin-right: 2%;">Corer</label>
+<label for="corer" style="margin-right: 2%;">Corer</label></br></br>
 
-<input type="text" id="outroEqui" nome="outroEqui" placeholder="Outro">
+<input type="text" id="outroEqui" nome="outroEqui" placeholder="Outro" style="width: 30%;">
 
 
 </br>
@@ -274,7 +302,7 @@
 </br>
 </br>
 
-        <h1> Adicione seus arquivos e uma pequena descrição dos dados: </h1></br>
+        <h2> Descrição dos dados e Métodos: </h2></br>
         <label  form="caract"> Caracteristicas dos dados inseridos: </label></br>
         <textarea type="text" id="caract" name="caract"  maxlength="1500" rows="10" cols="150" placeholder="Conte um pouco como sobre as caracteriscas do seu dado. Ex: Tabela com granulometria, grau de seleção etc (max 1500 caracteres)"></textarea>
     </br></br>
@@ -286,9 +314,8 @@
 
 
 
-
-<label  form="refef" style="margin-right: 1%;"> Selecione seus dados (aquivo em .csv):</label>
-<a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green;" class="bi bi-filetype-csv"></a></br>
+<h2> Adicione o arquivo CSV (separado por virgula): </h2>
+<a title="VER MODELO" href="javascript:abrirPDF()"  style="color: green; margin-right: 2%; font-size: 45px;" class="bi bi-filetype-csv"></a>
 <input id="refef" type="file" name="tabelaDado" style="width: 30%;" unique><br><br><br>
     
     </br></br></br>           
@@ -362,7 +389,6 @@
  
       
 </footer>
-
 
 </body>      
 </html>

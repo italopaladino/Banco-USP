@@ -77,15 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         pg_query($conn, 'COMMIT');
 
-        echo "Inserção realizada com sucesso";
-
-
-
-
-    
+           
     }catch (Exception $e) {
         pg_query($conn, 'ROLLBACK');
-        echo $e->getMessage();
+        echo "<script> alert ('{$e->getMessage()}');</script>";
     }
 
     pg_close($conn);
