@@ -462,26 +462,89 @@ function exibirDADOS() {
     if (document.getElementById("PP").checked) {
         proxySummary += "Produtividade Primária, ";
     }
-    if (document.getElementById("correntes").checked) {
-        proxySummary += "Correntes, ";
+    if (document.getElementById("circulacao").checked) {
+        proxySummary += "Circulação Oceânica, ";
     }
+    
     if (document.getElementById("org").checked) {
         proxySummary += "Marcadores Orgânicos, ";
     }
     if (document.getElementById("inorg").checked) {
         proxySummary += "Marcadores Inorgânicos, ";
     }
-
+    if (document.getElementById("foramplan").checked) {
+        proxySummary += "Foraminíferos Planctônicos, ";
+    }
+    if (document.getElementById("forambent").checked) {
+        proxySummary += "Foraminíferos Bentônnicos, ";
+    }
+    if (document.getElementById("sealev").checked) {
+        proxySummary += "Nível do Mar, ";
+    }
+    if (document.getElementById("co2atm").checked) {
+        proxySummary += "CO<sub>2</sub> Atmosférico, ";
+    }
+    if (document.getElementById("cobveg").checked) {
+        proxySummary += "Cobertura Vegetal, ";
+    }
+    if (document.getElementById("rainfall").checked) {
+        proxySummary += "Precipitação, ";
+    }
+    if (document.getElementById("stratg").checked) {
+        proxySummary += "Estratigrafia, ";
+    }
     // Remover a vírgula extra no final, se houver
     if (proxySummary.slice(-2) === ', ') {
         proxySummary = proxySummary.slice(0, -2);
     }
 
-    resumo += "<p" + (proxySummary ? '' : ' class="texto-vermelho"') + "><strong>Proxies Selecionados:</strong> " + proxySummary + "</p>";
+    resumo += "<p" + (proxySummary ? '' : ' class="texto-vermelho"') + "><strong>Proxie(s) Selecionado(s):</strong> " + proxySummary + "</p>";
 
+    var outroprox = document.getElementById("outroProx").value;
+    resumo += "<p" + (outroprox ? '' : ' class="texto-vermelho"') + "><strong> Outro proxy:</strong> " + outroprox+ "</p>";
+    
     var refef1 = document.getElementById("refef").value;
     resumo += "<p" + (refef1 ? '' : ' class="texto-vermelho"') + "><strong>Arquivo:</strong> " + refef1 + "</p>";
 
+
+
+    //equipamentos 
+    var coleta = "";
+    if (document.getElementById("multcore").checked) {
+        coleta += "MultiCorer, ";
+    }
+    if (document.getElementById("piston").checked) {
+        coleta += "Piston Corer, ";
+    }
+    if (document.getElementById("gravcore").checked) {
+        coleta += "Gravity Corer, ";
+    }
+    
+    if (document.getElementById("drilli").checked) {
+        coleta += "Drilling, ";
+    }
+    if (document.getElementById("gboxcore").checked) {
+        coleta += "Giant box corer, ";
+    }
+    if (document.getElementById("compcore").checked) {
+        coleta += "Composite Corer, ";
+    }
+    if (document.getElementById("boxcore").checked) {
+        coleta += "Box Corer, ";
+    }
+    if (document.getElementById("corer").checked) {
+        coleta += "Corer, ";
+    }
+    // Remover a vírgula extra no final, se houver
+    if (coleta.slice(-2) === ', ') {
+        coleta = coleta.slice(0, -2);
+    }
+
+    resumo += "<p" + (coleta ? '' : ' class="texto-vermelho"') + "><strong>Equipamento(s) Selecionado(s):</strong> " + coleta + "</p>";
+
+    var outroequip = document.getElementById("outroEqui").value;
+    resumo += "<p" + (outroequip ? '' : ' class="texto-vermelho"') + "><strong> Outro equipamento:</strong> " + outroequip+ "</p>";
+    
     // Exibir o resumo no elemento summary2
     summary2.innerHTML = resumo;
 }
