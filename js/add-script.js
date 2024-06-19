@@ -128,8 +128,9 @@ function adicionarAutor() {
     // Criar novo campo de input para o nome
     var novoCampoNome = document.createElement("input");
     novoCampoNome.type = "text";
-    novoCampoNome.className = "coautor";
-    novoCampoNome.name = "coAutor" + contadorAutores; // Use um array para coletar vários valores
+    novoCampoNome.className = "autor";
+    novoCampoNome.name = "autor[]";
+    novoCampoNome.id ="autor" + contadorAutores // Use um array para coletar vários valores
     novoCampoNome.placeholder = "Nome Completo";
     novoCampoNome.style.width = "49%";
     novoCampoNome.style.marginRight = "4.8px";
@@ -137,8 +138,9 @@ function adicionarAutor() {
     // Criar novo campo de input para a filiação
     var novoCampoFiliacao = document.createElement("input");
     novoCampoFiliacao.type = "text";
-    novoCampoFiliacao.className = "cofiliacao";
-    novoCampoFiliacao.name = "filiaça2" + contadorAutores;
+    novoCampoFiliacao.className = "filiacao";
+    novoCampoFiliacao.name = "filiacao[]";
+    novoCampoFiliacao.id = "filiacao" + contadorAutores;
     novoCampoFiliacao.placeholder = "Filiação";
     novoCampoFiliacao.style.width = "49%";
     
@@ -380,7 +382,7 @@ function exibirResumo() {
     var resumo = "";
 
     // Recuperar os valores dos campos do formulário
-    var autorCorrValue = document.getElementById("autorCorr").value;
+    var autorCorrValue = document.getElementById("correspondente").value;
     resumo += "<p" + (autorCorrValue ? '' : ' class="texto-vermelho"') + "><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
 
     var filiacaoValue = document.getElementById("filiacaoCorr").value;
@@ -400,9 +402,9 @@ function exibirResumo() {
 
     // Adicionar informações dos coautores
     for (var i = 0; i < contadorAutores; i++) {
-        var coAutorNome = document.getElementsByClassName("coautor")[i].value;
-        var coAutorFiliacao = document.getElementsByClassName("cofiliacao")[i].value;
-        resumo += "<p><strong>Co-Autor:</strong> " + coAutorNome + " (" + coAutorFiliacao + ")</p>";
+        var AutorNome = document.getElementsByClassName("autor")[i].value;
+        var AutorFiliacao = document.getElementsByClassName("filiacao")[i].value;
+        resumo += "<p><strong>Autor:</strong> " + AutorNome + " (" + AutorFiliacao + ")</p>";
     }
 
     var periodico = document.getElementById("periodico").value;
