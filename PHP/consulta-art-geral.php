@@ -3,14 +3,14 @@ require_once 'config.php';
 
 try {
     $pdo = new PDO ($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    $sql = "SELECT * FROM infogeral";
+    $sql = "SELECT * FROM autores";
     $stm = $pdo->query($sql);
-    $infogeral = $stm->fetchAll(PDO::FETCH_ASSOC);
+    $autores = $stm->fetchAll(PDO::FETCH_ASSOC);
     
- foreach ($infogeral as $infogera) {
+ foreach ($autores as $autor) {
     // Cria a frase com os dados do autor, título sublinhado, DOI e data
-     $frase = htmlspecialchars($infogera['autorcorr']) . 
-                 ", \"<a href='https://doi.org/" . htmlspecialchars($infogera['doi']) . "'>" . htmlspecialchars($infogera['titulo']) . 
+     $frase = htmlspecialchars($['autor']) . 
+                 ", \"<a href='https://doi.org/" . htmlspecialchars($autor['doi']) . "'>" . htmlspecialchars($['titulo']) . 
                  "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
                  htmlspecialchars($infogera['data']) .".";
     

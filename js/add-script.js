@@ -193,103 +193,86 @@ function adicionarAutor() {
 }
                     
 
+// Initialize the coordenadas variable
+var coordenadas = 0;
 
-
-// CAMPO PARA ADICIONAR COORDENADAS MANUALMENTE 
-
-var coordenadas=0 //variavel globar para controlar numero de autores
 function adicionarCoordenadas() {
-                        // Container onde os campos de autor serão adicionados
-                    
-                        var container = document.getElementById("coordenadas");
-                        
-                        var novoCoordenadas = document.createElement("div");
+    // Container where the coordinate fields will be added
+    var container = document.getElementById("coordenadas");
 
-                        novoCoordenadas.className = "coordenadas-campo";
-                        novoCoordenadas.id="coordenadas" + coordenadas;
-                        
+    var novoCoordenadas = document.createElement("div");
+    novoCoordenadas.className = "coordenadas-campo";
+    novoCoordenadas.id = "coordenadas" + coordenadas;
 
+    // Create new input elements
+    var novoID = document.createElement("input");
+    novoID.type = "text";
+    novoID.className = "ID_amst";
+    novoID.name = "ID_amst[]"; // Use an array to collect multiple values
+    novoID.placeholder = "ID";
+    novoID.style.width = "10%";
+    novoID.style.marginRight = "4.8px";
+    novoID.maxLength = 10;
 
-            
-                        // Criar novos elementos de input
-                        var novoID = document.createElement("input");
-                        novoID.type = "text";
-                        novoID.className="ID1";
-                        novoID.name = "ID1" + coordenadas ; // Use um array para coletar vários valores
-                        novoID.placeholder = "ID";
-                        novoID.style.width = "10%";
-                        novoID.style.marginRight = "4.8px";
-                        novoID.maxLength=10;
-                    
-                        var novolatitude = document.createElement("input");
-                        novolatitude.type = "text";
-                        novolatitude.className = "lat1";
-                        novolatitude.name = "lat1" + coordenadas;
-                        novolatitude.placeholder = "Latitude:   -YY.YYYYY";
-                        novolatitude.style.width = "20%";
-                        novolatitude.style.marginRight = "4.8px";
-                        novolatitude.maxLength=10;
+    var novolatitude = document.createElement("input");
+    novolatitude.type = "text";
+    novolatitude.className = "latitude";
+    novolatitude.name = "latitude[]";
+    novolatitude.placeholder = "Latitude: -XX.XXXXX";
+    novolatitude.style.width = "20%";
+    novolatitude.style.marginRight = "4.8px";
+    novolatitude.maxLength = 10;
 
-                        var novolongitude = document.createElement("input");
-                        novolongitude.type = "text";
-                        novolongitude.className = "long1";
-                        novolongitude.name = "longitude" + coordenadas;
-                        novolongitude.placeholder = "Longitude:   -YY.YYYYY";
-                        novolongitude.style.width = "20%";
-                        novolongitude.style.marginRight = "4.8px";
-                        novolongitude.maxLength=10;
+    var novolongitude = document.createElement("input");
+    novolongitude.type = "text";
+    novolongitude.className = "longitude";
+    novolongitude.name = "longitude[]";
+    novolongitude.placeholder = "Longitude: -YY.YYYYY";
+    novolongitude.style.width = "20%";
+    novolongitude.style.marginRight = "4.8px";
+    novolongitude.maxLength = 10;
 
-                        var novoProf = document.createElement("input");
-                        novoProf.type = "text";
-                        novoProf.className="prof1";
-                        novoProf.name = "prof1" + coordenadas ; // Use um array para coletar vários valores
-                        novoProf.placeholder = "Profundidade";
-                        novoProf.style.width = "8%";
-                        novoProf.style.marginRight = "4.8px";
-                        novoProf.maxLength=10;
+    var novoProf = document.createElement("input");
+    novoProf.type = "text";
+    novoProf.className = "prof";
+    novoProf.name = "prof[]"; // Use an array to collect multiple values
+    novoProf.placeholder = "Profundidade";
+    novoProf.style.width = "8%";
+    novoProf.style.marginRight = "4.8px";
+    novoProf.maxLength = 10;
 
-                        var novoRecSed = document.createElement("input");
-                        novoRecSed.type = "number";
-                        novoRecSed.className="RecSed1";
-                        novoRecSed.name = "RecSed1" + coordenadas ; // Use um array para coletar vários valores
-                        novoRecSed.placeholder = "Recuperação Sedimentar";
-                        novoRecSed.style.width = "20%";
-                        novoRecSed.style.marginRight = "4.8px";
-                        
-                        novoRecSed.maxLength=10;
+    var novoRecSed = document.createElement("input");
+    novoRecSed.type = "number";
+    novoRecSed.className = "recuperacao";
+    novoRecSed.name = "recuperacao[]"; // Use an array to collect multiple values
+    novoRecSed.placeholder = "Recuperação sedimentar (metros)";
+    novoRecSed.style.width = "20%";
+    novoRecSed.style.marginRight = "4.8px";
+    novoRecSed.maxLength = 10;
 
-                        var novoAnoCol = document.createElement("input");
-                        var valorOriginal = document.getElementById("anoColeta").value;
+    var novoAnoCol = document.createElement("input");
+    novoAnoCol.type = "date";
+    novoAnoCol.className = "data2";
+    novoAnoCol.name = "data[]"; // Use an array to collect multiple values
+    novoAnoCol.placeholder = "Data da coleta";
+    novoAnoCol.style.width = "10%";
+    novoAnoCol.style.marginRight = "4.8px";
+    novoAnoCol.maxLength = 10;
 
-                        novoAnoCol.type = "date";
-                        novoAnoCol.className="anoColeta1";
-                        novoAnoCol.name = "anoColeta1" + coordenadas ; // Use um array para coletar vários valores
-                        novoAnoCol.placeholder = "Ano da coleta";
-                        novoAnoCol.style.width = "10%";
-                        novoAnoCol.style.marginRight = "4.8px";
-                        novoAnoCol.maxLength=10;
-                        novoAnoCol.value=valorOriginal;
-                                                
+    // Add the new fields to the container
+    novoCoordenadas.appendChild(novoID);
+    novoCoordenadas.appendChild(novolatitude);
+    novoCoordenadas.appendChild(novolongitude);
+    novoCoordenadas.appendChild(novoProf);
+    novoCoordenadas.appendChild(novoRecSed);
+    novoCoordenadas.appendChild(novoAnoCol);
+    container.appendChild(novoCoordenadas);
 
-            
-                             
-                               
-                        // Adicionar os novos campos ao container
-                        container.appendChild(novoID);
-                        container.appendChild(novolatitude);
-                        container.appendChild(novolongitude);
-                        container.appendChild(novoProf);
-                        container.appendChild(novoRecSed);
-                        container.appendChild(novoAnoCol);
+    container.appendChild(document.createElement("br"));
+    container.appendChild(document.createElement("br"));
 
-
-
-                 
-                        container.appendChild(document.createElement("br"));
-                        container.appendChild(document.createElement("br"));
-                                      
-                    coordenadas++;                               
-                    }
+    coordenadas++;
+}
                 
                     
                     function deletarCoordenadas() {
@@ -385,9 +368,6 @@ function exibirResumo() {
     var autorCorrValue = document.getElementById("correspondente").value;
     resumo += "<p" + (autorCorrValue ? '' : ' class="texto-vermelho"') + "><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
 
-    var filiacaoValue = document.getElementById("filiacaoCorr").value;
-    resumo += "<p" + (filiacaoValue ? '' : ' class="texto-vermelho"') + "><strong>Filiação:</strong> " + filiacaoValue + "</p>";
-
     var emailCorr = document.getElementById("email").value;
     resumo += "<p" + (emailCorr ? '' : ' class="texto-vermelho"') + "><strong>E-mail:</strong> " + emailCorr + "</p>";
 
@@ -433,22 +413,34 @@ function exibirDADOS() {
     var summary2 = document.getElementById("summary-2");
     var resumo = "";
 
-    // Adicionar informações do ponto 1
-    resumo += "<p><strong>Ponto:</strong> 1 ID: " + document.getElementById("ID").value + " Latitude: " + document.getElementById("lat").value + " Longitude: " + document.getElementById("long").value + 
-    " Profundidade: " + document.getElementById("prof").value + " Recuperação: " + document.getElementById("RecSed").value + " Data da Coleta: " + document.getElementById("anoColeta").value + "</p>";
+    // Add information for point 1
+    var idAmstElement = document.getElementById("ID_amst");
+    var latElement = document.getElementById("lat");
+    var longElement = document.getElementById("long");
+    var profElement = document.getElementById("prof");
+    var recSedElement = document.getElementById("RecSed");
+    var anoColetaElement = document.getElementById("data2");
 
-    // Adicionar informações dos pontos adicionais
-    for (var i = 0; i < coordenadas; i++) {
-        var ID = document.getElementsByClassName("ID1")[i].value;
-        var latitude = document.getElementsByClassName("lat1")[i].value;
-        var longitude = document.getElementsByClassName("long1")[i].value;
-        var prof = document.getElementsByClassName("prof1")[i].value;
-        var RecSed = document.getElementsByClassName("RecSed1")[i].value;
-        var anoColeta = document.getElementsByClassName("anoColeta1")[i].value;
-
-        resumo += "<p><strong>Ponto:</strong> " + (i + 2) + " ID: " + ID + " Latitude: " + latitude + " Longitude: " + longitude + 
-        " Profundidade: " + prof + " Recuperação: " + RecSed + " Data da Coleta: " + anoColeta + "</p>";
+    if (idAmstElement && latElement && longElement && profElement && recSedElement && anoColetaElement) {
+        resumo += "<p><strong>Ponto:</strong> 1 ID: " + idAmstElement.value + " Latitude: " + latElement.value + " Longitude: " + longElement.value + 
+        " Profundidade: " + profElement.value + " Recuperação: " + recSedElement.value + " Data da Coleta: " + anoColetaElement.value + "</p>";
     }
+
+    // Add information for additional points
+    for (var i = 0; i < coordenadas; i++) {
+        var ID = document.getElementsByClassName("ID_amst")[i]?.value;
+        var latitude = document.getElementsByClassName("latitude")[i]?.value;
+        var longitude = document.getElementsByClassName("longitude")[i]?.value;
+        var prof = document.getElementsByClassName("prof")[i]?.value;
+        var RecSed = document.getElementsByClassName("recuperacao")[i]?.value;
+        var anoColeta = document.getElementsByClassName("data2")[i]?.value;
+
+        if (ID !== undefined && latitude !== undefined && longitude !== undefined && prof !== undefined && RecSed !== undefined && anoColeta !== undefined) {
+            resumo += "<p><strong>Ponto:</strong> " + (i + 2) + " ID: " + ID + " Latitude: " + latitude + " Longitude: " + longitude + 
+            " Profundidade: " + prof + " Recuperação: " + RecSed + " Data da Coleta: " + anoColeta + "</p>";
+        }
+
+
 
     var caract = document.getElementById("caract").value;
     resumo += "<p" + (caract ? '' : ' class="texto-vermelho"') + "><strong>Características inseridas:</strong> " + caract + "</p>";
@@ -508,7 +500,7 @@ function exibirDADOS() {
     var refef1 = document.getElementById("refef").value;
     resumo += "<p" + (refef1 ? '' : ' class="texto-vermelho"') + "><strong>Arquivo:</strong> " + refef1 + "</p>";
 
-
+    
 
     //equipamentos 
     var coleta = "";
@@ -550,7 +542,7 @@ function exibirDADOS() {
     // Exibir o resumo no elemento summary2
     summary2.innerHTML = resumo;
 }
-
+}
 
 
 

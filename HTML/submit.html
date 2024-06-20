@@ -98,10 +98,7 @@
 
         <label id="autor" for="autor"> *Identificação do Correspondente:</label></br>
         <input type="text" id="correspondente" name="correspondente" style="width: 49%;" placeholder="Nome Completo">
-        <input type="text" id="filiacaoCorr" name="filiacaoCorr" style="width: 49%;" placeholder="Filiação"></br>
-    </br>
-        <label  for="email"> *E-mail do correspondente</label></br>
-        <input type="email" id="email" name="email" style="width: 49%;" placeholder="E-mail do correspondente">
+        <input type="email" id="email" name="email" style="width: 49%;" placeholder="E-mail do correspondente (ex: xxxxx@mail.com)">
     </br>
 </br>
 
@@ -204,7 +201,7 @@
     <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
         
     <div id="coordenadas" >
-        <input title="Identificação das amostras" type="text" maxlength="10" id="ID" name="ID" style="width: 10%;" placeholder="ID" >
+        <input title="Identificação das amostras" type="text" maxlength="10" id="ID_amst" name="ID_amst" style="width: 10%;" placeholder="ID" >
         <input title="Latitute" type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
         <input title="Longitude" type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
         <input title="Profundidade" type="text" maxlength="10" id="prof" name="prof" style="width: 8%;" placeholder="Profundidade">
@@ -224,44 +221,44 @@
 <div id="proxys">
     <h2> Ferramentas utilizadas:</h2>
     <!-- depois deixar de 2 em 2 alinhado -->
-<input type="checkbox" id="TSM" nome="TSM" value="TSM">
+<input type="checkbox" id="TSM" name="TSM" value="TSM">
 <label for="TSM" style="margin-right: 2%; ">TSM ( Temperatura da superficie do Mar)</label>
 
-<input type="checkbox" id="PP" nome="PP" value="PP">
+<input type="checkbox" id="PP" name="PP" value="PP">
 <label for="PP" style="margin-right: 2%;">Produtividade</label>
 
-<input type="checkbox" id="circulacao" nome="circulacao" value="circulacao">
+<input type="checkbox" id="circulacao" name="circulacao" value="circulacao">
 <label for="circulacao" style="margin-right: 2%;">Circulação Oceânica</label>
 
-<input type="checkbox" id="org" nome="org" value="org">
+<input type="checkbox" id="org" name="org" value="org">
 <label for="org" style="margin-right: 2%;">Marcadores Orgânicos</label>
 
-<input type="checkbox" id="inorg" nome="inorg" value="inorg">
+<input type="checkbox" id="inorg" name="inorg" value="inorg">
 <label for="inorg" style="margin-right: 2%;">Marcadores Inorgânicos</label>
 
-<input type="checkbox" id="foramplan" nome="foramplan" value="foramplan">
+<input type="checkbox" id="foramplan" name="foramplan" value="foramplan">
 <label for="foramplan" style="margin-right: 2%;">Foraminíferos Planctônicos</label>
 
-<input type="checkbox" id="forambent" nome="forambent" value="forambent">
+<input type="checkbox" id="forambent" name="forambent" value="forambent">
 <label for="forambent" style="margin-right: 2%;">Foraminíferos Bentônnicos</label>
 
-<input type="checkbox" id="sealev" nome="sealev" value="sealev">
+<input type="checkbox" id="sealev" name="sealev" value="sealev">
 <label for="sealev" style="margin-right: 2%;">Nível do Mar</label>
 
-<input type="checkbox" id="co2atm" nome="co2atm" value="co2atm">
+<input type="checkbox" id="co2atm" name="co2atm" value="co2atm">
 <label for="co2atm" style="margin-right: 2%;">CO<sub>2</sub> Atmosférico</label>
 
-<input type="checkbox" id="cobveg" nome="cobveg" value="cobveg">
+<input type="checkbox" id="cobveg" name="cobveg" value="cobveg">
 <label for="cobveg" style="margin-right: 2%;">Cobertura Vegetal</label>
 
-<input type="checkbox" id="rainfall" nome="rainfall" value="rainfall">
+<input type="checkbox" id="rainfall" name="rainfall" value="rainfall">
 <label for="rainfall" style="margin-right: 2%;">Precipitação</label>
 
-<input type="checkbox" id="stratg" nome="stratg" value="stratg">
+<input type="checkbox" id="stratg" name="stratg" value="stratg">
 <label for="stratg" style="margin-right: 2%;">Estratigrafia</label></br></br>
 
 
-<input  type="text" id="outroProx" nome="outroProx" placeholder="Outro" style="width: 30%;">
+<input  type="text" id="outroProx" name="outroProx" placeholder="Outro" style="width: 30%;">
 </br>
 </div>
 </br>
@@ -270,31 +267,31 @@
 <div id="equip-coleata">
     <h2> Equipamentos de Coleta:</h2>
 
-<input type="checkbox" id="multcore" nome="multcore" value="multcore">
+<input type="checkbox" id="multcore" name="multcore" value="multcore">
 <label for="multcore" style="margin-right: 2%; ">MultiCorer</label>
 
-<input type="checkbox" id="piston" nome="piston" value="piston">
+<input type="checkbox" id="piston" name="piston" value="piston">
 <label for="PP" style="margin-right: 2%;">Piston Corer</label>
 
-<input type="checkbox" id="gravcore" nome="gravcore" value="gravcore">
+<input type="checkbox" id="gravcore" name="gravcore" value="gravcore">
 <label for="gravcore" style="margin-right: 2%;">Gravity Corer</label>
 
-<input type="checkbox" id="drilli" nome="drilli" value="drilli">
+<input type="checkbox" id="drilli" name="drilli" value="drilli">
 <label for="drilli" style="margin-right: 2%;">Drilling</label>
 
-<input type="checkbox" id="gboxcore" nome="gboxcore" value="gboxcore">
+<input type="checkbox" id="gboxcore" name="gboxcore" value="gboxcore">
 <label for="gboxcore" style="margin-right: 2%;"> Giant box corer</label>
 
-<input type="checkbox" id="compcore" nome="compcore" value="compcore">
+<input type="checkbox" id="compcore" name="compcore" value="compcore">
 <label for="compcore" style="margin-right: 2%;">Composite Corer</label>
 
-<input type="checkbox" id="boxcore" nome="boxcore" value="boxcore">
+<input type="checkbox" id="boxcore" name="boxcore" value="boxcore">
 <label for="boxcore" style="margin-right: 2%;">Box Corer</label>
 
-<input type="checkbox" id="corer" nome="corer" value="corer">
+<input type="checkbox" id="corer" name="corer" value="corer">
 <label for="corer" style="margin-right: 2%;">Corer</label></br></br>
 
-<input type="text" id="outroEqui" nome="outroEqui" placeholder="Outro" style="width: 30%;">
+<input type="text" id="outroEqui" name="outroEqui" placeholder="Outro" style="width: 30%;">
 
 
 </br>
