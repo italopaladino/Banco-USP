@@ -27,8 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $periodico = $_POST['periodico'];
             $linkart = $_POST['linkart'];
             $doi = $_POST['doi'];
-            
-            $data = $_POST['data1'];
+        $data = $_POST['data1'];
 
             // Verificar se a data é válida
             if (!strtotime($data)) {

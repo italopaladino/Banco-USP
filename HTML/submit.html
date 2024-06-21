@@ -94,7 +94,7 @@
     <!-- autor correspondente-->
     
     <div id="section1" class="form-section active">
-        <h1> Formulário para Submissão: </h1>
+        <h1 style="text-align: center;"> Formulário para Submissão: </h1></br>
 
         <label id="autor" for="autor"> *Identificação do Correspondente:</label></br>
         <input type="text" id="correspondente" name="correspondente" style="width: 49%;" placeholder="Nome Completo">
@@ -173,8 +173,8 @@
     <input id="doi" name="doi" type="text" style="width: 35%; display: flex;" placeholder="XXXX/XX">    
     </div>
 </br>
-        <label  for="data"> Data da publicação:</label></br>
-        <input id="data" type="date" name="data" style="width: 150px;">
+        <label  for="data1"> Data da publicação:</label></br>
+        <input id="data1" type="date" name="data1" style="width: 150px;">
 
 </br></br>
     <label for="keywords" > Palavras-Chave/Keywords:</label></br>
@@ -195,24 +195,19 @@
     <input type="hidden" id="secaoAtual2" name="secaoAtual2" value="2">
 
 
-        <h1> Informação dos dados a serem submetidos: </h1>
+        <h1 style="text-align: center;"> Informação dos dados a serem submetidos: </h1></br>
    
 <div id="coord">
-    <label for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:</label></br>
+    <h3 for="lat-long"> Adicione as Coordenadas de CADA ponto de coleta:<a title="VER MODELO" href="javascript:abrirPDF()"  style="color: red;" class="bi bi-question-square-fill"></a></h3>
         
     <div id="coordenadas" >
-        <input title="Identificação das amostras" type="text" maxlength="10" id="ID_amst" name="ID_amst" style="width: 10%;" placeholder="ID" >
-        <input title="Latitute" type="text" maxlength="10" id="lat" name="lat" style="width: 20%" placeholder="Latitute:   -XX.XXXXX"> <!-- adicionar travas na formatação -->
-        <input title="Longitude" type="text" maxlength="10" id="long" name="long" style="width: 20%;" placeholder="Longitude:   -YY.YYYYY">
-        <input title="Profundidade" type="text" maxlength="10" id="prof" name="prof" style="width: 8%;" placeholder="Profundidade">
-        <input title="Recuperação sedimentar (metros)" type="number" maxlength="10" id="RecSed" name="RecSed" style="width: 20%;" placeholder="Recuperação sedimentar (metros)">
-        <input title=" Data em que foi coletado" type="date" maxlength="10" id="anoColeta" name="anoColeta" style="width: 10%;" placeholder="Ano da Coleta">       
-        <a title="VER MODELO" href="javascript:abrirPDF()"  style="color: red;" class="bi bi-question-square-fill"></a></br>
+      <!-- os pontos de coletas serão inseridos aqui -->
+        
     </div>
     <div id="coord-bttn"></br>
-        <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar linha</button>
-        <button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarCoordenadas() ">Remover Linha</button>
-        <button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODAScoordenadas()">Remover todas as linhas</button>
+        <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarCoordenadas() ">Adicionar Ponto</button>
+        <button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarCoordenadas() ">Remover Ponto</button>
+        <button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODAScoordenadas()">Remover todos os Pontos</button>
     
     </div>
 </div>

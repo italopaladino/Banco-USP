@@ -92,6 +92,11 @@
   }
 }
 
+.coordenadas-campo input {
+  margin-right: 4.8px;
+  box-sizing: border-box;
+}
+
 /*  novo usuário */
 
 #login-acss section{

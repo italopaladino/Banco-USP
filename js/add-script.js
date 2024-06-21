@@ -130,7 +130,7 @@ function adicionarAutor() {
     novoCampoNome.type = "text";
     novoCampoNome.className = "autor";
     novoCampoNome.name = "autor[]";
-    novoCampoNome.id ="autor" + contadorAutores // Use um array para coletar vários valores
+    novoCampoNome.id ="autor" + contadorAutores; // Use um array para coletar vários valores
     novoCampoNome.placeholder = "Nome Completo";
     novoCampoNome.style.width = "49%";
     novoCampoNome.style.marginRight = "4.8px";
@@ -203,60 +203,66 @@ function adicionarCoordenadas() {
     var novoCoordenadas = document.createElement("div");
     novoCoordenadas.className = "coordenadas-campo";
     novoCoordenadas.id = "coordenadas" + coordenadas;
+    novoCoordenadas.style.display = "flex";
+    novoCoordenadas.style.flexWrap = "wrap"; // To ensure the elements wrap if there's not enough space
+    novoCoordenadas.style.width = "100%";
+    novoCoordenadas.style.gap = "4.8px"; // Consistent gap between elements
 
     // Create new input elements
     var novoID = document.createElement("input");
     novoID.type = "text";
     novoID.className = "ID_amst";
+    novoID.id = "ID_amst" + coordenadas;
     novoID.name = "ID_amst[]"; // Use an array to collect multiple values
     novoID.placeholder = "ID";
-    novoID.style.width = "10%";
-    novoID.style.marginRight = "4.8px";
+    novoID.style.width ="10%";
+    
+    
     novoID.maxLength = 10;
 
     var novolatitude = document.createElement("input");
     novolatitude.type = "text";
     novolatitude.className = "latitude";
+    novolatitude.id = "latitude" + coordenadas;
     novolatitude.name = "latitude[]";
     novolatitude.placeholder = "Latitude: -XX.XXXXX";
-    novolatitude.style.width = "20%";
-    novolatitude.style.marginRight = "4.8px";
+    novolatitude.style.width="20%"   
     novolatitude.maxLength = 10;
 
     var novolongitude = document.createElement("input");
     novolongitude.type = "text";
     novolongitude.className = "longitude";
+    novolongitude.id = "longitude" + coordenadas;
     novolongitude.name = "longitude[]";
     novolongitude.placeholder = "Longitude: -YY.YYYYY";
-    novolongitude.style.width = "20%";
-    novolongitude.style.marginRight = "4.8px";
+    novolongitude.style.width="20%";
     novolongitude.maxLength = 10;
 
     var novoProf = document.createElement("input");
     novoProf.type = "text";
     novoProf.className = "prof";
+    novoProf.id = "prof" + coordenadas;
     novoProf.name = "prof[]"; // Use an array to collect multiple values
     novoProf.placeholder = "Profundidade";
-    novoProf.style.width = "8%";
-    novoProf.style.marginRight = "4.8px";
+    novoProf.style.width ="8%"  
     novoProf.maxLength = 10;
 
     var novoRecSed = document.createElement("input");
     novoRecSed.type = "number";
     novoRecSed.className = "recuperacao";
+    novoRecSed.id = "recuperacao" + coordenadas;
     novoRecSed.name = "recuperacao[]"; // Use an array to collect multiple values
     novoRecSed.placeholder = "Recuperação sedimentar (metros)";
-    novoRecSed.style.width = "20%";
-    novoRecSed.style.marginRight = "4.8px";
+    novoRecSed.style.width ="20%"
     novoRecSed.maxLength = 10;
 
     var novoAnoCol = document.createElement("input");
     novoAnoCol.type = "date";
     novoAnoCol.className = "data2";
+    novoAnoCol.id = "data2" + coordenadas;
     novoAnoCol.name = "data[]"; // Use an array to collect multiple values
     novoAnoCol.placeholder = "Data da coleta";
-    novoAnoCol.style.width = "10%";
-    novoAnoCol.style.marginRight = "4.8px";
+    novoAnoCol.style.width="10%";
     novoAnoCol.maxLength = 10;
 
     // Add the new fields to the container
@@ -269,47 +275,59 @@ function adicionarCoordenadas() {
     container.appendChild(novoCoordenadas);
 
     container.appendChild(document.createElement("br"));
-    container.appendChild(document.createElement("br"));
 
     coordenadas++;
 }
+
                 
                     
-                    function deletarCoordenadas() {
-                        var container = document.getElementById("coordenadas");
-                        
-                        // Verifica se há mais de três campos de autor para excluir e pelo menos um autor deve permanecer
-                        if (container.children.length > 8) {
-                            // Remove últimos filhos do container
-                            for (var i = 0; i < 7; i++) {
-                                var ultimaCoord = container.lastChild;
-                                container.removeChild(ultimaCoord);
-                            }
-                    
-                            // Decrementa o contador de autores
-                            coordenadas--;
-                        } else {
-                            // Se houver menos um campos pontos, exiba um alerta informando que pelo menos um autor deve ser mantido
-                            window.alert("Ao menos um ponto precisa ser inserido");
-                        }
-                    }
+function deletarCoordenadas() {
+    var container = document.getElementById("coordenadas");
 
-                    function removerTODAScoordenadas() {
-                        var container = document.getElementById("coordenadas");
-                        if (container.children.length > 8) {
-                            // Remove todos os filhos do container exceto os primeiros 8
-                            while (container.children.length > 8) {
-                                container.removeChild(container.lastChild);
-                            }
-                            coordenadas = 0; // Resetar o contador
-                    
-                            setTimeout(function() { //timeout, é o tempo pra executar alguma coisa antes que o alert apreça
-                                window.alert("Todas as linhas removidas!!");
-                            }, 0);
-                        } else {
-                            window.alert("Não há coordenadas adicionadas para remover!");
-                        }
-                    }
+    if (coordenadas > 0) {
+        var ultimaCoord = document.getElementById("coordenadas" + (coordenadas - 1));
+        if (ultimaCoord) {
+            container.removeChild(ultimaCoord);
+        }
+
+        // Remove o <br> correspondente
+        var br = container.lastChild;
+        if (br && br.nodeName === "BR") {
+            container.removeChild(br);
+        }
+        
+        coordenadas--;
+    } else {
+        window.alert("Não há coordenadas para remover!");
+    }
+}
+
+
+function removerTODAScoordenadas() {
+    var container = document.getElementById("coordenadas");
+
+    // Remove todos os conjuntos de coordenadas e os <br> correspondentes
+    while (coordenadas > 0) {
+        var ultimaCoord = document.getElementById("coordenadas" + (coordenadas - 1));
+        if (ultimaCoord) {
+            container.removeChild(ultimaCoord);
+        }
+        
+        var br = container.lastChild;
+        if (br && br.nodeName === "BR") {
+            container.removeChild(br);
+        }
+
+        coordenadas--;
+    }
+
+    setTimeout(function() {
+        window.alert("Todas as linhas removidas!!");
+    }, 0);
+}
+
+
+
 
 // SCRIPT PARA PASSAR AS PAFINAS DO FORMULÁRIO SUBMIT.HTML
  let currentPage = 1;
@@ -380,7 +398,7 @@ function exibirResumo() {
     var titulo = document.getElementById("titulo").value;
     resumo += "<p" + (titulo ? '' : ' class="texto-vermelho"') + "><strong>Título:</strong> " + titulo + "</p>";
 
-    // Adicionar informações dos coautores
+    // Adicionar mais coordenadas
     for (var i = 0; i < contadorAutores; i++) {
         var AutorNome = document.getElementsByClassName("autor")[i].value;
         var AutorFiliacao = document.getElementsByClassName("filiacao")[i].value;
@@ -396,7 +414,7 @@ function exibirResumo() {
     var doi1 = document.getElementById("doi").value;
     resumo += "<p" + (doi1 ? '' : ' class="texto-vermelho"') + "><strong>DOI:</strong> " + doi1 + "</p>";
 
-    var datap = document.getElementById("data").value;
+    var datap = document.getElementById("data1").value;
     resumo += "<p" + (datap ? '' : ' class="texto-vermelho"') + "><strong>Data da publicação:</strong> " + datap + "</p>";
 
     var keywords1 = document.getElementById("keywords").value;
@@ -408,47 +426,31 @@ function exibirResumo() {
 
 
 
-
 function exibirDADOS() {
     var summary2 = document.getElementById("summary-2");
     var resumo = "";
+    
+        var coordenadasCampos = document.getElementsByClassName("coordenadas-campo");
+        for (var i = 0; i < coordenadasCampos.length; i++) {
+                var ID_amst = document.getElementById("ID_amst" + i).value;
+                var latitude = document.getElementById("latitude" + i).value;
+                var longitude = document.getElementById("longitude" + i).value;
+                var prof = document.getElementById("prof" + i).value;
+                var recuperacao = document.getElementById("recuperacao" + i).value;
+                var data2 = document.getElementById("data2" + i).value;
+        
+                resumo += "<p><strong> Ponto " + (i + 1) + ":</strong> ID: " + ID_amst + "| Latitude: " + latitude + "| Longitude: " + longitude + "| Profundidade: " + prof + "| Recuperação: " + recuperacao + "| Data da Coleta: " + data2 + "</p>";
+            }
 
-    // Add information for point 1
-    var idAmstElement = document.getElementById("ID_amst");
-    var latElement = document.getElementById("lat");
-    var longElement = document.getElementById("long");
-    var profElement = document.getElementById("prof");
-    var recSedElement = document.getElementById("RecSed");
-    var anoColetaElement = document.getElementById("data2");
-
-    if (idAmstElement && latElement && longElement && profElement && recSedElement && anoColetaElement) {
-        resumo += "<p><strong>Ponto:</strong> 1 ID: " + idAmstElement.value + " Latitude: " + latElement.value + " Longitude: " + longElement.value + 
-        " Profundidade: " + profElement.value + " Recuperação: " + recSedElement.value + " Data da Coleta: " + anoColetaElement.value + "</p>";
-    }
-
-    // Add information for additional points
-    for (var i = 0; i < coordenadas; i++) {
-        var ID = document.getElementsByClassName("ID_amst")[i]?.value;
-        var latitude = document.getElementsByClassName("latitude")[i]?.value;
-        var longitude = document.getElementsByClassName("longitude")[i]?.value;
-        var prof = document.getElementsByClassName("prof")[i]?.value;
-        var RecSed = document.getElementsByClassName("recuperacao")[i]?.value;
-        var anoColeta = document.getElementsByClassName("data2")[i]?.value;
-
-        if (ID !== undefined && latitude !== undefined && longitude !== undefined && prof !== undefined && RecSed !== undefined && anoColeta !== undefined) {
-            resumo += "<p><strong>Ponto:</strong> " + (i + 2) + " ID: " + ID + " Latitude: " + latitude + " Longitude: " + longitude + 
-            " Profundidade: " + prof + " Recuperação: " + RecSed + " Data da Coleta: " + anoColeta + "</p>";
-        }
-
-
-
+    // Adiciona as características inseridas
     var caract = document.getElementById("caract").value;
     resumo += "<p" + (caract ? '' : ' class="texto-vermelho"') + "><strong>Características inseridas:</strong> " + caract + "</p>";
 
+    // Adiciona os métodos utilizados
     var mett1 = document.getElementById("metut").value;
     resumo += "<p" + (mett1 ? '' : ' class="texto-vermelho"') + "><strong>Métodos Utilizados:</strong> " + mett1 + "</p>";
 
-    // Verificar proxies selecionados
+    // Verifica proxies selecionados e adiciona ao resumo
     var proxySummary = "";
     if (document.getElementById("TSM").checked) {
         proxySummary += "TSM (Temperatura da Superfície do Mar), ";
@@ -459,7 +461,6 @@ function exibirDADOS() {
     if (document.getElementById("circulacao").checked) {
         proxySummary += "Circulação Oceânica, ";
     }
-    
     if (document.getElementById("org").checked) {
         proxySummary += "Marcadores Orgânicos, ";
     }
@@ -470,7 +471,7 @@ function exibirDADOS() {
         proxySummary += "Foraminíferos Planctônicos, ";
     }
     if (document.getElementById("forambent").checked) {
-        proxySummary += "Foraminíferos Bentônnicos, ";
+        proxySummary += "Foraminíferos Bentônicos, ";
     }
     if (document.getElementById("sealev").checked) {
         proxySummary += "Nível do Mar, ";
@@ -487,22 +488,19 @@ function exibirDADOS() {
     if (document.getElementById("stratg").checked) {
         proxySummary += "Estratigrafia, ";
     }
-    // Remover a vírgula extra no final, se houver
+    
+    // Remove a vírgula extra no final, se houver
     if (proxySummary.slice(-2) === ', ') {
         proxySummary = proxySummary.slice(0, -2);
     }
 
     resumo += "<p" + (proxySummary ? '' : ' class="texto-vermelho"') + "><strong>Proxie(s) Selecionado(s):</strong> " + proxySummary + "</p>";
 
+    // Adiciona outro proxy inserido
     var outroprox = document.getElementById("outroProx").value;
-    resumo += "<p" + (outroprox ? '' : ' class="texto-vermelho"') + "><strong> Outro proxy:</strong> " + outroprox+ "</p>";
-    
-    var refef1 = document.getElementById("refef").value;
-    resumo += "<p" + (refef1 ? '' : ' class="texto-vermelho"') + "><strong>Arquivo:</strong> " + refef1 + "</p>";
+    resumo += "<p" + (outroprox ? '' : ' class="texto-vermelho"') + "><strong> Outro proxy:</strong> " + outroprox + "</p>";
 
-    
-
-    //equipamentos 
+    // Adiciona equipamentos selecionados
     var coleta = "";
     if (document.getElementById("multcore").checked) {
         coleta += "MultiCorer, ";
@@ -513,7 +511,6 @@ function exibirDADOS() {
     if (document.getElementById("gravcore").checked) {
         coleta += "Gravity Corer, ";
     }
-    
     if (document.getElementById("drilli").checked) {
         coleta += "Drilling, ";
     }
@@ -529,20 +526,22 @@ function exibirDADOS() {
     if (document.getElementById("corer").checked) {
         coleta += "Corer, ";
     }
-    // Remover a vírgula extra no final, se houver
+    
+    // Remove a vírgula extra no final, se houver
     if (coleta.slice(-2) === ', ') {
         coleta = coleta.slice(0, -2);
     }
 
     resumo += "<p" + (coleta ? '' : ' class="texto-vermelho"') + "><strong>Equipamento(s) Selecionado(s):</strong> " + coleta + "</p>";
 
+    // Adiciona outro equipamento inserido
     var outroequip = document.getElementById("outroEqui").value;
-    resumo += "<p" + (outroequip ? '' : ' class="texto-vermelho"') + "><strong> Outro equipamento:</strong> " + outroequip+ "</p>";
-    
-    // Exibir o resumo no elemento summary2
+    resumo += "<p" + (outroequip ? '' : ' class="texto-vermelho"') + "><strong> Outro equipamento:</strong> " + outroequip + "</p>";
+
+    // Adiciona arquivo de referência inserido
+    var refef1 = document.getElementById("refef").value;
+    resumo += "<p" + (refef1 ? '' : ' class="texto-vermelho"') + "><strong>Arquivo:</strong> " + refef1 + "</p>";
+
+    // Exibe o resumo no elemento summary2
     summary2.innerHTML = resumo;
 }
-}
-
-
-
