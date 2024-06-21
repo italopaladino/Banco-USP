@@ -402,7 +402,7 @@ function exibirResumo() {
     for (var i = 0; i < contadorAutores; i++) {
         var AutorNome = document.getElementsByClassName("autor")[i].value;
         var AutorFiliacao = document.getElementsByClassName("filiacao")[i].value;
-        resumo += "<p><strong>Autor:</strong> " + AutorNome + " (" + AutorFiliacao + ")</p>";
+        resumo += "<p><strong>"+ (i + 1) + "º Autor:</strong> " + AutorNome + " (" + AutorFiliacao + ")</p>";
     }
 
     var periodico = document.getElementById("periodico").value;
