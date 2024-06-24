@@ -3,16 +3,16 @@ require_once 'config.php';
 
 try {
     $pdo = new PDO ($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    $sql = "SELECT * FROM autores";
+    $sql = "SELECT * FROM infogeral";
     $stm = $pdo->query($sql);
-    $autores = $stm->fetchAll(PDO::FETCH_ASSOC);
+    $infogerals = $stm->fetchAll(PDO::FETCH_ASSOC);
     
- foreach ($autores as $autor) {
+ foreach ($infogerals as $infogeral) {
     // Cria a frase com os dados do autor, título sublinhado, DOI e data
-     $frase = htmlspecialchars($['autor']) . 
-                 ", \"<a href='https://doi.org/" . htmlspecialchars($autor['doi']) . "'>" . htmlspecialchars($['titulo']) . 
-                 "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
-                 htmlspecialchars($infogera['data']) .".";
+     $frase = htmlspecialchars($infogeral['titulo']) . 
+                 ", \"<a href='https://doi.org/" . htmlspecialchars($infogeral['doi']) . "'>" . htmlspecialchars($infogeral['periodico']) . 
+                 "</a>\", DOI " . htmlspecialchars($infogeral['doi']) . ", publicado em " . 
+                 htmlspecialchars($infogeral['data']) .".";
     
         // Exibe a frase e adiciona duas quebras de linha
         echo $frase . "<br><br>";

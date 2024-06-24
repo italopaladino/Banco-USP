@@ -4,7 +4,7 @@ require_once 'config.php';
 try {
     $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     // Seleciona o ano e conta quantos registros existem para cada ano
-    $sql = "SELECT EXTRACT(YEAR FROM data) AS ano, COUNT(*) AS quantidade FROM infogeral GROUP BY ano ORDER BY ano DESC";
+    $sql = "SELECT EXTRACT(YEAR FROM data1) AS ano, COUNT(*) AS quantidade FROM infogeral GROUP BY ano ORDER BY ano DESC";
     $stm = $pdo->query($sql);
     $anosPublicacao = $stm->fetchAll(PDO::FETCH_ASSOC);
 
