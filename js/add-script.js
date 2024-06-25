@@ -115,7 +115,6 @@ function performLogin() {
 
                   
 var contadorAutores = 0;
-
 function adicionarAutor() {
     // Container onde os campos de autor serão adicionados
     var container = document.getElementById("autoresContainer");
@@ -125,15 +124,29 @@ function adicionarAutor() {
     novoAutorContainer.className = "autor-campo";
     novoAutorContainer.id = "autorContainer" + contadorAutores;
     
+    // Criar coluna para o nome completo
+    var colunaNome = document.createElement("div");
+    colunaNome.className = "colunaaut";
+    
     // Criar novo campo de input para o nome
     var novoCampoNome = document.createElement("input");
     novoCampoNome.type = "text";
     novoCampoNome.className = "autor";
     novoCampoNome.name = "autor[]";
-    novoCampoNome.id ="autor" + contadorAutores; // Use um array para coletar vários valores
+    novoCampoNome.id = "autor" + contadorAutores; // Use um array para coletar vários valores
     novoCampoNome.placeholder = "Nome Completo";
-    novoCampoNome.style.width = "49%";
-    novoCampoNome.style.marginRight = "4.8px";
+   novoCampoNome.style.width = "100%";    
+   novoCampoNome.autocomplete="off";
+    novoCampoNome.addEventListener("input", function() {
+        autocomplete(this, "../PHP/busca_autor.php");
+    });
+    
+    // Adicionar campo de nome à coluna de nome
+    colunaNome.appendChild(novoCampoNome);
+    
+    // Criar coluna para a filiação
+    var colunaFiliacao = document.createElement("div");
+    colunaFiliacao.className = "colunafili";
     
     // Criar novo campo de input para a filiação
     var novoCampoFiliacao = document.createElement("input");
@@ -142,21 +155,32 @@ function adicionarAutor() {
     novoCampoFiliacao.name = "filiacao[]";
     novoCampoFiliacao.id = "filiacao" + contadorAutores;
     novoCampoFiliacao.placeholder = "Filiação";
-    novoCampoFiliacao.style.width = "49%";
+    novoCampoFiliacao.style.width="100%"
+    novoCampoFiliacao.autocomplete="off";
+   
     
-    // Adicionar os novos campos ao contêiner do autor
-    novoAutorContainer.appendChild(novoCampoNome);
-    novoAutorContainer.appendChild(novoCampoFiliacao);
+    novoCampoFiliacao.addEventListener("input", function() {
+        autocomplete(this, "../PHP/busca_fili.php");
+    });
+    
+    // Adicionar campo de filiação à coluna de filiação
+    colunaFiliacao.appendChild(novoCampoFiliacao);
+    
+    // Adicionar as colunas ao contêiner do autor na ordem correta
+    novoAutorContainer.appendChild(colunaNome);
+    novoAutorContainer.appendChild(colunaFiliacao);
     
     // Adicionar o contêiner do autor ao contêiner principal
     container.appendChild(novoAutorContainer);
 
-    container.appendChild(document.createElement("br"));
+    // Adicionar quebra de linha entre autores (opcional)
+     container.appendChild(document.createElement("br"));
     
     // Incrementar o contador de autores
-    contadorAutores++;  
+    contadorAutores++;
 }
-                
+
+               
                     
                     function deletarAutor() {
                         var container = document.getElementById("autoresContainer");

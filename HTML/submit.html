@@ -143,13 +143,13 @@
 
 
 <!-- coAutores -->
-<label id="coAutores"> Adicionar Autores e Co-Atores:</label><br>      
+<h3 id="coAutores"> Adicionar Autores e Co-Atores:</h3></br>      
 <div id="autoresContainer">
     <!-- Aqui serão adicionados os campos de coautores dinamicamente -->
 </div>
 <br>
 <div id="autor-button">
-    <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarAutor()">Adicionar Co-autor</button>
+    <button style="left: 1%; position: absolute;" class="button" type="button" onclick="adicionarAutor()">Adicionar Autor</button>
     <button type="button" style="position:absolute; left: 50%; transform: translateX(-50%);" class="button" onclick="deletarAutor()">Remover último Co-autor</button>
     <button type="button" style="right: 2%; position:absolute;" class="button" onclick="removerTODOSAutores()">Remover todas as linhas </button>
 </div>
@@ -381,6 +381,130 @@
  
       
 </footer>
+<script>
+    // Função genérica para autocomplete
+    function autocomplete(inputField, phpScript) {
+        var inputValue = inputField.value.trim();
+        var inputId = inputField.id;
+
+        if (inputValue.length < 3) {
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    try {
+                        var suggestions = JSON.parse(xhr.responseText);
+                        showSuggestions(inputField, suggestions);
+                    } catch (e) {
+                        console.error('Erro ao processar JSON:', e);
+                    }
+                } else {
+                    console.error('Erro na requisição: ' + xhr.status + ' - ' + xhr.statusText);
+                }
+            }
+        };
+
+        xhr.open("GET", phpScript + "?q=" + encodeURIComponent(inputValue), true);
+        xhr.send();
+    }
+
+    // Função para exibir sugestões
+    function showSuggestions(inputField, suggestions) {
+        var inputId = inputField.id;
+        var autocompleteContainerId = inputId + "-autocomplete";
+
+        var autocompleteContainer = document.getElementById(autocompleteContainerId);
+        if (!autocompleteContainer) {
+            autocompleteContainer = createAutocompleteContainer(inputId);
+        } else {
+            autocompleteContainer.innerHTML = '';
+        }
+
+        var ul = document.createElement('ul');
+        ul.classList.add('autocomplete-list');
+
+        var selectedIndex = -1;
+
+        suggestions.forEach(function(suggestion, index) {
+            var li = document.createElement('li');
+            li.textContent = suggestion;
+            li.addEventListener("click", function() {
+                inputField.value = suggestion;
+                autocompleteContainer.style.display = 'none';
+            });
+
+            ul.appendChild(li);
+        });
+
+        autocompleteContainer.appendChild(ul);
+        autocompleteContainer.style.display = 'block';
+
+        function updateSelection() {
+        var lis = ul.getElementsByTagName('li');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].classList.remove('selected');
+        }
+        if (selectedIndex !== -1) {
+            lis[selectedIndex].classList.add('selected');
+        }
+    }
+
+    inputField.addEventListener("keydown", function(event) {
+        var lis = ul.getElementsByTagName('li');
+        if (event.key === "ArrowDown") {
+            selectedIndex = Math.min(selectedIndex + 1, suggestions.length - 1);
+            updateSelection();
+        } else if (event.key === "ArrowUp") {
+            selectedIndex = Math.max(selectedIndex - 1, 0);
+            updateSelection();
+        } else if (event.key === "Enter" && selectedIndex !== -1) {
+            event.preventDefault();
+            inputField.value = suggestions[selectedIndex];
+            autocompleteContainer.style.display = 'none';
+        } else if (event.key === "Escape") {
+            autocompleteContainer.style.display = 'none';
+        } else if (event.key === "Tab") {
+            autocompleteContainer.style.display = 'none';
+        }
+    });
+}
+    // Função para criar o contêiner de autocomplete
+    function createAutocompleteContainer(inputId) {
+        var inputElement = document.getElementById(inputId);
+        var autocompleteContainerId = inputId + "-autocomplete";
+
+        var autocompleteContainer = document.createElement("div");
+        autocompleteContainer.id = autocompleteContainerId;
+        autocompleteContainer.className = "autocomplete-container";
+
+        inputElement.parentNode.insertBefore(autocompleteContainer, inputElement.nextSibling);
+
+        document.addEventListener("click", function(event) {
+            if (!autocompleteContainer.contains(event.target)) {
+                autocompleteContainer.style.display = 'none';
+            }
+        });
+
+        return autocompleteContainer;
+    }
+
+    // Adicionar evento aos campos de autor existentes
+    document.querySelectorAll('.autor').forEach(function(inputField) {
+        inputField.addEventListener('input', function() {
+            autocomplete(this, "../PHP/busca_autor.php");
+        });
+    });
+
+    // Adicionar evento aos campos de filiação existentes
+    document.querySelectorAll('.filiacao').forEach(function(inputField) {
+        inputField.addEventListener('input', function() {
+            autocomplete(this, "../PHP/busca_fili.php");
+        });
+    });
+</script>
 
 </body>      
 </html>

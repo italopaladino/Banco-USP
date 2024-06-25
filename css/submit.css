@@ -97,6 +97,75 @@
   box-sizing: border-box;
 }
 
+
+
+
+
+/* auto compelte autores*/
+
+
+autocomplete-input {
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-container {
+  position: absolute;
+  width: auto;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #7ce5e9;
+}
+.autocomplete-list li.selected{
+  background-color: #7ce5e9;
+}
+
+
+
+
+
+
+
+/* COLUNA PARA CAMPO AUTORES*/
+.colunaaut {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  margin-right: 4.8px;
+}
+
+.autor-campo {
+  margin-bottom: 5px;
+  width: 100%;/* Espaçamento entre campos de autores */
+
+}
+
+.colunafili{
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+
+
+
 /*  novo usuário */
 
 #login-acss section{

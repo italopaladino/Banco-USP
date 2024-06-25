@@ -54,11 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Loop através dos dados de autores e filiações enviados
         foreach ($_POST['autor'] as $key => $autor) {
-            $filiacao = $_POST['filiacao'][$key];
+            $autor = trim($autor);
+            $filiacao = trim($_POST['filiacao'][$key]);
+            
+            $autor_upper = strtoupper($autor);
+            $filiacao_upper = strtoupper($_POST['filiacao'][$key]);
 
             // Inserir o autor na tabela autores se ainda não existir
             $sql_autor = "INSERT INTO autores (autor) VALUES ($1) ON CONFLICT (autor) DO NOTHING RETURNING autID";
-            $result_autor = pg_query_params($conn, $sql_autor, [$autor]);
+            $result_autor = pg_query_params($conn, $sql_autor, [$autor_upper]);
 
             // Obter o autorID (seja novo ou existente)
             if ($result_autor && pg_num_rows($result_autor) > 0) {
@@ -66,14 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $autorID = $row_autor['autid'];
             } else {
                 $sql_get_autorid = "SELECT autid FROM autores WHERE autor = $1";
-                $result_get_autorid = pg_query_params($conn, $sql_get_autorid, [$autor]);
+                $result_get_autorid = pg_query_params($conn, $sql_get_autorid, [$autor_upper]);
                 $row_autor = pg_fetch_assoc($result_get_autorid);
                 $autorID = $row_autor['autid'];
             }
 
             // Inserir a filiação na tabela filiacao se ainda não existir
             $sql_filiacao = "INSERT INTO filiacao (filiacao) VALUES ($1) ON CONFLICT (filiacao) DO NOTHING RETURNING filiacaoid";
-            $result_filiacao = pg_query_params($conn, $sql_filiacao, [$filiacao]);
+            $result_filiacao = pg_query_params($conn, $sql_filiacao, [$filiacao_upper]);
 
             // Obter o filiacaoID (seja novo ou existente)
             if ($result_filiacao && pg_num_rows($result_filiacao) > 0) {
@@ -81,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $filiacaoID = $row_filiacao['filiacaoid'];
             } else {
                 $sql_get_filiacaoid = "SELECT filiacaoid FROM filiacao WHERE filiacao = $1";
-                $result_get_filiacaoid = pg_query_params($conn, $sql_get_filiacaoid, [$filiacao]);
+                $result_get_filiacaoid = pg_query_params($conn, $sql_get_filiacaoid, [$filiacao_upper]);
                 $row_filiacao = pg_fetch_assoc($result_get_filiacaoid);
                 $filiacaoID = $row_filiacao['filiacaoid'];
             }
-
+                       
             // Inserir associação na tabela trabalhos_autores_filiacao
             $sql_trabalhos_autores = "INSERT INTO trabalhos_autores_filiacao (trabalhoid, autorid, filiacaoid, ordem) VALUES ($1, $2, $3, $4)";
             $result_trabalhos_autores = pg_query_params($conn, $sql_trabalhos_autores, [$trabalhoID, $autorID, $filiacaoID, $key]);
