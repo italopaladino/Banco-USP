@@ -12,7 +12,7 @@ try {
      $frase = htmlspecialchars($infogeral['titulo']) . 
                  ", \"<a href='https://doi.org/" . htmlspecialchars($infogeral['doi']) . "'>" . htmlspecialchars($infogeral['periodico']) . 
                  "</a>\", DOI " . htmlspecialchars($infogeral['doi']) . ", publicado em " . 
-                 htmlspecialchars($infogeral['data']) .".";
+                 htmlspecialchars($infogeral['data1']) .".";
     
         // Exibe a frase e adiciona duas quebras de linha
         echo $frase . "<br><br>";

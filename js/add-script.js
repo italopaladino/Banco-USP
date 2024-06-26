@@ -412,7 +412,7 @@ function exibirResumo() {
 
     // Recuperar os valores dos campos do formulário
     var autorCorrValue = document.getElementById("correspondente").value;
-    resumo += "<p" + (autorCorrValue ? '' : ' class="texto-vermelho"') + "><strong>Autor Correspondente:</strong> " + autorCorrValue + "</p>";
+    resumo += "<p" + (autorCorrValue ? '' : ' class="texto-vermelho"') + "><strong>Correspondente:</strong> " + autorCorrValue + "</p>";
 
     var emailCorr = document.getElementById("email").value;
     resumo += "<p" + (emailCorr ? '' : ' class="texto-vermelho"') + "><strong>E-mail:</strong> " + emailCorr + "</p>";

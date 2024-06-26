@@ -225,16 +225,18 @@ if (isset($_FILES['tabelaDado']) && $_FILES['tabelaDado']['error'] === UPLOAD_ER
 
         // Commit da transação
         pg_query($conn, 'COMMIT');
-        
-        echo "<script>alert('Dados inseridos com sucesso!');</script>";
-
+    
+        // Redireciona para a página de sucesso
+        echo "<script>window.location.href = '../HTML/dados_inseridos.html';</script>";
+    
     } catch (Exception $e) {
         // Rollback da transação em caso de erro
         pg_query($conn, 'ROLLBACK');
-        echo "<script>alert('Erro: " . $e->getMessage() . "');</script>";
+        
+        // Redireciona para a página de erro
+        echo "<script>window.location.href = '../HTML/dados_invalidos.html?msg=" . urlencode($e->getMessage()) . "';</script>";
     }
-
+}
     // Fechar a conexão
     pg_close($conn);
-}
-?>
+    ?>
