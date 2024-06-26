@@ -240,7 +240,7 @@ function adicionarCoordenadas() {
     novoID.name = "ID_amst[]"; // Use an array to collect multiple values
     novoID.placeholder = "ID";
     novoID.style.width ="10%";
-    
+    novoID.style.autocomplete ="off";   
     
     novoID.maxLength = 10;
 
@@ -252,6 +252,7 @@ function adicionarCoordenadas() {
     novolatitude.placeholder = "Latitude: -XX.XXXXX";
     novolatitude.style.width="20%"   
     novolatitude.maxLength = 10;
+    novolatitude.style.autocomplete="off";
 
     var novolongitude = document.createElement("input");
     novolongitude.type = "text";
@@ -261,6 +262,7 @@ function adicionarCoordenadas() {
     novolongitude.placeholder = "Longitude: -YY.YYYYY";
     novolongitude.style.width="20%";
     novolongitude.maxLength = 10;
+    novolongitude.style.autocomplete ="off";
 
     var novoProf = document.createElement("input");
     novoProf.type = "text";
@@ -270,6 +272,7 @@ function adicionarCoordenadas() {
     novoProf.placeholder = "Profundidade";
     novoProf.style.width ="8%"  
     novoProf.maxLength = 10;
+    novoProf.style.autocomplete="off";
 
     var novoRecSed = document.createElement("input");
     novoRecSed.type = "number";
@@ -279,6 +282,7 @@ function adicionarCoordenadas() {
     novoRecSed.placeholder = "Recuperação sedimentar (metros)";
     novoRecSed.style.width ="20%"
     novoRecSed.maxLength = 10;
+    novoRecSed.style.autocomplete="off";
 
     var novoAnoCol = document.createElement("input");
     novoAnoCol.type = "date";
