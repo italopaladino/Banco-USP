@@ -95,32 +95,11 @@
 
 
         <h1 class="form-tip"> Ano de Coleta </h1> <!-- linkar com os anos que tem no banco deixar ulitmos 5-->
-              <ul>
-                  <li><a class="tip-fomr" href="">2024</a></li>
-                  <li><a class="tip-fomr" href="">2023</a></li>
-                  <li><a class="tip-fomr" href="">2022</a></li>
-                  <li><a class="tip-fomr" href="">2021</a></li>
-                  <li><a class="tip-fomr" href="">2020</a></li>
-                  <li><a class="tip-fomr" href=""> . . . </a></li>
-                 </ul>
+              <div id="filtro-ano-coleta"></div>
 
 
      <h1 class="form-tip"> Proxies Utilizados </h1> <!-- fixo com os que estão no site -->
-               <div class="filtro-proxies" id="filtro-proxies">
-                <li><a class="tip-fomr" href="">TSM</a></li>
-                <li><a class="tip-fomr" href="">Produtividade</a></li>
-                <li><a class="tip-fomr" href="">Circulação Oceânica</a></li>
-                <li><a class="tip-fomr" href="">Marcadores Orgânicos</a></li>
-                <li><a class="tip-fomr" href="">Marcadores Inorgânicos</a></li>
-                <li><a class="tip-fomr" href="">Foraminíferos Planctônicos</a></li>
-                <li><a class="tip-fomr" href="">Foraminíferos Bentônicos</a></li>
-                <li><a class="tip-fomr" href="">Nível do Mar</a></li>
-                <li><a class="tip-fomr" href="">CO<sub>2</sub> Atmosférico</a></li>
-                <li><a class="tip-fomr" href="">cobertura Vegetal</a></li>
-                <li><a class="tip-fomr" href="">Precipitação</a></li>
-                <li><a class="tip-fomr" href="">Estratigrafia</a></li>
-                <li><a class="tip-fomr" href="">Outros</a></li>
-               </div>
+               <div class="filtro-proxies" id="filtro-prox">   </div>
 
 
     <h1 class="form-tip"> Tipos de instrumentos </h1> <!-- fixo com os que estão no site -->
@@ -236,12 +215,50 @@
             $("#filtro-ano-pub").html(response);
         },
         error: function(xhr, status, error) {
-            console.error("Erro ao consultar artigos:", status, error);
+            console.error("Erro ao consultar ano de publicacao:", status, error);
         }
     });
 });
 
     </script>
+    <script>
+        // JAVA PARA FILTRO DE ANOS
+        $(document).ready(function(){
+        console.log("jQuery está funcionando.");
+    
+        // Consulta de artigos
+        $.ajax({
+            url: "../PHP/filtro-ano-coleta.php",
+            type: "GET",
+            success: function(response){
+                $("#filtro-ano-coleta").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar ano de coleta:", status, error);
+            }
+        });
+    });
+    
+        </script>
+           <script>
+            // JAVA PARA FILTRO DE ANOS
+            $(document).ready(function(){
+            console.log("jQuery está funcionando.");
+        
+            // Consulta de artigos
+            $.ajax({
+                url: "../PHP/filtro-prox.php",
+                type: "GET",
+                success: function(response){
+                    $("#filtro-prox").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Erro ao consultar proxies:", status, error);
+                }
+            });
+        });
+        
+            </script>
 
 
 

@@ -530,25 +530,25 @@ function exibirDADOS() {
 
     // Adiciona equipamentos selecionados
     var coleta = "";
-    if (document.getElementById("multcore").checked) {
+    if (document.getElementById("multcorer").checked) {
         coleta += "MultiCorer, ";
     }
     if (document.getElementById("piston").checked) {
         coleta += "Piston Corer, ";
     }
-    if (document.getElementById("gravcore").checked) {
+    if (document.getElementById("gravcorer").checked) {
         coleta += "Gravity Corer, ";
     }
     if (document.getElementById("drilli").checked) {
         coleta += "Drilling, ";
     }
-    if (document.getElementById("gboxcore").checked) {
+    if (document.getElementById("gboxcorer").checked) {
         coleta += "Giant box corer, ";
     }
-    if (document.getElementById("compcore").checked) {
+    if (document.getElementById("compcorer").checked) {
         coleta += "Composite Corer, ";
     }
-    if (document.getElementById("boxcore").checked) {
+    if (document.getElementById("boxcorer").checked) {
         coleta += "Box Corer, ";
     }
     if (document.getElementById("corer").checked) {

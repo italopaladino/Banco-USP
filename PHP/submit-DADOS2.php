@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$pass");
 
     if (!$conn) {
+        error_log("Connectino failed:". pg_last_error(),3,"../errorlog/errorlog.txt");
         die("Connection failed: " . pg_last_error());
     }
 
@@ -48,9 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $trabalhoID = $row['geralid'];
 
             } else {
+                error_log("Erro ao inserir na tabela infogeral". pg_last_error($conn), 3, "../errorlog/errorlog.txt");
                 throw new Exception("Erro ao inserir na tabela infogeral: " . pg_last_error($conn));
             }
         } else {
+            error_log("erro: secaoAtual1 não definido", 3, "../errorlog/errorlog.txt");
             throw new Exception("Erro: secaoAtual1 não definido.");
         }
 
@@ -98,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Verifica se as inserções foram bem-sucedidas
             if (!$result_trabalhos_autores) {
+                error_log("Erro ao inserir associação na tabela trabalho_autores_filiacao",3, "../errorlog/errorlog.txt");
                 throw new Exception("Erro ao inserir associação na tabela trabalhos_autores_filiacao.");
             }
      }
@@ -133,13 +140,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $result_ponto = pg_query_params($conn, $sql_pontos, [$ID_amst, $latitude, $longitude, $prof, $recuperacao, $anoColeta, $trabalhoID]);
     
                     if (!$result_ponto) {
+                        error_log("erro ao inserir na tabela de pontos", 3, "../errorlog/errorlog.txt");
                         throw new Exception("Erro ao inserir na tabela pontos");
                     }
                 } else {
+                    error_log("Dados imcompletos para o índice $key", 3 , "../errorlog/errorlog.txt");
                     throw new Exception("Dados incompletos para o índice $key");
                 }
             }
         } else {
+            error_log("Campos de entradas ausentes", 3,"../errorlog/errorlog.txt");
             throw new Exception("Campos de entrada ausentes");
         }
     }
@@ -162,6 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result_prox = pg_query_params($conn, $sql_prox,[$TSM, $PP,$circ, $org, $inorg, $foramplan, $forambent, $sealev, $co2atm, $cobveg, $rainfall, $stratg, $outroProx, $trabalhoID]);
 
     if (!$result_prox){
+        error_log("erro ao inserir na tabela proxys", 3, "../errorlog/errorlog.txt");
         throw new Exception("Erro ao inserir na tabela proxys");
     }
 
@@ -180,6 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result_equi = pg_query_params($conn, $sql_equipamentos,[$multcorer,$piston, $gravcorer,$drilli, $gboxcorer, $compcorer,$boxcorer, $corer, $outroEqui, $trabalhoID]);
 
     if (!$result_equi){
+        error_log("Erro ao inserir na tabela equipamentos",3,"../errorlog/errorlog.txt");
         throw new Exception("erro ao inserir na tabela equipamentos");
 
 }
@@ -212,12 +224,12 @@ if (isset($_FILES['tabelaDado']) && $_FILES['tabelaDado']['error'] === UPLOAD_ER
 
 
     if ($result) {
-        error_log("Arquivo CSV carregado e inserido na tabela arquivos com sucesso.");
+        error_log("Arquivo CSV carregado e inserido na tabela arquivos com sucesso.", 3, "../errorlog/errorlog.txt");
     } else {
-        error_log( "Erro ao inserir arquivo na tabela arquivos: " . pg_last_error($conn));
+        error_log( "Erro ao inserir arquivo na tabela arquivos: " . pg_last_error($conn), 3, "../errorlog/errorlog.txt");
     }
 } else {
-    error_log("Erro no envio do arquivo CSV.");
+    error_log("Erro no envio do arquivo CSV.", 3, "../errorlog/errorlog.txt");
 }
 
 
