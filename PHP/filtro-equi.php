@@ -6,24 +6,24 @@ try {
 
     // Seleciona as colunas booleanas e conta quantos registros existem para cada coluna onde o valor é TRUE
     $sql = "
-        SELECT 'multcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE multcorer = TRUE
-        UNION ALL
-        SELECT 'piston' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE piston = TRUE
-        UNION ALL
-        SELECT 'gravcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE gravcorer = TRUE
-        UNION ALL
-        SELECT 'drilli' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE drilli = TRUE
-        UNION ALL
-        SELECT 'gboxcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE gboxcorer = TRUE
-        UNION ALL
-        SELECT 'compcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE compcorer = TRUE
-        UNION ALL
-        SELECT 'boxcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE boxcorer = TRUE
-        UNION ALL
-        SELECT 'corer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE corer = TRUE
-        UNION ALL
-        SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta UNION ALL
-        ";
+     SELECT 'multcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE multcorer = TRUE
+UNION ALL
+SELECT 'piston' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE piston = TRUE
+UNION ALL
+SELECT 'gravcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE gravcorer = TRUE
+UNION ALL
+SELECT 'drilli' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE drilli = TRUE
+UNION ALL
+SELECT 'gboxcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE gboxcorer = TRUE
+UNION ALL
+SELECT 'compcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE compcorer = TRUE
+UNION ALL
+SELECT 'boxcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE boxcorer = TRUE
+UNION ALL
+SELECT 'corer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE corer = TRUE
+UNION ALL
+SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta;
+";
 
     $stm = $pdo->query($sql);
     $resultados = $stm->fetchAll(PDO::FETCH_ASSOC);
