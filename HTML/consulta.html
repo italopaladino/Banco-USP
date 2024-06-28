@@ -103,18 +103,10 @@
 
 
     <h1 class="form-tip"> Tipos de instrumentos </h1> <!-- fixo com os que estão no site -->
-                    <ul>
-                        <li><a class="tip-fomr" href="">MultiCorer</a></li>
-                        <li><a class="tip-fomr" href="">Piston Corer</a></li>
-                        <li><a class="tip-fomr" href="">Gravity Corer</a></li>
-                        <li><a class="tip-fomr" href="">Drilling</a></li>
-                        <li><a class="tip-fomr" href="">Giant Box Corer</a></li>
-                        <li><a class="tip-fomr" href="">Composite Corer</a></li>
-                        <li><a class="tip-fomr" href="">Box Corer</a></li>
-                        <li><a class="tip-fomr" href="">Corer</a></li>
-                        <li><a class="tip-fomr" href="">Outros</a></li>
-                        
-                       </ul>
+                    
+    <div id="filtro-equi" class="filtro-equi"></div>
+
+
         </form>
         </div>
 
@@ -259,7 +251,25 @@
         });
         
             </script>
+  <script>
+    // JAVA PARA FILTRO DE ANOS
+    $(document).ready(function(){
+    console.log("jQuery está funcionando.");
 
+    // Consulta de artigos
+    $.ajax({
+        url: "../PHP/filtro-equi.php",
+        type: "GET",
+        success: function(response){
+            $("#filtro-equi").html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao consultar Equipamentos:", status, error);
+        }
+    });
+});
+
+    </script>
 
 
 

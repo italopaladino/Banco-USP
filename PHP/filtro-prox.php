@@ -56,7 +56,7 @@ try {
         $quantidade = htmlspecialchars($resultado['quantidade']);
         if ($quantidade > 0) {
             $nome = htmlspecialchars($nomesColunas[$coluna]);
-            $filtroHTML .= "<li><a href='#'>$nome: $quantidade</a></li>";
+            $filtroHTML .= "<li><a href='#'>$nome ($quantidade)</a></li>";
         }
     }
     $filtroHTML .= "</ul>";
