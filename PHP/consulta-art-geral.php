@@ -10,7 +10,7 @@ try {
  foreach ($infogerals as $infogeral) {
     // Cria a frase com os dados do autor, título sublinhado, DOI e data
      $frase = htmlspecialchars($infogeral['titulo']) . 
-                 ", \"<a href='https://doi.org/" . htmlspecialchars($infogeral['doi']) . "'>" . htmlspecialchars($infogeral['periodico']) . 
+                 ", \"<a href='https://" . htmlspecialchars($infogeral['doi']) . "'>" . htmlspecialchars($infogeral['periodico']) . 
                  "</a>\", DOI " . htmlspecialchars($infogeral['doi']) . ", publicado em " . 
                  htmlspecialchars($infogeral['data1']) .".";
     

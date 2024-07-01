@@ -292,7 +292,8 @@ function adicionarCoordenadas() {
     novoAnoCol.placeholder = "Data da coleta";
     novoAnoCol.style.width="10%";
     novoAnoCol.maxLength = 10;
-
+    
+     
     // Add the new fields to the container
     novoCoordenadas.appendChild(novoID);
     novoCoordenadas.appendChild(novolatitude);
@@ -300,6 +301,7 @@ function adicionarCoordenadas() {
     novoCoordenadas.appendChild(novoProf);
     novoCoordenadas.appendChild(novoRecSed);
     novoCoordenadas.appendChild(novoAnoCol);
+   
     container.appendChild(novoCoordenadas);
 
     container.appendChild(document.createElement("br"));
@@ -307,7 +309,6 @@ function adicionarCoordenadas() {
     coordenadas++;
 }
 
-                
                     
 function deletarCoordenadas() {
     var container = document.getElementById("coordenadas");

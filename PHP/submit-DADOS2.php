@@ -129,15 +129,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ) {
                     // Limpa os valores dos campos
                     $ID_amst = trim($ID_amst);
+
                     $latitude = trim($_POST['latitude'][$key]);
+                    $latitudes = str_replace(",",".", $latitude);
+
                     $longitude = trim($_POST['longitude'][$key]);
+                    $longitudes = str_replace(",",".",$longitude);
+
                     $prof = trim($_POST['prof'][$key]);
                     $recuperacao = trim($_POST['recuperacao'][$key]);
                     $anoColeta = trim($_POST['data'][$key]);
     
                     // Prepara a consulta SQL
                     $sql_pontos = "INSERT INTO pontos_coleta (ID_amst, latitude, longitude, prof, recuperacao, data2, trabalhoid) VALUES ($1, $2, $3, $4, $5, $6,$7)";
-                    $result_ponto = pg_query_params($conn, $sql_pontos, [$ID_amst, $latitude, $longitude, $prof, $recuperacao, $anoColeta, $trabalhoID]);
+                    $result_ponto = pg_query_params($conn, $sql_pontos, [$ID_amst, $latitudes, $longitudes, $prof, $recuperacao, $anoColeta, $trabalhoID]);
     
                     if (!$result_ponto) {
                         error_log("erro ao inserir na tabela de pontos", 3, "../errorlog/errorlog.txt");
@@ -184,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $compcorer = isset($_POST['compcorer']) ? 1 : 0;
     $boxcorer = isset($_POST['boxcorer']) ? 1 : 0;
     $corer = isset($_POST['corer']) ? 1 : 0;
-    $outroEqui = isset($_POST['outroEqui']) ? 1 : 0;
+    $outroEqui = $_POST['outroEqui'];
 
     $sql_equipamentos = "INSERT INTO equipcoleta (multcorer, piston, gravcorer,drilli, gboxcorer,compcorer, boxcorer, corer, outroEQui, trabalhoid)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
