@@ -22,8 +22,8 @@ SELECT 'boxcorer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE boxco
 UNION ALL
 SELECT 'corer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE corer = TRUE
 UNION ALL
-SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta;
-";
+
+SELECT 'outroequi' AS equip, COUNT(*) AS quantidade FROM equipcoleta GROUP by equip";
 
     $stm = $pdo->query($sql);
     $resultados = $stm->fetchAll(PDO::FETCH_ASSOC);
