@@ -28,7 +28,9 @@ try {
         UNION ALL
         SELECT 'rainfall' AS coluna, COUNT(*) AS quantidade FROM proxys WHERE rainfall = TRUE
         UNION ALL
-        SELECT 'stratg' AS coluna, COUNT(*) AS quantidade FROM proxys WHERE stratg = TRUE;
+        SELECT 'stratg' AS coluna, COUNT(*) AS quantidade FROM proxys WHERE stratg = TRUE
+        UNION ALL
+       SELECT outroprox AS coluna, COUNT(*) AS quantidade FROM proxys WHERE outroprox IS NOT NULL AND outroprox <> '' GROUP BY outroprox
     ";
     $stm = $pdo->query($sql);
     $resultados = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -47,6 +49,7 @@ try {
         'cobveg' => 'Cobertura Vegetal',
         'rainfall' => 'Precipitação',
         'stratg' => 'Estratigrafia'
+        
     ];
 
     // Monta a lista
@@ -55,7 +58,7 @@ try {
         $coluna = htmlspecialchars($resultado['coluna']);
         $quantidade = htmlspecialchars($resultado['quantidade']);
         if ($quantidade > 0) {
-            $nome = htmlspecialchars($nomesColunas[$coluna]);
+            $nome = isset($nomesColunas[$coluna]) ? htmlspecialchars($nomesColunas[$coluna]) : htmlspecialchars($coluna);
             $filtroHTML .= "<li><a href='#'>$nome ($quantidade)</a></li>";
         }
     }

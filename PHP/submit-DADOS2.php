@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $outroProx = $_POST['outroProx'];
 
     $sql_prox = "INSERT INTO proxys (TSM, PP, circulacao, org, inorg, foramplan,forambent, sealev, co2atm, cobveg, rainfall, stratg, outroprox, trabalhoid)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12,$13, $14)";
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12,NULLIF($13, ''), $14)";
     $result_prox = pg_query_params($conn, $sql_prox,[$TSM, $PP,$circ, $org, $inorg, $foramplan, $forambent, $sealev, $co2atm, $cobveg, $rainfall, $stratg, $outroProx, $trabalhoID]);
 
     if (!$result_prox){
@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $outroEqui = $_POST['outroEqui'];
 
     $sql_equipamentos = "INSERT INTO equipcoleta (multcorer, piston, gravcorer,drilli, gboxcorer,compcorer, boxcorer, corer, outroEQui, trabalhoid)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8,  NULLIF($9, ''), $10)";
     $result_equi = pg_query_params($conn, $sql_equipamentos,[$multcorer,$piston, $gravcorer,$drilli, $gboxcorer, $compcorer,$boxcorer, $corer, $outroEqui, $trabalhoID]);
 
     if (!$result_equi){
