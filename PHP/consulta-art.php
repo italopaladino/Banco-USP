@@ -18,10 +18,10 @@ try {
         $infogera = $infogeral[$i]; // Obtém a linha atual
     
         // Cria a frase com os dados do autor, título sublinhado, DOI e data
-        $frase = htmlspecialchars($infogera['autorcorr']) . 
+        $frase = htmlspecialchars($infogera['correspondente']) . 
                  ", \"<a href='" . htmlspecialchars($infogera['doi']) . "'>" . htmlspecialchars($infogera['titulo']) . 
                  "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
-                 htmlspecialchars($infogera['data']) .".";
+                 htmlspecialchars($infogera['data1']) .".";
     
         // Exibe a frase e adiciona duas quebras de linha
         echo $frase . "<br><br>";

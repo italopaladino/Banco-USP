@@ -168,17 +168,24 @@ autocomplete-input {
 /* centralizar mapa*/
 #mapageral {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Altura total da viewport */
+  height: 120vh; /* Altura total da viewport */
+}
+
+.mapa-nome {
+  width: 100%;
+  text-align: center;
+
 }
 
 .mapa-geral {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 95%; /* Ajuste conforme necessário */
-  height: 80%; /* Ajuste conforme necessário */
+  width: 800px; /* Ajuste conforme necessário */
+  height: 800px; /* Ajuste conforme necessário */
   border: 1px solid #000; /* Define a borda para o retângulo */
 }
 
@@ -187,7 +194,6 @@ autocomplete-input {
   height: 100%;
   border: 0;
 }
-
 
 
 /*  novo usuário */

@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
             $periodico = $_POST['periodico'];
             $linkart = $_POST['linkart'];
-            $doi = $_POST['doi'];
+            $doi = trim($_POST['doi']);
             $data1 = $_POST['data1'];
-            $keywords = $_POST['keywords'];
+            $keywords = trim($_POST['keywords']);
 
             // Preparando e executando a consulta SQL para inserir na tabela infogeral
             $sql1 = "INSERT INTO infogeral (correspondente, email, tipoTrabalho, armazenamento, termo, titulo, periodico, linkart, doi, data1, keywords) 
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cobveg = isset($_POST['cobveg']) ? 1 : 0;
     $rainfall = isset($_POST['rainfall']) ? 1 : 0;
     $stratg = isset($_POST['stratg']) ? 1 : 0;
-    $outroProx = $_POST['outroProx'];
+    $outroProx = trim($_POST['outroProx']);
 
     $sql_prox = "INSERT INTO proxys (TSM, PP, circulacao, org, inorg, foramplan,forambent, sealev, co2atm, cobveg, rainfall, stratg, outroprox, trabalhoid)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12,NULLIF($13, ''), $14)";
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $compcorer = isset($_POST['compcorer']) ? 1 : 0;
     $boxcorer = isset($_POST['boxcorer']) ? 1 : 0;
     $corer = isset($_POST['corer']) ? 1 : 0;
-    $outroEqui = $_POST['outroEqui'];
+    $outroEqui = trim($_POST['outroEqui']);
 
     $sql_equipamentos = "INSERT INTO equipcoleta (multcorer, piston, gravcorer,drilli, gboxcorer,compcorer, boxcorer, corer, outroEQui, trabalhoid)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8,  NULLIF($9, ''), $10)";
