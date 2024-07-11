@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
         $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
         // Valida o ID para evitar SQL Injection
-        $sql = "SELECT * FROM infogeral WHERE geralID = :id";
+        $sql = "SELECT * FROM infogeral WHERE geralid = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
