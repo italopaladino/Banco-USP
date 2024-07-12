@@ -17,14 +17,16 @@ if (isset($_GET['id'])) {
 
         if ($infogera) {
             // Exibe os detalhes da linha
+            echo "<div class='ultimosartigos'>";
             echo "<h2>Detalhes do Registro</h2>";
             echo "<p>Autor: " . htmlspecialchars($infogera['correspondente']) . "</p>";
             echo "<p>Título: " . htmlspecialchars($infogera['titulo']) . "</p>";
             echo "<p>DOI: " . htmlspecialchars($infogera['doi']) . "</p>";
             echo "<p>Data de Publicação: " . htmlspecialchars($infogera['data1']) . "</p>";
+            echo "</div>";
             // Adicione outros campos conforme necessário
         } else {
-            echo "Registro não encontrado.";
+            echo "<div class='ultimosartigos'>Registro não encontrado.</div>";
         }
 
     } catch (PDOException $e) {
