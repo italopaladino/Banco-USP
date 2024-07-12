@@ -13,8 +13,9 @@ try {
     foreach ($anosPublicacao as $anoPublicacao) {
         $ano = htmlspecialchars($anoPublicacao['ano']);
         $quantidade = htmlspecialchars($anoPublicacao['quantidade']);
-        $filtroHTML .= "<li><a href='#'>$ano ($quantidade)</a></li>"; //adiconar link para pesquisa dos anos
+        $filtroHTML .= "<li><a href='detalhes.php?ano=" . $ano . "'>" . $ano . " ($quantidade)</a></li>";
     }
+    
     $filtroHTML .= "</ul>";
 
     // Retorna a lista HTML

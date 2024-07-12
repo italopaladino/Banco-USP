@@ -50,7 +50,7 @@ SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE outr
         $quantidade = htmlspecialchars($resultado['quantidade']);
         if ($quantidade > 0) {
             $nome = htmlspecialchars($nomesColunas[$coluna]);
-            $filtroHTML .= "<li><a href='#'>$nome ($quantidade)</a></li>";
+            $filtroHTML .= "<li><a href='detalhes.php?php=". $coluna ."'>" . $nome ."($quantidade)</a></li>";
         }
     }
     $filtroHTML .= "</ul>";

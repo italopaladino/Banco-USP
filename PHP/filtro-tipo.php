@@ -13,7 +13,7 @@ try {
     foreach ($tipostrabalho as $tipotrabalho) {
         $tipo = htmlspecialchars($tipotrabalho['tipo']);
         $quantidade = htmlspecialchars($tipotrabalho['quantidade']);
-        $filtroHTMLTIPO .= "<li><a href='#'>$tipo ($quantidade)</a></li>"; //adiconar link para pesquisa dos anos
+        $filtroHTMLTIPO .= "<li><a href='detalhe.php?tipo=".$tipo ."'>". $tipo. "($quantidade)</a></li>"; //adiconar link para pesquisa dos anos
     }
     $filtroHTMLTIPO .= "</ul>";
 
