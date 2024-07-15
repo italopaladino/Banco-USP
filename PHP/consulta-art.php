@@ -19,7 +19,7 @@ try {
     
         // Cria a frase com os dados do autor, título sublinhado, DOI e data
         $frase = htmlspecialchars($infogera['correspondente']) . 
-                 ", \"<a href='detalhes.php?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['titulo']) . 
+                 ", \"<a href='resultados.html?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['titulo']) . 
                  "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
                  htmlspecialchars($infogera['data1']) .".";
     

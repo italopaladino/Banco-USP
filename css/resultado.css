@@ -1,0 +1,91 @@
+/* CSS para pagina de consulta */
+.flex-wrapper {
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.filter-forms-result {
+    width: 20%;
+    height: auto; /* Ajustar para auto se o conteúdo interno variar em altura */
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.filter-top-forms-result {
+    margin-bottom: 20px;
+    padding: 10px; 
+    
+}
+
+#filter-forms-label {
+    font-weight: bold;
+}
+
+
+
+.results-consult-result {
+    width: 80%;
+    height: auto; /* Ajustar para auto se o conteúdo interno variar em altura */
+    margin: 2px;
+    
+}
+
+
+.result-consult-forms {
+    margin-bottom: 10px;
+    padding: 10px;
+    
+}
+
+#result-fomrs {
+    font-weight: bold;
+}
+
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.correspondente,
+.titulo-trab,
+.periodico-trab,
+.doi-trab,
+.data-trab,
+.keyword-trab,
+.coord-ponto,
+.proxy-trab,
+.equip-trab,
+.desc-met,
+.tabela-trab{
+    text-align: right;
+    font-weight: bold;
+    font-size: large;
+       
+}
+
+.correspondente-dir,
+.titulo-trab-dir,
+.periodico-trab-dir,
+.doi-trab-dir,
+.data-trab-dir,
+.keyword-trab-dir,
+.coord-ponto-dir,
+.proxy-trab-dir,
+.equip-trab-dir,
+.desc-met-dir,
+.tabela-trab-dir{
+    text-align: left;
+    font-weight: bold;
+    font-size: large;
+       
+}
