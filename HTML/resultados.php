@@ -17,7 +17,7 @@
     <script src="../js/add-script.js"></script>
     <script src="../js/script.js"></script>
 </head>
-<body id="page1">
+
    <!-- Navigation -->
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container px-4">
@@ -65,72 +65,7 @@
 
 
     <!-- Pagina de consulta dos dados -->
-<!-- COLUNA DA ESQUERDA -->
-    <div class="flex-wrapper" style="background-color: grey;">
-        <div class="filter-forms-result" style="background-color:rgb(202, 231, 204)">
-            <div  class="filter-top-forms-result" style="background-color: cadetblue;">
-                <span id="filter-forms-label">TÓPICOS DAS INFORMAÇÔES:</span>
-
-            </div>
-
-            <div class="correspondente" id="correspondente">
-                <span class="correspondente"> Correspondente:</span>
-            </div> </br>
-
-            <div class="titulo-trab" id="titulo-trab">
-                <span class="titulo-trab"> Título:</span>
-            </div></br>
-            <div class="periodico-trab" id="periodico-trab">
-                <span class="periodico-trab"> Publicado em:</span>
-            </div></br>
-            <div class="doi-trab" id="doi-trab">
-                <span class="doi-trab"> DOI: </span>
-            </div></br>
-            <div class="data-trab" id="data-trab">
-                <span class="data-trab"> Data da publicacão: </span>
-            </div></br></br>
-
-            <div class="keyword-trab" id="keyword-trab">
-                <span class="keyword-trab">Palavras chave/Keywords: </span>
-            </div></br>
-
-            <div class="coord-ponto" id="coord-ponto">
-                <span class="coord-ponto"> Pontos de coletas: </span> 
-            </div></br>
-            <div class="proxy-trab" id="proxy-trab">
-                <span class="proxy-trab"> Proxies Utilizados: </span> 
-            </div></br>
-            <div class="equip-trab" id="equip-trab">
-                <span class="equip-trab"> Equipamento de coleta: </span> 
-            </div></br>
-            <div class="desc-met" id="desc-met">
-                <span class="desc-met"> Descrição dos <u>Métodos:</u> </span> 
-            </div></br>
-            <div class="desc-met" id="desc-met">
-                <span class="desc-met"> Descrição dos <u>Dados:</u> </span> 
-            </div></br>
-            <div class="tabela-trab" id="tabela-trab">
-                <span class="tabela-trab"> Arquivo anexado: </span> 
-            </div></br>
-
-        </div>
-     
-<!-- COLUNA DA DIREITA-->
-        <div class="results-consult-result" style="background-color:rgb(202, 231, 204)">
-           
-           
-            <div class="result-consult-forms" style="background-color: cadetblue;">
-                <span id="result-fomrs-result">RESULTADOS GERAL DE TUDO </span>
-            </div>
-
-            
-
-
-
-            <div class="container">
-                <div class="row">
-                 <div id="ultimosartigos" class="table-responsive">
-                        <?php
+  <?php
     // Verifica se o parâmetro 'id' foi passado via GET
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -141,36 +76,126 @@
         try {
             // Conexão ao banco de dados usando PDO
             $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
+        
             // Prepara e executa a consulta SQL com o ID fornecido
-            $sql = "SELECT * FROM infogeral WHERE geralid = :id";
+            $sql = "
+                SELECT 
+                    infogeral.correspondente,
+                    infogeral.email,
+                    infogeral.tipoTrabalho,
+                    infogeral.armazenamento,
+                    infogeral.termo,
+                    infogeral.titulo,
+                    infogeral.periodico,
+                    infogeral.linkart,
+                    infogeral.doi,
+                    infogeral.data1,
+                    infogeral.keywords,
+                    caractDado.caract,
+                    caractDado.metut,
+                    arquivos.nome_arquivo,
+                    arquivos.conteudo,
+                    arquivos.uploaded_at,
+                    proxys.TSM,
+                    proxys.PP,
+                    proxys.circulacao,
+                    proxys.org,
+                    proxys.inorg,
+                    proxys.foramplan,
+                    proxys.forambent,
+                    proxys.seaLev,
+                    proxys.co2atm,
+                    proxys.cobveg,
+                    proxys.rainfall,
+                    proxys.stratg,
+                    proxys.outroprox
+                FROM infogeral
+                LEFT JOIN caractDado ON infogeral.geralID = caractDado.trabalhoId
+                LEFT JOIN arquivos ON infogeral.geralID = arquivos.trabalhoID
+                LEFT JOIN proxys ON infogeral.geralID = proxys.trabalhoID
+                WHERE infogeral.geralID = :id";
+            
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            $infogeral = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            $infogeral = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
             // Verifica se há resultados
-            if ($infogeral) {
-                // Exibe os detalhes na página resultados.html
-
-            echo "<div class='correspondente-dir' id='correspondente-dir'>" . htmlspecialchars($infogeral['correspondente']) . "</div>";
-            echo "<div class='titulo-trab-dir' id='titulo-trab-dir'>" . htmlspecialchars($infogeral['titulo']) . "</div></br>";
-            echo "<div class='periodico-trab-dir' id='periodico-trab-dir'>" . htmlspecialchars($infogeral['periodico']) . "</div></br>";
-            echo "<div class='doi-trab-dir' id='doi-trab-dir'>" . htmlspecialchars($infogeral['doi']) . "</div></br>";
-            echo "<div class='data-trab-dir' id='data-trab-dir'>" . htmlspecialchars($infogeral['data1']) . "</div></br></br>";
-            echo "<div class='keyword-trab-dir' id='keyword-trab-dir'>" . htmlspecialchars($infogeral['keywords']) . "</div></br>";
-                
-
-
-
-
-
+            if (!empty($infogeral)) {
+                foreach ($infogeral as $row) {
+                    // Exibe os detalhes na página resultados.html
+                    echo "<div id='principal1' style='background-color:grey'><span id='principal1'> RESULTADO DA PESQUISA </span></div>"; // DIV PRINCIPAL
+                    
+                    echo "<div class='principal2'>"; // DIV SECUNDÁRIA
+        
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // div corr
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Correspondente:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['correspondente']) . "&nbsp;&nbsp; <i>(" . htmlspecialchars($row['email']) . ")</i></div>";
+                    echo "</div>"; // div corr
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // div tit
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Título:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['titulo']) . "</div>";
+                    echo "</div>"; // div tit
+        
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // tipo
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Tipo de trabalho/ Armazenamento:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['tipotrabalho']) . "&nbsp;&nbsp; (" . htmlspecialchars($row['armazenamento']) . ")</div>";
+                    echo "</div>"; // tipo
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // periódico
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Periódico:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['periodico']) . "&nbsp;&nbsp; <a href='" . htmlspecialchars($row['linkart']) . "'> Link para o artigo </a></div>";
+                    echo "</div>"; // periódico
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // doi
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> DOI:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'> <a href='https://doi.org/" . htmlspecialchars($row['doi']) . "'>" . htmlspecialchars($row['doi']) . "</a></div>";
+                    echo "</div>"; // doi
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // data
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Data da publicação: </span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['data1']) . "</div>";
+                    echo "</div>"; // data
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // keywords
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Palavras-chave:</span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['keywords']) . "</div>";
+                    echo "</div>"; // keywords
+        
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // proxys
+                    echo "<span id='principal3'>Proxys analisados:</span>";
+                    echo "</div>"; // linha de proxies
+                    
+                    $proxys = [];
+                    if ($row['tsm']) $proxys[] = "Temperatura da Superfície do Mar";
+                    if ($row['pp']) $proxys[] = "Produção Primária";
+                    if ($row['circulacao']) $proxys[] = "Circulação";
+                    if ($row['org']) $proxys[] = "Orgânico";
+                    if ($row['inorg']) $proxys[] = "Inorgânico";
+                    if ($row['foramplan']) $proxys[] = "Foraminífero Planctônico";
+                    if ($row['forambent']) $proxys[] = "Foraminífero Bentônico";
+                    if ($row['sealev']) $proxys[] = "Nível do Mar";
+                    if ($row['co2atm']) $proxys[] = "CO2 Atmosférico";
+                    if ($row['cobveg']) $proxys[] = "Cobertura Vegetal";
+                    if ($row['rainfall']) $proxys[] = "Precipitação";
+                    if ($row['stratg']) $proxys[] = "Estratigrafia";
+                    if ($row['outroprox']) $proxys[] = htmlspecialchars($row['outroprox']);
+                    
+                    echo "<div class='linha' id='coluna-esq-dir'>"; // prox
+                    echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Proxies utilizados: </span></div>";
+                    echo "<div class='coluna' id='colun-dir'>" . implode(", ", $proxys) . "</div>"; // Exibe os proxies em uma linha
+                    echo "</div>"; // prox
+        
+                    echo "</div>"; // DIV SECUNDÁRIA
+                    echo "</div>"; // DIV PRINCIPAL
+                }
             } else {
-                echo "<p>Não foram encontrados registros com o ID: $id</p>";
+                echo "<p>Nenhum registro encontrado para o ID: $id</p>";
             }
-
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
+        
         } finally {
             // Fecha a conexão com o banco de dados
             if ($pdo) {
@@ -182,23 +207,7 @@
     }
     ?>
                            
-                            <!-- Os resultados da consulta serão exibidos aqui -->
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-
-
-
-
-
+            
 
 
 

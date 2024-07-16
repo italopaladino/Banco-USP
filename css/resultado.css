@@ -1,3 +1,103 @@
+#principal1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 60px;
+    margin-bottom: 5px;
+    
+    width: 100%;
+    height: 90px;
+    background-color: rgb(171, 204, 193);
+    text-align: center;
+font-size: large;
+
+
+
+  }
+
+#principal3{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 65px;
+  background-color: rgb(171, 204, 193);
+  text-align: center;
+font-size: large;
+
+}
+
+
+  #principal2{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 79%;
+    height: auto;
+
+  }
+  
+  .linha {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 6;
+  }
+  
+  #coluna-esq-dir #colun-esq {
+    flex: 1;
+    text-align: right;
+    background-color: rgb(104, 158, 175);
+  }
+  
+  #coluna-esq-dir #colun-dir {
+    flex: 5;
+    background-color: beige;
+  }
+  
+  .coluna {
+    border: 1px solid #000; /* Apenas para visualização */
+    padding: 10px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    
+  }
+  
+  /* Responsivo */
+  @media (max-width: 600px) {
+    .linha {
+      flex-direction: column;
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* CSS para pagina de consulta */
 .flex-wrapper {
     width: auto;
@@ -12,7 +112,7 @@
 }
 
 .filter-forms-result {
-    width: 20%;
+    width: auto;
     height: auto; /* Ajustar para auto se o conteúdo interno variar em altura */
     margin: 2px;
     display: flex;
