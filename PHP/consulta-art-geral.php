@@ -18,10 +18,7 @@ try {
         $infogera = $infogeral[$i]; // Obtém a linha atual
     
         // Cria a frase com os dados do autor, título sublinhado, DOI e data
-        $frase = htmlspecialchars($infogera['correspondente']) . 
-                 ", \"<a href='../HTML/resultados.php?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['titulo']) . 
-                 "</a>\", DOI " . htmlspecialchars($infogera['doi']) . ", publicado em " . 
-                 htmlspecialchars($infogera['data1']) .".";
+        $frase = "<a class='link-pesq' href='../HTML/resultados.php?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['referencia']) ."";
     
         // Exibe a frase e adiciona duas quebras de linha
         echo $frase . "<br><br>";

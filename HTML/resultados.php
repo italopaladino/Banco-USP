@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-< lang="pt-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -191,65 +191,65 @@ ORDER BY infogeral.geralID";
         if (!empty($infogeral)) {
             foreach ($infogeral as $row) {
                 // Exibe os detalhes na página resultados.html
-    
                 echo "<div id='principal1'>
-                <span id='principal1'> RESULTADO DA PESQUISA </span>
-                
+                    <span id='principal1'> RESULTADO DA PESQUISA </span>
                 </div>"; // DIV PRINCIPAL
-                
+        
                 echo "<div class='principal2'>"; // DIV SECUNDÁRIA
-                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a>";
+                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a></br>";
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // div corr
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Correspondente:</span></div>";
-                echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['correspondente']) . "&nbsp;&nbsp; <i>(" . htmlspecialchars($row['email']) . ")</i></div>";
+                echo "<div class='coluna' id='colun-med'>" . htmlspecialchars($row['correspondente']) . "&nbsp;&nbsp; <i>(" . htmlspecialchars($row['email']) . ")</i></div>";
                 echo "</div>"; // div corr
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // div tit
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Título:</span></div>";
-                echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['titulo']) . "</div>";
+                echo "<div class='coluna' id='colun-med'>" . htmlspecialchars($row['titulo']) . "</div>";
                 echo "</div>"; // div tit
-
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // autores
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Autores:</span></div>";
-                echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['autores']) . "</div>";
+                echo "<div class='coluna' id='colun-med'>" . htmlspecialchars($row['autores']) . "</div>";
                 echo "</div>"; // autores
-    
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // tipo
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Tipo de trabalho/ Armazenamento:</span></div>";
-                echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['tipotrabalho']) . "&nbsp;&nbsp; (" . htmlspecialchars($row['armazenamento']) . ")</div>";
+                echo "<div class='coluna' id='colun-med'>" . htmlspecialchars($row['tipotrabalho']) . "&nbsp;&nbsp; (" . htmlspecialchars($row['armazenamento']) . ")</div>";
                 echo "</div>"; // tipo
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // periódico
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Periódico:</span></div>";
-                echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['periodico']) . "&nbsp;&nbsp; <a href='" . htmlspecialchars($row['linkart']) . "'> Link para o artigo </a></div>";
+                echo "<div class='coluna' id='colun-med'>" . htmlspecialchars($row['periodico']) . "&nbsp;&nbsp; <a href='" . htmlspecialchars($row['linkart']) . "'> Link para o artigo </a></div>";
                 echo "</div>"; // periódico
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // doi
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> DOI:</span></div>";
-                echo "<div class='coluna' id='colun-dir'> <a href='https://doi.org/" . htmlspecialchars($row['doi']) . "'>" . htmlspecialchars($row['doi']) . "</a></div>";
+                echo "<div class='coluna' id='colun-med'> <a href='https://doi.org/" . htmlspecialchars($row['doi']) . "'>" . htmlspecialchars($row['doi']) . "</a></div>";
                 echo "</div>"; // doi
+        
                 
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // data
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Data da publicação: </span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['data1']) . "</div>";
                 echo "</div>"; // data
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // keywords
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Palavras-chave:</span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['keywords']) . "</div>";
                 echo "</div>"; // keywords
-    
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // caracteristicas
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Característica dos dados inseridos:</span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['caract']) . "</div>";
                 echo "</div>"; // caracteristicas
-    
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // método
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Métodos de análises utilizados:</span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['metut']) . "</div>";
                 echo "</div>"; // método
-                
-                
+        
                 $proxys = [];
                 if ($row['tsm']) $proxys[] = "Temperatura da Superfície do Mar";
                 if ($row['pp']) $proxys[] = "Produção Primária";
@@ -264,12 +264,12 @@ ORDER BY infogeral.geralID";
                 if ($row['rainfall']) $proxys[] = "Precipitação";
                 if ($row['stratg']) $proxys[] = "Estratigrafia";
                 if ($row['outroprox']) $proxys[] = htmlspecialchars($row['outroprox']);
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // prox
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Proxies utilizados: </span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . implode(", ", $proxys) . "</div>"; // Exibe os proxies em uma linha
                 echo "</div>"; // prox
-
+        
                 $equipcoleta = [];
                 if ($row['multcorer']) $equipcoleta[] = "Multicorer";
                 if ($row['piston']) $equipcoleta[] = "Piston";
@@ -279,48 +279,41 @@ ORDER BY infogeral.geralID";
                 if ($row['compcorer']) $equipcoleta[] = "Composite Corer";
                 if ($row['boxcorer']) $equipcoleta[] = "Boxcorer";
                 if ($row['outroequi']) $equipcoleta[] = htmlspecialchars($row['outroequi']);
-                
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // equi
-                echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Proxies utilizados: </span></div>";
+                echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Equipamento(s) utilizado(s): </span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . implode(", ", $equipcoleta) . "</div>"; // Exibe os proxies em uma linha
                 echo "</div>"; // equi
-
-
-    
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // pontos
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Pontos de Coleta:</span></div>";
                 echo "<div class='coluna' id='colun-dir'>";
-                
+        
                 $pontos_coleta = explode(' | ', $row['pontos_coleta']);
                 foreach ($pontos_coleta as $ponto) {
                     // Separar os detalhes do ponto de coleta
                     $detalhes = explode(', ', $ponto);
-                
+        
                     // Inicializar uma string para armazenar o HTML formatado
                     $html_ponto = '';
-                
+        
                     // Iterar sobre os detalhes e aplicar os estilos conforme necessário
                     foreach ($detalhes as $detalhe) {
                         if (strpos($detalhe, 'ID: ') !== false) {
                             $valor = str_replace('ID: ', '', $detalhe);
                             $html_ponto .= "<span class='label'>ID: </span><span class='id-value'>" . htmlspecialchars($valor) . "</span>, ";
-
                         } elseif (strpos($detalhe, 'Latitude: ') !== false) {
                             $valor = str_replace('Latitude: ', '', $detalhe);
                             $html_ponto .= "<span class='label'>Latitude: </span><span class='latitude-value'>" . htmlspecialchars($valor) . "</span>, ";
-
                         } elseif (strpos($detalhe, 'Longitude: ') !== false) {
                             $valor = str_replace('Longitude: ', '', $detalhe);
                             $html_ponto .= "<span class='label'>Longitude: </span><span class='longitude-value'>" . htmlspecialchars($valor) . "</span>, ";
-
                         } elseif (strpos($detalhe, 'Profundidade: ') !== false) {
                             $valor = str_replace('Profundidade: ', '', $detalhe);
                             $html_ponto .= "<span class='label'>Profundidade(m): </span><span class='profundidade-value'>" . htmlspecialchars($valor) . "</span>, ";
-
                         } elseif (strpos($detalhe, 'Recuperação sedimentar: ') !== false) {
                             $valor = str_replace('Recuperação sedimentar: ', '', $detalhe);
                             $html_ponto .= "<span class='label'>Recuperação sedimentar(m): </span> <span class='recuperacao-value'>" . htmlspecialchars($valor) . "</span>, ";
-
                         } elseif (strpos($detalhe, 'Data de coleta: ') !== false) {
                             // Formatar a data
                             $data_original = str_replace('Data de coleta: ', '', $detalhe);
@@ -328,35 +321,33 @@ ORDER BY infogeral.geralID";
                             $html_ponto .= "<span class='label'>Data de coleta: </span><span class='data-value'>" . htmlspecialchars($data_formatada) . "</span>, ";
                         }
                     }
-                
+        
                     // Remover a última vírgula e espaço
                     $html_ponto = rtrim($html_ponto, ', ');
-                
+        
                     // Exibir o ponto de coleta formatado
                     echo "<div>" . $html_ponto . "</div></br>";
                 }
-                
+        
                 echo "</div>"; // pontos
                 echo "</div>"; // linha
-                
-
-
-
+        
                 echo "<div class='linha' id='coluna-esq-dir'>"; // arquivo
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Tabela de dado: </span></div>";
-    
+        
                 // Ensure $row['nome_arquivo'] is a string before using htmlspecialchars
                 $nome_arquivo = is_string($row['nome_arquivo']) ? htmlspecialchars($row['nome_arquivo']) : '';
-    
+        
                 echo "<div class='coluna' id='colun-dir'>" . $nome_arquivo . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='../PHP/download.php?id=". htmlspecialchars($id) . "'> Download </a></div>"; 
                 echo "</div>"; // arquivo 
-            
+        
+                
                 echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a>";
+        
+                echo "</div>"; // DIV SECUNDÁRIA
+            }
+    
 
-                    echo "</div>"; // DIV SECUNDÁRIA
-                    echo "</div>"; // DIV PRINCIPAL
-                   
-                }
             } else {
                 echo "<p>Nenhum registro encontrado para o ID: $id</p>";
             }

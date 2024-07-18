@@ -1,4 +1,16 @@
 /* CSS para pagina de consulta */
+
+a.link-pesq{
+    color: #000000a1;
+    font-size: large;
+    text-decoration: none;
+}
+a.link-pesq:hover{
+    color: #d4560df3;
+    text-decoration:underline;
+}
+
+
 .flex-wrapper {
     width: 99%;
     height: auto;
@@ -37,7 +49,7 @@
     cursor: pointer;
     outline: none;
     display: flex;
-    align-items: center;
+   margin: 50px;
     justify-content: center;
 }
 
@@ -72,11 +84,13 @@
     width: 100%;
     display: flex;
     align-items: center;
+    margin: 5px;
+
 }
 
 /* Estilo para o input search-consult */
 .search3 input {
-    width: 100%;
+    width: 95%;
     padding: 10px 40px 10px 10px; /* Espaço à direita para o botão */
     border-radius: 7px;
     border: 1px solid #ccc;
@@ -104,6 +118,7 @@
 .search3 .bi-search {
     font-size: 20px; /* Ajuste o tamanho do ícone conforme necessário */
     color: #000; /* Cor do ícone */
+    margin: 20px;
 }
 
 

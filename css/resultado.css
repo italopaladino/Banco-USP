@@ -15,17 +15,16 @@ font-size: large;
 }
 
 
-a {
+a.voltar {
   text-decoration: none;
   display: inline-block;
   padding: 8px 16px;
+  margin: 5px;
+  text-align: center;
   
 }
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+
 
 .voltar {
   background-color: #f1f1f1;
@@ -35,58 +34,65 @@ a:hover {
 }
 
   
+#principal2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 79%;
+  height: auto;
+}
 
-  #principal2{
-    display: block;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-top: 50px;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 79%;
-    height: auto;
+.linha {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 7;
+}
 
-  }
+#coluna-esq-dir #colun-esq {
+  flex: 1;
+  text-align: right;
+  background-color: rgba(0, 0, 0, 0.308);
+  border: none;
+}
 
+#coluna-esq-dir #colun-med {
+  
+  flex: 3;
+  background-color: rgb(177, 18, 18);
+  border: none;
+}
 
- 
+#coluna-esq-dir #colun-dir {
+  flex: 3;
+  background-color: rgb(255, 255, 255);
+  border: none;
+}
+
+.coluna {
+  border: 1px solid #000; /* Apenas para visualização */
+  padding: 10px;
+  margin: 1px;
+  background-color: #f0f0f0;
+}
+
+.mapa {
+  width: 100%;
+  display: flex; /* Garantir que a div do mapa seja um bloco separado */
+  margin-top: 20px; /* Adiciona espaço entre o mapa e os outros elementos */
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
   .linha {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex: 6;
+    flex-direction: column;
   }
-  
-  #coluna-esq-dir #colun-esq {
-    flex: 1;
-    text-align: right;
-    background-color: rgba(0, 0, 0, 0.308);
-    border: none;
-  }
-  
-  #coluna-esq-dir #colun-dir {
-    flex: 5;
-    background-color: rgb(255, 255, 255);
-    border: none;
-  }
-  
-  .coluna {
-    border: 1px solid #000; /* Apenas para visualização */
-    padding: 10px;
-    margin: 1px;
-    background-color: #f0f0f0;
-   
-    
-  }
-  
-  /* Responsivo */
-  @media (max-width: 600px) {
-    .linha {
-      flex-direction: column;
-    }
-  }
-  
+}
+
 
 
   .label { 

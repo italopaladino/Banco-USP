@@ -23,7 +23,7 @@ UNION ALL
 SELECT 'corer' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE corer = TRUE
 UNION ALL
 
-SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE outroequi IS NOT NULL AND outroequi <> '' GROUP BY outroequi
+SELECT outroequi AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE outroequi IS NOT NULL AND outroequi <> '' GROUP BY outroequi
 ";
 
 
@@ -49,8 +49,8 @@ SELECT 'outroequi' AS coluna, COUNT(*) AS quantidade FROM equipcoleta WHERE outr
         $coluna = htmlspecialchars($resultado['coluna']);
         $quantidade = htmlspecialchars($resultado['quantidade']);
         if ($quantidade > 0) {
-            $nome = htmlspecialchars($nomesColunas[$coluna]);
-            $filtroHTML .= "<li><a href='detalhes.php?php=". $coluna ."'>" . $nome ."($quantidade)</a></li>";
+            $nome = isset($nomesColunas[$coluna]) ? htmlspecialchars($nomesColunas[$coluna]) : htmlspecialchars($coluna);
+            $filtroHTML .= "<li><a href='detalhe.php?prox=" .$nome. "'>" . $nome . "($quantidade)</a></li>";
         }
     }
     $filtroHTML .= "</ul>";

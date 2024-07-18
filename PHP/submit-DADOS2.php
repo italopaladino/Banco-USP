@@ -36,14 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $doi = trim($_POST['doi']);
             $data1 = $_POST['data1'];
             $keywords = trim($_POST['keywords']);
+            $referencia = trim($_POST['referencia']);
 
             // Preparando e executando a consulta SQL para inserir na tabela infogeral
-            $sql1 = "INSERT INTO infogeral (correspondente, email, tipoTrabalho, armazenamento, termo, titulo, periodico, linkart, doi, data1, keywords) 
-                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+            $sql1 = "INSERT INTO infogeral (correspondente, email, tipoTrabalho, armazenamento, termo, titulo, periodico, linkart, doi, data1, keywords,referencia) 
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12)
                      RETURNING geralID";
             
             $result1 = pg_query_params($conn, $sql1, [
-                $corr, $email, $tipoTrabalho, $armazenamento, $termo, $titulo, $periodico, $linkart, $doi, $data1, $keywords
+                $corr, $email, $tipoTrabalho, $armazenamento, $termo, $titulo, $periodico, $linkart, $doi, $data1, $keywords, $referencia
             ]);
 
             // Verifica se a consulta foi bem-sucedida e obtém o ID do trabalho inserido

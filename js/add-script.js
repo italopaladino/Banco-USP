@@ -449,6 +449,9 @@ function exibirResumo() {
     var keywords1 = document.getElementById("keywords").value;
     resumo += "<p" + (keywords1 ? '' : ' class="texto-vermelho"') + "><strong>Palavras-Chave:</strong> " + keywords1 + "</p>";
 
+    var referencia = document.getElementById("referencia").value;
+    resumo += "<p" + (referencia ? '' : ' class="texto-vermelho"') + "><strong>Referência <i>(ABNT)<i>:</strong> " + referencia + "</p>";
+
     // Exibir o resumo no elemento summary1
     summary1.innerHTML = resumo;
 }
