@@ -192,10 +192,13 @@ ORDER BY infogeral.geralID";
             foreach ($infogeral as $row) {
                 // Exibe os detalhes na página resultados.html
     
-                echo "<div id='principal1'><span id='principal1'> RESULTADO DA PESQUISA </span></div>"; // DIV PRINCIPAL
+                echo "<div id='principal1'>
+                <span id='principal1'> RESULTADO DA PESQUISA </span>
+                
+                </div>"; // DIV PRINCIPAL
                 
                 echo "<div class='principal2'>"; // DIV SECUNDÁRIA
-    
+                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a>";
                 echo "<div class='linha' id='coluna-esq-dir'>"; // div corr
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Correspondente:</span></div>";
                 echo "<div class='coluna' id='colun-dir'>" . htmlspecialchars($row['correspondente']) . "&nbsp;&nbsp; <i>(" . htmlspecialchars($row['email']) . ")</i></div>";
@@ -348,8 +351,7 @@ ORDER BY infogeral.geralID";
                 echo "<div class='coluna' id='colun-dir'>" . $nome_arquivo . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='../PHP/download.php?id=". htmlspecialchars($id) . "'> Download </a></div>"; 
                 echo "</div>"; // arquivo 
             
-
-
+                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a>";
 
                     echo "</div>"; // DIV SECUNDÁRIA
                     echo "</div>"; // DIV PRINCIPAL

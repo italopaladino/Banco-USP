@@ -184,8 +184,8 @@ autocomplete-input {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 800px; /* Ajuste conforme necessário */
-  height: 800px; /* Ajuste conforme necessário */
+  width:1000px; /* Ajuste conforme necessário */
+  height: 500px; /* Ajuste conforme necessário */
   border: 1px solid #000; /* Define a borda para o retângulo */
 }
 

@@ -224,19 +224,16 @@ if (isset($_FILES['tabelaDado']) && $_FILES['tabelaDado']['error'] === UPLOAD_ER
 
     // Prepara a consulta SQL para inserir na tabela arquivos
     $sql_insert = "INSERT INTO arquivos (nome_arquivo, conteudo, trabalhoid) VALUES ($1, $2, $3)";
-    $result = pg_query_params($conn, $sql_insert, [$nomeArquivo, $conteudo, $trabalhoID]);
-
-
+    $result = pg_query_params($conn, $sql_insert, [$nomeArquivo, pg_escape_bytea($conteudo), $trabalhoID]);
 
     if ($result) {
         error_log("Arquivo CSV carregado e inserido na tabela arquivos com sucesso.", 3, "../errorlog/errorlog.txt");
     } else {
-        error_log( "Erro ao inserir arquivo na tabela arquivos: " . pg_last_error($conn), 3, "../errorlog/errorlog.txt");
+        error_log("Erro ao inserir arquivo na tabela arquivos: " . pg_last_error($conn), 3, "../errorlog/errorlog.txt");
     }
 } else {
     error_log("Erro no envio do arquivo CSV.", 3, "../errorlog/errorlog.txt");
 }
-
 
 
 
@@ -249,6 +246,8 @@ if (isset($_FILES['tabelaDado']) && $_FILES['tabelaDado']['error'] === UPLOAD_ER
     } catch (Exception $e) {
         // Rollback da transação em caso de erro
         pg_query($conn, 'ROLLBACK');
+
+        error_log('alguma coisa não deu certo aqui ');
         
         // Redireciona para a página de erro
         echo "<script>window.location.href = '../HTML/dados_invalidos.html?msg=" . urlencode($e->getMessage()) . "';</script>";

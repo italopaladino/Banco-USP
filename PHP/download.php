@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 
         if ($row) {
             $nome_arquivo = htmlspecialchars($row['nome_arquivo']);
-            $conteudo = $row['conteudo']; // Supondo que o conteúdo já esteja no formato CSV
+            $conteudo = stream_get_contents($row['conteudo']); // Converte o recurso em string
 
             // Definir os cabeçalhos para download do arquivo
             header('Content-Type: text/csv');
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
             header('Expires: 0');
 
             // Exibir o conteúdo do CSV
-            echo $conteudo;
+            echo pg_unescape_bytea($conteudo); // Desescapa o conteúdo do bytea
             exit;
         } else {
             echo "Arquivo não encontrado.";
