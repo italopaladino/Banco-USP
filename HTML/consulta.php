@@ -98,7 +98,7 @@
                             <!-- Os resultados da consulta serão exibidos aqui -->
                         </div>
                         <div id="loading" style="display:none;">Carregando...</div>
-                        <div id="resultados" class="table-responsive" ></div>
+                        
                     </div>
                 </div>
             </div>
