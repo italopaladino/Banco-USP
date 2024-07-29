@@ -8,14 +8,13 @@ try {
     $stm = $pdo->query($sql);
     $anosPublicacao = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    // Monta a lsta para
-    $filtroHTML = "<ul>";
+    // Monta a lista de filtros
+    $filtroHTML = "<ul class='filtro-ano-pub'>";
     foreach ($anosPublicacao as $anoPublicacao) {
         $ano = htmlspecialchars($anoPublicacao['ano']);
         $quantidade = htmlspecialchars($anoPublicacao['quantidade']);
-        $filtroHTML .= "<li><a href='detalhes.php?ano=" . $ano . "'>" . $ano . " ($quantidade)</a></li>";
+        $filtroHTML .= "<li><a href='#' data-ano='" . $ano . "'>" . $ano . " ($quantidade)</a></li>";
     }
-    
     $filtroHTML .= "</ul>";
 
     // Retorna a lista HTML

@@ -11,9 +11,8 @@
     <link rel="icon" type="image/x-icon" href="../assets/mac.ico" />
     <link href="../css/submit.css" rel="stylesheet"/>
     <link href="../css/styles.css" rel="stylesheet" />
-    
     <link href="../css/consulta.css" rel="stylesheet" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../js/add-script.js"></script>
     <script src="../js/script.js"></script>
 </head>
@@ -41,7 +40,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- LOGIN POR CAIXA DE DIALOGO -->
     <div id="loginDialogOverlay">
         <div id="loginDialog">
@@ -59,90 +58,52 @@
         </div>
     </div>
 
-
-
-
-
-
     <!-- Pagina de consulta dos dados -->
-
     <div class="flex-wrapper">
         <div class="filter-forms" style="background-color:bisque;">
-            <div  class="filter-top-forms" style="background-color: cadetblue;">
+            <div class="filter-top-forms" style="background-color: cadetblue;">
                 <span id="filter-forms-label">Filtros:</span>
             </div>
-
-            
             <div class="search3">
-                <input  class="search3" type="text" placeholder="Search here..">
-                <button>
-                    <i class="bi bi-search"></i>
-                </button>
+                <input class="search3" type="text" placeholder="Search here..">
+                <button><i class="bi bi-search"></i></button>
             </div>
-        </br>
-        <form class="form-filter">
-            <h1 class="form-tip">Tipo de trabalho</h1>
-            <div class="filtro-tipo" id="filtro-tipo">
-                 <!-- deixar fixado -->
-           </div>
-      
-
-
-               <h1 class="form-tip">Ano de Publicação</h1>
-               <div id="filtro-ano-pub"></div>
-                <!-- Lista de anos de publicação será carregada aqui -->    
-
-
-
-        <h1 class="form-tip"> Ano de Coleta </h1> <!-- linkar com os anos que tem no banco deixar ulitmos 5-->
-              <div id="filtro-ano-coleta"></div>
-
-
-     <h1 class="form-tip"> Proxies Utilizados </h1> 
-               <div class="filtro-proxies" id="filtro-prox">   </div>
-
-
-    <h1 class="form-tip"> Tipos de instrumentos </h1>           
-        <div id="filtro-equi" class="filtro-equi"> </div>
-
-
-        </form>
+            <br>
+            <form class="form-filter">
+                <h1 class="form-tip">Tipo de trabalho</h1>
+                <div class="filtro-tipo" id="filtro-tipo">
+                    <!-- deixar fixado -->
+                </div>
+                <h1 class="form-tip">Ano de Publicação</h1>
+                <div id="filtro-ano-pub"></div>
+                <!-- Lista de anos de publicação será carregada aqui -->
+                <h1 class="form-tip">Ano de Coleta</h1>
+                <!-- linkar com os anos que tem no banco deixar últimos 5 -->
+                <div id="filtro-ano-coleta"></div>
+                <h1 class="form-tip">Proxies Utilizados</h1>
+                <div class="filtro-proxies" id="filtro-prox"></div>
+                <h1 class="form-tip">Tipos de instrumentos</h1>
+                <div id="filtro-equi" class="filtro-equi"></div>
+            </form>
         </div>
 
-
-
         <div class="results-consult" style="background-color:antiquewhite">
-           
-           
             <div class="result-consult-forms" style="background-color: cadetblue;">
                 <span id="result-fomrs">RESULTADOS DAS BUSCAS</span>
             </div>
-
-
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div id="ultimosartigos" class="table-responsive">
-                            
                             <!-- Os resultados da consulta serão exibidos aqui -->
                         </div>
+                        <div id="loading" style="display:none;">Carregando...</div>
+                        <div id="resultados" class="table-responsive" ></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
 
     <!-- Footer -->
     <footer id="contact" class="py-5 bg-dark" style="position: relative;">
@@ -154,144 +115,135 @@
             <a href="mailto:italopaladino22@gmail.com" target="_blank" class="bi bi-envelope"></a>
         </div>
     </footer>
-    
-
-
-
-
-
-
 
     <!-- Bootstrap core JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function() {
+    console.log("jQuery está funcionando.");
 
-
-
-
-
-
-
-
-<script>
-        // JAVA PARA TIPOS DE TRABALHOS
-    $(document).ready(function(){
-        console.log("jQuery está funcionando.");
-    
-        // Consulta de artigos
+    // Função para carregar os filtros
+    function carregarFiltros() {
         $.ajax({
             url: "../PHP/filtro-tipo.php",
             type: "GET",
-            success: function(response){
+            success: function(response) {
                 $("#filtro-tipo").html(response);
             },
             error: function(xhr, status, error) {
-                console.error("Erro ao consultar anos:", status, error);
+                console.error("Erro ao consultar tipos:", status, error);
             }
         });
-    });
-    </script>
 
+        $.ajax({
+            url: "../PHP/filtro-ano-pub.php",
+            type: "GET",
+            success: function(response) {
+                $("#filtro-ano-pub").html(response);
 
-
-<script>
-    // JAVA PARA FILTRO DE ANOS
-    $(document).ready(function(){
-    console.log("jQuery está funcionando.");
-
-    // Consulta de artigos
-    $.ajax({
-        url: "../PHP/filtro-ano-pub.php",
-        type: "GET",
-        success: function(response){
-            $("#filtro-ano-pub").html(response);
-        },
-        error: function(xhr, status, error) {
-            console.error("Erro ao consultar ano de publicacao:", status, error);
-        }
-    });
+                // Adicionar evento de clique aos botões de ano
+                $(".ano-button").click(function() {
+                var ano = $(this).data("ano");
+                console.log("Ano selecionado:", ano);  // Adicione esta linha
+                carregarResultados(ano);
 });
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar ano de publicação:", status, error);
+            }
+        });
 
-    </script>
-    <script>
-        // JAVA PARA FILTRO DE ANOS
-        $(document).ready(function(){
-        console.log("jQuery está funcionando.");
-    
-        // Consulta de artigos
         $.ajax({
             url: "../PHP/filtro-ano-coleta.php",
             type: "GET",
-            success: function(response){
+            success: function(response) {
                 $("#filtro-ano-coleta").html(response);
             },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar ano de coleta:", status, error);
             }
         });
-    });
-    
-        </script>
-           <script>
-            // JAVA PARA FILTRO DE ANOS
-            $(document).ready(function(){
-            console.log("jQuery está funcionando.");
-        
-            // Consulta de artigos
-            $.ajax({
-                url: "../PHP/filtro-prox.php",
-                type: "GET",
-                success: function(response){
-                    $("#filtro-prox").html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error("Erro ao consultar proxies:", status, error);
-                }
-            });
+
+        $.ajax({
+            url: "../PHP/filtro-prox.php",
+            type: "GET",
+            success: function(response) {
+                $("#filtro-prox").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar proxies:", status, error);
+            }
         });
-        
-            </script>
-  <script>
-    // JAVA PARA FILTRO DE ANOS
-    $(document).ready(function(){
-    console.log("jQuery está funcionando.");
 
-    // Consulta de artigos
+        $.ajax({
+            url: "../PHP/filtro-equi.php",
+            type: "GET",
+            success: function(response) {
+                $("#filtro-equi").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar equipamentos:", status, error);
+            }
+        });
+    }
+
+
+
+    // Função para carregar os resultados
+    
+   // Função para carregar resultados com base no ano selecionado
+function carregarResultados(ano) {
     $.ajax({
-        url: "../PHP/filtro-equi.php",
+        url: "../PHP/resultado-consulta.php",
         type: "GET",
-        success: function(response){
-            $("#filtro-equi").html(response);
-        },
-        error: function(xhr, status, error) {
-            console.error("Erro ao consultar Equipamentos:", status, error);
-        }
-    });
-});
-
-    </script>
-
-
-
-
-<script>
-    //consulta geral de artigos listados 
-    $(document).ready(function(){
-    console.log("jQuery está funcionando.");
-
-    // Consulta de artigos
-    $.ajax({
-        url: "../PHP/consulta-art-geral.php",
-        type: "GET",
-        success: function(response){
-            $("#ultimosartigos").html(response);
+        data: { ano: ano },
+        success: function(response) {
+            $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
         },
         error: function(xhr, status, error) {
             console.error("Erro ao consultar artigos:", status, error);
         }
     });
+}
+
+$(document).ready(function() {
+    // Adiciona um listener de clique para cada link de ano
+    $(document).on('click', '.filtro-ano-pub a', function(event) {
+    event.preventDefault();  // Evita o comportamento padrão do link
+    var ano = $(this).data('ano');  // Obtém o valor do ano
+    carregarResultados(ano);  // Carrega os resultados via AJAX
 });
 
-</script>   
+$(document).ready(function() {
+    var ano = localStorage.getItem('anoSelecionado');
+    if (ano) {
+        carregarResultados(ano);  // Carrega os resultados do ano armazenado
+    }
+});
+});
 
+    // Carregar filtros ao iniciar a página
+    carregarFiltros();
+
+    // Carregar resultados iniciais (opcional)
+    carregarResultados();
+});
+
+         
+        $(document).ready(function(){
+            console.log("jQuery está funcionando.");
+
+            // Consulta de artigos
+            $.ajax({
+                url: "../PHP/consulta-art-geral.php",
+                type: "GET",
+                success: function(response){
+                    $("#ultimosartigos").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Erro ao consultar artigos:", status, error);
+                }
+            });
+        });
+    </script>   
 </body>
 </html>

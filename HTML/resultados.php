@@ -33,7 +33,7 @@
                     <li class="nav-item"><a class="nav-link" href="../index.html" onclick=closeNavbar()>Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../index.html#last-issues" onclick=closeNavbar()>Últimos Artigos</a></li>
                     <li class="nav-item"><a class="nav-link" href="../index.html#contact" onclick=closeNavbar()>Contatos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="consulta.html" onclick=closeNavbar()>Consulta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="consulta.php" onclick=closeNavbar()>Consulta</a></li>
                     <li class="nav-item"><a class="nav-link" href="submit.html">Submissão de dados</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="openLoginDialog(); closeNavbar()">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="novo-user.html" onclick=closeNavbar()>Sing in</a></li>
@@ -196,7 +196,7 @@ ORDER BY infogeral.geralID";
                 </div>"; // DIV PRINCIPAL
         
                 echo "<div class='principal2'>"; // DIV SECUNDÁRIA
-                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a></br>";
+                echo "<a href='consulta.php' id='voltar' class='voltar'> &laquo; Voltar</a></br>";
         
                 echo "<div class='linha' id='coluna-esq-dir'>"; // div corr
                 echo "<div class='coluna' id='colun-esq'><span class='colun-esq'> Correspondente:</span></div>";
@@ -342,7 +342,7 @@ ORDER BY infogeral.geralID";
                 echo "</div>"; // arquivo 
         
                 
-                echo "<a href='consulta.html' id='voltar' class='voltar'> &laquo; Voltar</a>";
+                echo "<a href='consulta.php' id='voltar' class='voltar'> &laquo; Voltar</a>";
         
                 echo "</div>"; // DIV SECUNDÁRIA
             }
