@@ -18,19 +18,13 @@ try {
         $infogera = $infogeral[$i]; // Obtém a linha atual
     
         // Cria a frase com os dados do autor, título sublinhado, DOI e data
-        $frase = "<a class='link-pesq' href='../HTML/resultados.php?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['referencia']) ."";
-    
+        $frase = "<div class='citation'>
+                    <a class='link-pesq' href='../HTML/resultados.php?id=" . htmlspecialchars($infogera['geralid']) . "'>" . htmlspecialchars($infogera['referencia']) . "</a>
+                  </div>";
         // Exibe a frase e adiciona duas quebras de linha
-        echo $frase . "<br><br>";
+        echo $frase . "<br>";
     
-        // Incrementa o contador
-        $contador++;
-    
-        // Verifica se o contador atingiu três, se sim, interrompe o loop
-        if ($contador >= 3) {
-            break;
         }
-    }
     
 } catch (PDOException $e) {
     echo "Erro:" . $e->getMessage();
