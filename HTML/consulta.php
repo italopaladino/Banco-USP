@@ -64,10 +64,11 @@
             <div class="filter-top-forms" style="background-color: cadetblue;">
                 <span id="filter-forms-label">Filtros:</span>
             </div>
+
             <div class="search3">
-                <input class="search3" type="text" placeholder="Search here..">
-                <button><i class="bi bi-search"></i></button>
-            </div>
+    <input id="filtro-ativo" class="search3" type="text" placeholder="Filtro ativo..." readonly>
+    <button id="remove-filtro">X</button>
+</div>
             <br>
             <form class="form-filter">
                 <h1 class="form-tip">Tipo de trabalho</h1>
@@ -139,7 +140,21 @@
 $(document).ready(function() {
     console.log("jQuery está funcionando.");
 
-    // Função para carregar os filtros
+    // Função para carregar todos os artigos
+    function carregarTodosArtigos() {
+        $.ajax({
+            url: "../PHP/consulta-art-geral.php",
+            type: "GET",
+            success: function(response) {
+                $("#ultimosartigos").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar artigos:", status, error);
+            }
+        });
+    }
+
+    // Função para carregar filtros
     function carregarFiltros() {
         $.ajax({
             url: "../PHP/filtro-tipo.php",
@@ -160,10 +175,10 @@ $(document).ready(function() {
 
                 // Adicionar evento de clique aos botões de ano
                 $(".ano-button").click(function() {
-                var ano = $(this).data("ano");
-                console.log("Ano selecionado:", ano);  // Adicione esta linha
-                carregarResultadosano(ano);
-});
+                    var ano = $(this).data("ano");
+                    console.log("Ano selecionado:", ano);  // Adicione esta linha
+                    carregarResultadosano(ano);
+                });
             },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar ano de publicação:", status, error);
@@ -204,111 +219,50 @@ $(document).ready(function() {
         });
     }
 
+    // Função para carregar resultados com base no ano selecionado
+    function carregarResultadosano(ano) {
+        $.ajax({
+            url: "../PHP/consulta-ano-pub.php",
+            type: "GET",
+            data: { ano: ano },
+            success: function(response) {
+                $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
+                $("#filtro-ativo").html('<span>Filtro ativo: ' + ano + '</span> <button id="remove-filtro">X</button>');
+                localStorage.setItem('anoSelecionado', ano);  // Armazena o ano selecionado
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao consultar artigos:", status, error);
+            }
+        });
+    }
 
-
-
-
-    // Função para carregar os resultados
-    
-   // Função para carregar resultados com base no ano selecionado
-function carregarResultadosano(ano) {
-    $.ajax({
-        url: "../PHP/consulta-ano-pub.php",
-        type: "GET",
-        data: { ano: ano },
-        success: function(response) {
-            $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
-        },
-        error: function(xhr, status, error) {
-            console.error("Erro ao consultar artigos:", status, error);
-        }
+    // Evento de clique para remover o filtro
+    $(document).on('click', '#remove-filtro', function() {
+        localStorage.removeItem('anoSelecionado');  // Remove o filtro armazenado
+        $("#filtro-ativo").html('');  // Limpa o conteúdo do filtro ativo
+        $("#ultimosartigos").html('');  // Opcional: Limpa os resultados exibidos
+        carregarTodosArtigos();  // Recarrega todos os artigos
     });
-}
 
-$(document).ready(function() {
     // Adiciona um listener de clique para cada link de ano
     $(document).on('click', '.filtro-ano-pub a', function(event) {
-    event.preventDefault();  // Evita o comportamento padrão do link
-    var ano = $(this).data('ano');  // Obtém o valor do ano
-    carregarResultadosano(ano);  // Carrega os resultados via AJAX
-});
+        event.preventDefault();  // Evita o comportamento padrão do link
+        var ano = $(this).data('ano');  // Obtém o valor do ano
+        carregarResultadosano(ano);  // Carrega os resultados via AJAX
+    });
 
-$(document).ready(function() {
+    // Carregar filtros e artigos ao iniciar a página
+    carregarFiltros();
+    
+    // Carregar todos os artigos inicialmente, pode ser removido se não for necessário
+    carregarTodosArtigos();
+
+    // Verifica se há um filtro armazenado e carrega os resultados filtrados
     var ano = localStorage.getItem('anoSelecionado');
     if (ano) {
         carregarResultadosano(ano);  // Carrega os resultados do ano armazenado
     }
 });
-});
-
-    // Carregar filtros ao iniciar a página
-    carregarFiltros();
-
-    // Carregar resultados iniciais (opcional)
-    carregarResultadosano();
-});
-
-
-        $(document).ready(function(){
-            console.log("jQuery está funcionando.");
-
-            // Consulta de artigos
-            $.ajax({
-                url: "../PHP/consulta-art-geral.php",
-                type: "GET",
-                success: function(response){
-                    $("#ultimosartigos").html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error("Erro ao consultar artigos:", status, error);
-                }
-            });
-        });
-
-
-
-
-        //tentativa de filtro por JS
-        function loadLinks(records) {
-    const resultadosDiv = document.querySelector('.ultimosartigos');
-    resultadosDiv.innerHTML = ''; // Limpa os links
-
-    records.forEach(record => {
-        let link = document.createElement('a');
-        link.className = 'link-pesq';
-        link.href = `../HTML/resultados.php?id=${record.id}`;
-        link.textContent = record.titulo;
-
-        let br = document.createElement('br');
-        resultadosDiv.appendChild(link);
-        resultadosDiv.appendChild(br);
-        resultadosDiv.appendChild(document.createElement('br'));
-    });
-}
-
-function applyFilters() {
-    const yearFilter = document.getElementById('yearFilter').value;
-    const vaccineFilter = document.getElementById('vaccineFilter').value;
-
-    let filteredRecords = allRecords;
-
-    if (yearFilter) {
-        filteredRecords = filteredRecords.filter(record => {
-            return new Date(record.dataNascimento).getFullYear() == yearFilter;
-        });
-    }
-
-    if (vaccineFilter) {
-        filteredRecords = filteredRecords.filter(record => {
-            return record.vacinas.includes(vaccineFilter);
-        });
-    }
-
-    loadLinks(filteredRecords);
-}
-
-// Carregar a lista inicialmente com todos os registros
-loadLinks(allRecords);
 
 
     </script>   
