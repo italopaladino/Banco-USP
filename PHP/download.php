@@ -31,12 +31,21 @@ if (isset($_GET['id'])) {
             echo pg_unescape_bytea($conteudo); // Desescapa o conteúdo do bytea
             exit;
         } else {
-            echo "Arquivo não encontrado.";
+            echo "<script> alert (' Não tem arquivo disponível'); </script>";
         }
     } catch (PDOException $e) {
         echo "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
 } else {
-    echo "ID não especificado.";
+    echo "<script> alert ('erro no ID');</script>";
 }
+
+echo "<script>";
+echo "setTimeout(function() {";
+echo "    history.go(-1);";
+echo "}, 20);"; // 3000 milissegundos = 3 segundos
+echo "</script>";
+
+exit;
 ?>
+

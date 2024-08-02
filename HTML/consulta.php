@@ -65,40 +65,37 @@
                 <span id="filter-forms-label">Filtros:</span>
             </div>
 
-            <div class="search3">
-    <input id="filtro-ativo" class="search3" type="text" placeholder="Filtro ativo..." readonly>
-    <button id="remove-filtro">X</button>
+    <div class="search3">
+    <input id="filtro-geral" class="search3">
 </div>
+    
+        
+
+    
+
             <br>
             <form class="form-filter">
+            <h1 class="form-tip">Filtros ativo:</h1>
+
+            <div id="filtro-ativo"></div>
                 <h1 class="form-tip">Tipo de trabalho</h1>
-                <div class="filtro-tipo" id="filtro-tipo">
+                <div class="top-tipo" id="top-tipo">
                     <!-- deixar fixado -->
                 </div>
                 <h1 class="form-tip">Ano de Publicação</h1>
-                <div id="filtro-ano-pub"></div>
+                <div id="top-ano-pub"></div>
                 <!-- Lista de anos de publicação será carregada aqui -->
-                <h1 class="form-tip">Ano de Coleta</h1>
+                <h1 class="top-tip">Ano de Coleta</h1>
                 <!-- linkar com os anos que tem no banco deixar últimos 5 -->
-                <div id="filtro-ano-coleta"></div>
-                <h1 class="form-tip">Proxies Utilizados</h1>
-                <div class="filtro-proxies" id="filtro-prox"></div>
-                <h1 class="form-tip">Tipos de instrumentos</h1>
-                <div id="filtro-equi" class="filtro-equi"></div>
+                <div id="top-ano-coleta"></div>
+                <h1 class="top-tip">Proxies Utilizados</h1>
+                <div class="top-proxies" id="top-prox"></div>
+                <h1 class="top-tip">Tipos de instrumentos</h1>
+                <div id="top-equi" class="top-equi"></div>
                 
             </form>
 
-            <h1>Consulta de Registros</h1>
-
-    <!-- Filtros -->
-    <label for="yearFilter">Filtrar por Ano de Nascimento:</label>
-    <input type="text" id="yearFilter" placeholder="Ex: 2000">
-
-    <label for="vaccineFilter">Filtrar por Vacina:</label>
-    <input type="text" id="vaccineFilter" placeholder="Ex: X">
-
-    <button onclick="applyFilters()">Aplicar Filtros</button>
-
+            
     <!-- Links de Resultados -->
     <div class="resultados">
         <!-- Os links serão preenchidos aqui -->
@@ -157,21 +154,32 @@ $(document).ready(function() {
     // Função para carregar filtros
     function carregarFiltros() {
         $.ajax({
-            url: "../PHP/filtro-tipo.php",
+            url: "../PHP/top-tipo.php",
             type: "GET",
             success: function(response) {
-                $("#filtro-tipo").html(response);
-            },
+                $("#top-tipo").html(response);
+            
+
+            //adicionar evento ao de clique no botão tipo
+            $(".tipo-button").click(function(){
+                var tipo =$(this).tipo("tipo");
+                console.log("tipo selecionado:", tipo);
+                carregarTipoTrabalho(tipo);
+
+            });
+        },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar tipos:", status, error);
             }
+                
         });
 
+
         $.ajax({
-            url: "../PHP/filtro-ano-pub.php",
+            url: "../PHP/top-ano-pub.php",
             type: "GET",
             success: function(response) {
-                $("#filtro-ano-pub").html(response);
+                $("#top-ano-pub").html(response);
 
                 // Adicionar evento de clique aos botões de ano
                 $(".ano-button").click(function() {
@@ -186,10 +194,10 @@ $(document).ready(function() {
         });
 
         $.ajax({
-            url: "../PHP/filtro-ano-coleta.php",
+            url: "../PHP/top-ano-coleta.php",
             type: "GET",
             success: function(response) {
-                $("#filtro-ano-coleta").html(response);
+                $("#top-ano-coleta").html(response);
             },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar ano de coleta:", status, error);
@@ -197,10 +205,10 @@ $(document).ready(function() {
         });
 
         $.ajax({
-            url: "../PHP/filtro-prox.php",
+            url: "../PHP/top-prox.php",
             type: "GET",
             success: function(response) {
-                $("#filtro-prox").html(response);
+                $("#top-prox").html(response);
             },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar proxies:", status, error);
@@ -208,10 +216,10 @@ $(document).ready(function() {
         });
 
         $.ajax({
-            url: "../PHP/filtro-equi.php",
+            url: "../PHP/top-equi.php",
             type: "GET",
             success: function(response) {
-                $("#filtro-equi").html(response);
+                $("#top-equi").html(response);
             },
             error: function(xhr, status, error) {
                 console.error("Erro ao consultar equipamentos:", status, error);
@@ -219,49 +227,83 @@ $(document).ready(function() {
         });
     }
 
-    // Função para carregar resultados com base no ano selecionado
-    function carregarResultadosano(ano) {
-        $.ajax({
-            url: "../PHP/consulta-ano-pub.php",
-            type: "GET",
-            data: { ano: ano },
-            success: function(response) {
-                $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
-                $("#filtro-ativo").html('<span>Filtro ativo: ' + ano + '</span> <button id="remove-filtro">X</button>');
-                localStorage.setItem('anoSelecionado', ano);  // Armazena o ano selecionado
-            },
-            error: function(xhr, status, error) {
-                console.error("Erro ao consultar artigos:", status, error);
-            }
-        });
-    }
 
-    // Evento de clique para remover o filtro
-    $(document).on('click', '#remove-filtro', function() {
-        localStorage.removeItem('anoSelecionado');  // Remove o filtro armazenado
-        $("#filtro-ativo").html('');  // Limpa o conteúdo do filtro ativo
-        $("#ultimosartigos").html('');  // Opcional: Limpa os resultados exibidos
-        carregarTodosArtigos();  // Recarrega todos os artigos
+
+
+// Filtro para ano de publicação
+function carregarResultadosano(ano) {
+    $.ajax({
+        url: "../PHP/filtros-ano-pub.php",
+        type: "GET",
+        data: { ano: ano },
+        success: function(response) {
+            $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
+            $("#filtro-ativo").html('<ul><li><u><span>' + ano + '</span></u> <button style="background-color: transparent; color: red; border: none;" id="remove-filtro">X</button></li></ul>');
+            localStorage.setItem('anoSelecionado', ano);  // Armazena o ano selecionado
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao consultar artigos:", status, error);
+        }
     });
+}
 
-    // Adiciona um listener de clique para cada link de ano
-    $(document).on('click', '.filtro-ano-pub a', function(event) {
-        event.preventDefault();  // Evita o comportamento padrão do link
-        var ano = $(this).data('ano');  // Obtém o valor do ano
-        carregarResultadosano(ano);  // Carrega os resultados via AJAX
+// filtro para Tipo de Trabalho
+function carregarTipoTrabalho(tipo) {
+    $.ajax({
+        url: "../PHP/filtro-tipo-trabalho.php",
+        type: "GET",
+        data: { tipo: tipo },
+        success: function(response) {
+            $("#ultimosartigos").html(response);  // Atualiza a div com o id 'ultimosartigos'
+            $("#filtro-ativo").html('<ul><li><u><span>' + tipo + '</span></u> <button style="background-color: transparent; color: red; border: none;" id="remove-filtro">X</button></li></ul>');
+            localStorage.setItem('tipoTrabalho', tipo);  // Armazena o tipo de trabalho selecionado
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao consultar artigos:", status, error);
+        }
     });
+}
 
-    // Carregar filtros e artigos ao iniciar a página
-    carregarFiltros();
-    
-    // Carregar todos os artigos inicialmente, pode ser removido se não for necessário
-    carregarTodosArtigos();
+// Evento de clique para remover o filtro
+$(document).on('click', '#remove-filtro', function() {
+    localStorage.removeItem('anoSelecionado');  // Remove o filtro de ano armazenado
+    localStorage.removeItem('tipoTrabalho');  // Remove o filtro de tipo de trabalho armazenado
+    $("#filtro-ativo").html('');  // Limpa o conteúdo do filtro ativo
+    $("#ultimosartigos").html('');  // Opcional: Limpa os resultados exibidos
+    carregarTodosArtigos();  // Recarrega todos os artigos
+});
 
-    // Verifica se há um filtro armazenado e carrega os resultados filtrados
-    var ano = localStorage.getItem('anoSelecionado');
-    if (ano) {
-        carregarResultadosano(ano);  // Carrega os resultados do ano armazenado
-    }
+// Adiciona um listener de clique para cada link de ano
+$(document).on('click', '.filtro-ano-pub a', function(event) {
+    event.preventDefault();  // Evita o comportamento padrão do link
+    var ano = $(this).data('ano');  // Obtém o valor do ano
+    carregarResultadosano(ano);  // Carrega os resultados via AJAX
+});
+
+// Adiciona um listener de clique para cada link de tipo de trabalho
+$(document).on('click', '.filtro-tipo-trabalho a', function(event) {
+    event.preventDefault();  // Evita o comportamento padrão do link
+    var tipo = $(this).data('tipo-trabalho');  // Obtém o valor do tipo de trabalho
+    carregarTipoTrabalho(tipo);  // Carrega os resultados via AJAX
+});
+
+// Carregar filtros e artigos ao iniciar a página
+carregarFiltros();
+
+// Carregar todos os artigos inicialmente, pode ser removido se não for necessário
+carregarTodosArtigos();
+
+// Verifica se há um filtro armazenado e carrega os resultados filtrados
+var ano = localStorage.getItem('anoSelecionado');
+if (ano) {
+    carregarResultadosano(ano);  // Carrega os resultados do ano armazenado
+}
+
+var tipo = localStorage.getItem('tipoTrabalho');
+if (tipo) {
+    carregarTipoTrabalho(tipo);  // Carrega os resultados do tipo de trabalho armazenado
+}
+
 });
 
 

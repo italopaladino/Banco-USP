@@ -338,7 +338,7 @@ ORDER BY infogeral.geralID";
                 // Ensure $row['nome_arquivo'] is a string before using htmlspecialchars
                 $nome_arquivo = is_string($row['nome_arquivo']) ? htmlspecialchars($row['nome_arquivo']) : '';
         
-                echo "<div class='coluna' id='colun-dir'>" . $nome_arquivo . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='../PHP/download.php?id=". htmlspecialchars($id) . "'> Download </a></div>"; 
+                echo "<div class='coluna' id='colun-dir'>" . $nome_arquivo . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='download' href='../PHP/download.php?id=". htmlspecialchars($id) . "'> Download </a></div>"; 
                 echo "</div>"; // arquivo 
         
                 
@@ -380,12 +380,6 @@ ORDER BY infogeral.geralID";
         </div>
     </footer>
     
-
-
-
-
-
-
 
     <!-- Bootstrap core JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
